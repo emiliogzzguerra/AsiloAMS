@@ -34,7 +34,8 @@ import java.sql.Statement;
 
 public class PregistraPx extends JFrame {
 
-	private JTextField sexoPx,fechaNacimientoPx,nombrePx,apellidoPx,ciudadPx,callePx,codigoPostalPx,sangrePx,numeroCuartoPx,numeroCamaPx,estatusPx,asiloIdPx;
+	private JTextField fechaNacimientoPx,nombrePx,apellidoPx,ciudadPx,callePx,codigoPostalPx,sangrePx,numeroCuartoPx,numeroCamaPx,estatusPx,asiloIdPx;
+	private Integer sexoPx = -1;
 	private JButton altaDoc, guardarCambios, cambiarFoto;
 	private ImageIcon imageIcon;
 
@@ -90,25 +91,26 @@ public class PregistraPx extends JFrame {
 		panelNCReg.add(nombrePx,d);
 		d.gridy++;
 
-		ciudadPx = new JTextField("Direccion del paciente",32);
+		ciudadPx = new JTextField("Ciudad",32);
 		panelNCReg.add(ciudadPx,d);
 		d.gridy++;
 
-		callePx = new JTextField("Direccion del paciente",32);
+		callePx = new JTextField("Calle",32);
 		panelNCReg.add(callePx,d);
 		d.gridy++;
 
-		codigoPostalPx = new JTextField("Direccion del paciente",32);
+		codigoPostalPx = new JTextField("Código Postal",32);
 		panelNCReg.add(codigoPostalPx,d);
 		d.gridy++;
-
-		fechaNacimientoPx = new JTextField("Fecha de nacimiento",32);
-		panelNCReg.add(fechaNacimientoPx,d);
 
 		//Reset pos
 		d.gridy=0;
 		d.gridx=1;
 		d.anchor = GridBagConstraints.LINE_START;
+
+		fechaNacimientoPx = new JTextField("Fecha de nacimiento (yyyy/mm/dd)",32);
+		panelNCReg.add(fechaNacimientoPx,d);
+		d.gridy++;
 
 		numeroCuartoPx = new JTextField("Cuarto del Paciente",32);
 		panelNCReg.add(numeroCuartoPx,d);
@@ -116,6 +118,42 @@ public class PregistraPx extends JFrame {
 
 		numeroCamaPx = new JTextField("Cama del paciente",32);
 		panelNCReg.add(numeroCamaPx,d);
+		d.gridy++;
+
+		String[] description = { "Sexo", "Masculino", "Femenino"};
+
+		JTextField t = new JTextField(15);
+
+		JComboBox c = new JComboBox();
+
+		JButton b = new JButton("Add items");
+
+		final int[] count = {0};
+
+		for (int i = 0; i < 3; i++)
+			c.addItem(description[count[0]++]);
+			t.setEditable(false);
+			b.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (count[0] < description.length)
+					c.addItem(description[count[0]++]);
+				}
+			});
+			c.addActionListener(new ActionListener() {
+			  public void actionPerformed(ActionEvent e) {
+			  	sexoPx = c.getSelectedIndex()-1;
+				t.setText("Sexo: " + sexoPx + "   "+ ((JComboBox) e.getSource()).getSelectedItem());
+			  }
+			});
+		Container cp = getContentPane();
+		cp.setLayout(new FlowLayout());
+		cp.add(t);
+		cp.add(c);
+		cp.add(b);
+
+		panelMainReg.add(new JLabel("Sexo: "));
+		panelNCReg.add(c,d);
+		d.gridy++;
 
 		//NORTHEAST
 		JPanel panelNEReg = new JPanel(new GridBagLayout());
@@ -138,29 +176,73 @@ public class PregistraPx extends JFrame {
 		guardarCambios.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event){
-				try {
-					Class.forName("com.mysql.jdbc.Driver");
+				int proceed = 1;
 
-					//Get connection with MySQL database
-					Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
-							"root", "1212");
-					Statement myStmt = mycon.createStatement();
-					//Adds the new score to the database
-					String mySQLTable = "paciente";
-
-					String sql = "INSERT INTO " + mySQLTable + "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
-							+ "VALUES (0,'2017-04-11 3:15',\"Pepe\",\"Gomez\",\"Aguascalientes\",\"FR #125\",64340,\"O\",1,2,0,1);";
-
-					myStmt.executeUpdate(sql);
-					//Execute SQL query
-					ResultSet myRs = myStmt.executeQuery("SELECT * from " + mySQLTable);
-
-					while (myRs.next()) {
-						System.out.println(myRs.getString(1)); //gets the first column's rows.
+				if (nombrePx.getText() == "Nombre del paciente" || ciudadPx.getText() == "Ciudad" || callePx.getText() == "Calle" || codigoPostalPx.getText() == "Código Postal" || fechaNacimientoPx.getText() == "Fecha de nacimiento (yyyy/mm/dd)" || numeroCuartoPx.getText() == "Cuarto del Paciente" || numeroCamaPx.getText() == "Cama del paciente" || sexoPx == -1){
+					String warning = "Advertencia, uno o más campos no fueron modificados: (";
+					if (nombrePx.getText() == "Nombre del paciente") {
+						warning += "Nombre del paciente, ";
 					}
-				} catch (Exception e) {
-					System.out.println("Error with database connection");
-					e.printStackTrace();
+
+					if (ciudadPx.getText() == "Ciudad") {
+						warning += "Ciudad, ";
+					}
+
+					if (callePx.getText() == "Calle") {
+						warning += "Calle, ";
+					}
+
+					if (codigoPostalPx.getText() == "Código Postal") {
+						warning += "Código Postal, ";
+					}
+
+					if (fechaNacimientoPx.getText() == "Fecha de nacimiento (yyyy/mm/dd)") {
+						warning += "Fecha de nacimiento (yyyy/mm/dd), ";
+					}
+
+					if (numeroCuartoPx.getText() == "Cuarto del Paciente") {
+						warning += "Cuarto del Paciente, ";
+					}
+
+					if (numeroCamaPx.getText() == "Cama del paciente") {
+						warning += "Cama del paciente, ";
+					}
+
+					if (sexoPx == -1){
+						warning += "Sexo";
+					}
+
+					warning += ") ¿Quiere proceder?";
+					proceed = JOptionPane.showConfirmDialog(null, warning, "Información posiblemente incompleta", JOptionPane.YES_NO_OPTION);
+				}
+
+				if(proceed == 1){
+					try {
+						Class.forName("com.mysql.jdbc.Driver");
+
+						String mySQLTable = "paciente";
+
+						String sql = "INSERT INTO " + mySQLTable + "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
+								+ "VALUES (0,'2017-04-11 3:15',\"Pepe\",\"Gomez\",\"Aguascalientes\",\"FR #125\",64340,\"O\",1,2,0,1);";
+
+						//Get connection with MySQL database
+						Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
+								"root", "1212");
+						Statement myStmt = mycon.createStatement();
+						//Adds the new score to the database
+
+						myStmt.executeUpdate(sql);
+
+						//Execute SQL query
+						ResultSet myRs = myStmt.executeQuery("SELECT * from " + mySQLTable);
+
+						while (myRs.next()) {
+							System.out.println(myRs.getString(1)); //gets the first column's rows.
+						}
+					} catch (Exception e) {
+						System.out.println("Error with database connection");
+						e.printStackTrace();
+					}
 				}
 			}
 		});
