@@ -204,14 +204,51 @@ public class PregistraPx extends JFrame {
 					System.out.println("Proceed: " + proceed);
 				}
 
+				String sup =
+						"INSERT INTO "
+								+ "paciente"
+								+ "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
+								+ "VALUES ("
+								+ sexoPx + ",'"
+								+ fechaNacimientoPx.getText() + "','"
+								+ nombrePx.getText() + "','"
+								+ apellidoPx.getText()  + "','"
+								+ ciudadPx.getText()  + "','"
+								+ callePx.getText()  + "',"
+								+ codigoPostalPx.getText() + ",'"
+								+ sangrePx.getText() + "',"
+								+ numeroCuartoPx.getText() + ","
+								+ numeroCamaPx.getText() + ","
+								+ estatusPx.getText() + ","
+								+ asiloIdPx.getText()  + ")";
+
+				System.out.println(sup);
+
 				if(proceed == 1){
 					try {
 						Class.forName("com.mysql.jdbc.Driver");
 
 						String mySQLTable = "paciente";
 
-						String sql = "INSERT INTO " + mySQLTable + "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
-								+ "VALUES ("+sexoPx+",'" + fechaNacimientoPx +"',"'Pepe\",\"Gomez\",\"Aguascalientes\",\"FR #125\",64340,\"O\",1,2,0,1);";
+						String sql =
+							"INSERT INTO " 
+							+ mySQLTable 
+							+ "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) " 
+							+ "VALUES (" 
+								+ sexoPx + ",'"
+								+ fechaNacimientoPx.getText() + "','" 
+								+ nombrePx.getText() + "','" 
+								+ apellidoPx.getText()  + "','" 
+								+ ciudadPx.getText()  + "','" 
+								+ callePx.getText()  + "'," 
+								+ codigoPostalPx.getText() + ",'"  
+								+ sangrePx.getText() + "',"  
+								+ numeroCuartoPx.getText() + ","   
+								+ numeroCamaPx.getText() + ","   
+								+ estatusPx.getText() + ","   
+								+ asiloIdPx.getText()  + ")";
+
+						System.out.println(sql);
 
 						//Get connection with MySQL database
 						Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
