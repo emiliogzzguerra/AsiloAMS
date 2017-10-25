@@ -24,6 +24,10 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Pprincipal extends JFrame{
 	
@@ -60,12 +64,33 @@ public class Pprincipal extends JFrame{
 		buttonSubmit = new JButton("Buscar");
 		buttonSubmit.addActionListener(new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent event){
 				String nombrePx = BuscarPaciente.getText();
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+
+					//Get connection with MySQL database
+					Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
+							"root", "1212");
+					Statement myStmt = mycon.createStatement();
+					//Adds the new score to the database
+					String mySQLTable = "paciente";
+
+					String query = "select * from paciente where nombre like '" + nombrePx + "%' or apellido like '" + nombrePx +"%'";;
+
+					//Execute SQL query
+					ResultSet myRs = myStmt.executeQuery(query);
+
+					while (myRs.next()) {
+						System.out.println(myRs.getString(4)); //gets the first column's rows.
+					}
+				} catch (Exception e) {
+					System.out.println("Error with database connection");
+					e.printStackTrace();
+				}
 			}
 		});
 		panelNorth.add(buttonSubmit, BorderLayout.EAST);
-		
 
 		//WEST
 		JPanel panelWest = new JPanel(new GridBagLayout());

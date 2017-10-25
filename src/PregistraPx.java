@@ -26,11 +26,15 @@ import javax.swing.JTabbedPane;
 import java.awt.Toolkit;
 import javax.swing.border.MatteBorder;
 import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 public class PregistraPx extends JFrame {
 
-	private JTextField nombrePx, direccionPx, edadPx, cuartoPx, camaPx;
+	private JTextField sexoPx,fechaNacimientoPx,nombrePx,apellidoPx,ciudadPx,callePx,codigoPostalPx,sangrePx,numeroCuartoPx,numeroCamaPx,estatusPx,asiloIdPx;
 	private JButton altaDoc, guardarCambios, cambiarFoto;
 	private ImageIcon imageIcon;
 
@@ -86,24 +90,32 @@ public class PregistraPx extends JFrame {
 		panelNCReg.add(nombrePx,d);
 		d.gridy++;
 
-		direccionPx = new JTextField("Direccion del paciente",32);
-		panelNCReg.add(direccionPx,d);
+		ciudadPx = new JTextField("Direccion del paciente",32);
+		panelNCReg.add(ciudadPx,d);
 		d.gridy++;
 
-		edadPx = new JTextField("Edad del paciente",32);
-		panelNCReg.add(edadPx,d);
+		callePx = new JTextField("Direccion del paciente",32);
+		panelNCReg.add(callePx,d);
+		d.gridy++;
+
+		codigoPostalPx = new JTextField("Direccion del paciente",32);
+		panelNCReg.add(codigoPostalPx,d);
+		d.gridy++;
+
+		fechaNacimientoPx = new JTextField("Fecha de nacimiento",32);
+		panelNCReg.add(fechaNacimientoPx,d);
 
 		//Reset pos
 		d.gridy=0;
 		d.gridx=1;
 		d.anchor = GridBagConstraints.LINE_START;
 
-		cuartoPx = new JTextField("Cuarto del Paciente",32);
-		panelNCReg.add(cuartoPx,d);
+		numeroCuartoPx = new JTextField("Cuarto del Paciente",32);
+		panelNCReg.add(numeroCuartoPx,d);
 		d.gridy++;
 
-		camaPx = new JTextField("Cama del paciente",32);
-		panelNCReg.add(camaPx,d);
+		numeroCamaPx = new JTextField("Cama del paciente",32);
+		panelNCReg.add(numeroCamaPx,d);
 
 		//NORTHEAST
 		JPanel panelNEReg = new JPanel(new GridBagLayout());
@@ -125,8 +137,31 @@ public class PregistraPx extends JFrame {
 		guardarCambios = new JButton("Guardar Cambios");
 		guardarCambios.addActionListener(new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent event){
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
 
+					//Get connection with MySQL database
+					Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
+							"root", "1212");
+					Statement myStmt = mycon.createStatement();
+					//Adds the new score to the database
+					String mySQLTable = "paciente";
+
+					String sql = "INSERT INTO " + mySQLTable + "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
+							+ "VALUES (0,'2017-04-11 3:15',\"Pepe\",\"Gomez\",\"Aguascalientes\",\"FR #125\",64340,\"O\",1,2,0,1);";
+
+					myStmt.executeUpdate(sql);
+					//Execute SQL query
+					ResultSet myRs = myStmt.executeQuery("SELECT * from " + mySQLTable);
+
+					while (myRs.next()) {
+						System.out.println(myRs.getString(1)); //gets the first column's rows.
+					}
+				} catch (Exception e) {
+					System.out.println("Error with database connection");
+					e.printStackTrace();
+				}
 			}
 		});
 		panelNEReg.add(guardarCambios,d);
