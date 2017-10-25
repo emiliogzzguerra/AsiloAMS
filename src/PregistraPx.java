@@ -176,13 +176,13 @@ public class PregistraPx extends JFrame {
 		d.fill=GridBagConstraints.BOTH;
 		jTPReg.add("Tratamientos", Tratamientos());
 		//d.gridx++;
-		jTPReg.add("Familiares", Familiares("Panel de Familiares"));
+		jTPReg.add("Familiares", Familiares());
 		//d.gridx++;
 		jTPReg.add("Emergencia", Emergencia());
 		//d.gridx++;
-		jTPReg.add("Expediente", Expediente("Panel de Expediente"));
+		jTPReg.add("Expediente", Expediente());
 		//d.gridx++;
-		jTPReg.add("Medicamentos", Medicamentos("Panel de Medicamentos"));
+		jTPReg.add("Medicamentos", Medicamentos());
 		panelCenterReg.add(jTPReg,d);
 		panelMainReg.add(panelCenterReg, BorderLayout.CENTER);
 
@@ -230,17 +230,71 @@ public class PregistraPx extends JFrame {
     	});
     	send.add(button, BorderLayout.PAGE_END);
     	return scrollPaneF;
-		
+
 	}
 
 	//Lo que va dentro de Familiares
-	protected JComponent Familiares(String text) {
-    	JPanel panelG = new JPanel(false);
-    	JLabel filler = new JLabel(text);
+	protected JComponent Familiares() {
+    	JPanel panelFamiliares = new JPanel(false);
+    	JLabel filler = new JLabel("Contacto");
     	filler.setHorizontalAlignment(JLabel.CENTER);
-    	panelG.setLayout(new GridLayout(1, 1));
-    	panelG.add(filler);
-    	return panelG;
+        JTextField nombre = new JTextField(32);
+        JTextField parentesco = new JTextField(32);
+        JTextField incumbencia = new JTextField(32);
+    	JTextField telefonoCas = new JTextField(32);
+        JTextField telefonoCel = new JTextField(32);
+        JTextField email = new JTextField(32);
+
+        panelFamiliares.setLayout(new BoxLayout(panelFamiliares, BoxLayout.PAGE_AXIS));
+    	panelFamiliares.add(filler);
+        JTextArea info = new JTextArea();
+        info.setEditable(true);
+        info.setLineWrap(true);
+        info.setWrapStyleWord(true);
+
+        JScrollPane scrollInfo = new JScrollPane(info);
+        scrollInfo.setPreferredSize(new Dimension(700,56));
+
+        JPanel panelFAM = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc1 = new GridBagConstraints();
+        gbc1.gridx = 0;
+        gbc1.gridy = 0;
+        gbc1.anchor = GridBagConstraints.LINE_END;
+
+        panelFAM.add(new JLabel("Nombre del Familiar"),gbc1);
+        gbc1.gridy++;
+        panelFAM.add(new JLabel("Parentesco"),gbc1);
+        gbc1.gridy++;
+        panelFAM.add(new JLabel("Incumbencia"),gbc1);
+        gbc1.gridy++;
+        panelFAM.add(new JLabel("Telefono de Casa"),gbc1);
+        gbc1.gridy++;
+        panelFAM.add(new JLabel("Telefono de Cel"),gbc1);
+        gbc1.gridy++;
+        panelFAM.add(new JLabel("Email"),gbc1);
+        gbc1.gridy++;
+
+        gbc1.gridy = 0;
+        gbc1.gridx = 1;
+        gbc1.anchor = GridBagConstraints.LINE_START;
+
+        panelFAM.add(nombre,gbc1);
+        gbc1.gridy++;
+        panelFAM.add(parentesco,gbc1);
+        gbc1.gridy++;
+        panelFAM.add(incumbencia,gbc1);
+        gbc1.gridy++;
+        panelFAM.add(telefonoCas,gbc1);
+        gbc1.gridy++;
+        panelFAM.add(telefonoCel,gbc1);
+        gbc1.gridy++;
+        panelFAM.add(email,gbc1);
+        gbc1.gridy++;
+
+        panelFamiliares.add(panelFAM, BorderLayout.CENTER);
+
+
+        return panelFamiliares;
 	}
 
 	//Lo que va dentro de Emergencia
@@ -261,7 +315,7 @@ public class PregistraPx extends JFrame {
 
     	JPanel panelEM = new JPanel(new GridBagLayout());
     	//panelEM.setLayout(new BoxLayout(panelEM, BoxLayout.LINE_AXIS));
-    	
+
 
     	GridBagConstraints gbc2 = new GridBagConstraints();
     	gbc2.gridx = 0;
@@ -299,23 +353,122 @@ public class PregistraPx extends JFrame {
 	}
 
 	//Lo que va dentro de Expediente
-	protected JComponent Expediente(String text) {
-    	JPanel panelG = new JPanel(false);
-    	JLabel filler = new JLabel(text);
+	protected JComponent Expediente() {
+    	JPanel panelExpediente = new JPanel(false);
+        panelExpediente.setLayout(new BoxLayout(panelExpediente, BoxLayout.PAGE_AXIS));
+        JLabel filler = new JLabel("Expediente Pasado");
     	filler.setHorizontalAlignment(JLabel.CENTER);
-    	panelG.setLayout(new GridLayout(1, 1));
-    	panelG.add(filler);
-    	return panelG;
+    	panelExpediente.add(filler);
+        JTextField enfermedad = new JTextField(32);
+        JTextField fechainicio = new JTextField(32);
+        JTextField fechafinal = new JTextField(32);
+        JTextField descripcion = new JTextField(32);
+        JTextField fechaevento = new JTextField(32);
+
+        JTextArea info = new JTextArea();
+        info.setEditable(true);
+        info.setLineWrap(true);
+        info.setWrapStyleWord(true);
+
+        JScrollPane scrollInfo = new JScrollPane(info);
+        scrollInfo.setPreferredSize(new Dimension(700,56));
+
+        JPanel panelEXP = new JPanel(new GridBagLayout());
+
+        GridBagConstraints gbc3 = new GridBagConstraints();
+        gbc3.gridx = 0;
+        gbc3.gridy = 0;
+        gbc3.anchor = GridBagConstraints.LINE_END;
+
+        panelEXP.add(new JLabel("Nombre Enfermedad"),gbc3);
+        gbc3.gridy++;
+        panelEXP.add(new JLabel("Fecha Inicio"),gbc3);
+        gbc3.gridy++;
+        panelEXP.add(new JLabel("Fecha Final"),gbc3);
+        gbc3.gridy++;
+        panelEXP.add(new JLabel("Descripcion Evento"),gbc3);
+        gbc3.gridy++;
+        panelEXP.add(new JLabel("Fecha Evento"),gbc3);
+        gbc3.gridy++;
+
+
+
+        gbc3.gridy = 0;
+        gbc3.gridx = 1;
+        gbc3.anchor = GridBagConstraints.LINE_START;
+
+        panelEXP.add(enfermedad,gbc3);
+        gbc3.gridy++;
+        panelEXP.add(fechainicio,gbc3);
+        gbc3.gridy++;
+        panelEXP.add(fechafinal,gbc3);
+        gbc3.gridy++;
+        panelEXP.add(descripcion,gbc3);
+        gbc3.gridy++;
+        panelEXP.add(fechaevento,gbc3);
+        gbc3.gridy++;
+
+        panelExpediente.add(panelEXP, BorderLayout.CENTER);
+
+
+
+        return panelExpediente;
 	}
 
 	//Lo que va dentro de Medicamentos
-	protected JComponent Medicamentos(String text) {
-    	JPanel panelG = new JPanel(false);
-    	JLabel filler = new JLabel(text);
+	protected JComponent Medicamentos() {
+    	JPanel panelMedicamento = new JPanel(false);
+		panelMedicamento.setLayout(new BoxLayout(panelMedicamento, BoxLayout.PAGE_AXIS));
+    	JLabel filler = new JLabel("Medicinas");
     	filler.setHorizontalAlignment(JLabel.CENTER);
-    	panelG.setLayout(new GridLayout(1, 1));
-    	panelG.add(filler);
-    	return panelG;
+    	panelMedicamento.add(filler);
+    	JTextField nombreMed = new JTextField(32);
+		JTextField tipoMed = new JTextField(32);
+		JTextField medicionMed = new JTextField(32);
+		JTextField cantidadMed = new JTextField(32);
+
+
+		JTextArea info = new JTextArea();
+		info.setEditable(true);
+		info.setLineWrap(true);
+		info.setWrapStyleWord(true);
+
+		JScrollPane scrollInfo = new JScrollPane(info);
+		scrollInfo.setPreferredSize(new Dimension(700,56));
+
+		JPanel panelMED = new JPanel(new GridBagLayout());
+
+		GridBagConstraints gbc4 = new GridBagConstraints();
+		gbc4.gridx = 0;
+		gbc4.gridy = 0;
+		gbc4.anchor = GridBagConstraints.LINE_END;
+
+		panelMED.add(new JLabel("Nombre de Medicina"),gbc4);
+		gbc4.gridy++;
+		panelMED.add(new JLabel("Tipo de Medicina"),gbc4);
+		gbc4.gridy++;
+		panelMED.add(new JLabel("Medicion de Medicina"),gbc4);
+		gbc4.gridy++;
+		panelMED.add(new JLabel("Cantidad de Medicina"),gbc4);
+		gbc4.gridy++;
+
+		gbc4.gridy = 0;
+		gbc4.gridx = 1;
+		gbc4.anchor = GridBagConstraints.LINE_START;
+
+		panelMED.add(nombreMed,gbc4);
+		gbc4.gridy++;
+		panelMED.add(tipoMed,gbc4);
+		gbc4.gridy++;
+		panelMED.add(medicionMed,gbc4);
+		gbc4.gridy++;
+		panelMED.add(cantidadMed,gbc4);
+		gbc4.gridy++;
+
+		panelMedicamento.add(panelMED, BorderLayout.CENTER);
+
+
+		return panelMedicamento;
 	}
 
 	public ImageIcon setupImage(ImageIcon imagee, String path){
