@@ -31,8 +31,10 @@ import java.sql.*;
 
 public class PregistraPx extends JFrame {
 
-	private JTextField fechaNacimientoPx,nombrePx,apellidoPx,ciudadPx,callePx,codigoPostalPx,sangrePx,numeroCuartoPx,numeroCamaPx,estatusPx,asiloIdPx;
-	private Integer sexoPx = -1;
+	private JTextField fechaNacimientoPx,nombrePx,apellidoPx,ciudadPx,callePx,codigoPostalPx,sangrePx,numeroCuartoPx,numeroCamaPx;
+	private Integer sexoPx = 0;
+	private Integer asiloIdPx = 1;
+	private Integer estatusPx = 0;
 	private JButton altaDoc, guardarCambios, cambiarFoto;
 	private ImageIcon imageIcon;
 
@@ -88,6 +90,10 @@ public class PregistraPx extends JFrame {
 		panelNCReg.add(nombrePx,d);
 		d.gridy++;
 
+		apellidoPx = new JTextField("Apellido del paciente",32);
+		panelNCReg.add(apellidoPx,d);
+		d.gridy++;
+
 		ciudadPx = new JTextField("Ciudad",32);
 		panelNCReg.add(ciudadPx,d);
 		d.gridy++;
@@ -117,6 +123,10 @@ public class PregistraPx extends JFrame {
 		panelNCReg.add(numeroCamaPx,d);
 		d.gridy++;
 
+		sangrePx = new JTextField("Tipo de sangre del paciente",32);
+		panelNCReg.add(sangrePx,d);
+		d.gridy++;
+
 		String[] description = { "Sexo", "Masculino", "Femenino"};
 
 		JComboBox c = new JComboBox();
@@ -129,7 +139,7 @@ public class PregistraPx extends JFrame {
 
 		c.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sexoPx = c.getSelectedIndex()-1;
+				sexoPx = c.getSelectedIndex();
 			}
 		});
 
@@ -157,6 +167,13 @@ public class PregistraPx extends JFrame {
 		guardarCambios.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent event){
+
+				asiloIdPx = 1;
+
+				String sup = new StringBuilder().append("INSERT INTO ").append("paciente").append(" (sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) ").append("VALUES (").append(sexoPx).append(",'").append(fechaNacimientoPx.getText()).append("','").append(nombrePx.getText()).append("','").append(apellidoPx.getText()).append("','").append(ciudadPx.getText()).append("','").append(callePx.getText()).append("',").append(codigoPostalPx.getText()).append(",'").append(sangrePx.getText()).append("',").append(numeroCuartoPx.getText()).append(",").append(numeroCamaPx.getText()).append(",").append(estatusPx).append(",").append(asiloIdPx).append(")").toString();
+
+				System.out.println(sup);
+
 				int proceed = 1;
 				System.out.println(nombrePx.getText());
 
@@ -175,18 +192,27 @@ public class PregistraPx extends JFrame {
 					}
 
 					if (codigoPostalPx.getText().equals("Código Postal")){
+						codigoPostalPx.setText("000000");
 						warning += "Código Postal, ";
 					}
 
 					if (fechaNacimientoPx.getText().equals("Fecha de nacimiento (yyyy/mm/dd)")){
+						fechaNacimientoPx.setText("1970/01/01");
+						warning += "Fecha de nacimiento (yyyy/mm/dd), ";
+					}
+
+					if (sangrePx.getText().equals("Tipo de sangre del paciente")){
+						sangrePx.setText("X");
 						warning += "Fecha de nacimiento (yyyy/mm/dd), ";
 					}
 
 					if (numeroCuartoPx.getText().equals("Cuarto del Paciente")){
+						numeroCuartoPx.setText("-1");
 						warning += "Cuarto del Paciente, ";
 					}
 
 					if (numeroCamaPx.getText().equals("Cama del paciente")){
+						numeroCamaPx.setText("-1");
 						warning += "Cama del paciente, ";
 					}
 
@@ -203,26 +229,6 @@ public class PregistraPx extends JFrame {
 					}
 					System.out.println("Proceed: " + proceed);
 				}
-
-				String sup =
-						"INSERT INTO "
-								+ "paciente"
-								+ "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
-								+ "VALUES ("
-								+ sexoPx + ",'"
-								+ fechaNacimientoPx.getText() + "','"
-								+ nombrePx.getText() + "','"
-								+ apellidoPx.getText()  + "','"
-								+ ciudadPx.getText()  + "','"
-								+ callePx.getText()  + "',"
-								+ codigoPostalPx.getText() + ",'"
-								+ sangrePx.getText() + "',"
-								+ numeroCuartoPx.getText() + ","
-								+ numeroCamaPx.getText() + ","
-								+ estatusPx.getText() + ","
-								+ asiloIdPx.getText()  + ")";
-
-				System.out.println(sup);
 
 				if(proceed == 1){
 					try {
@@ -245,8 +251,8 @@ public class PregistraPx extends JFrame {
 								+ sangrePx.getText() + "',"  
 								+ numeroCuartoPx.getText() + ","   
 								+ numeroCamaPx.getText() + ","   
-								+ estatusPx.getText() + ","   
-								+ asiloIdPx.getText()  + ")";
+								+ estatusPx + ","
+								+ asiloIdPx + ")";
 
 						System.out.println(sql);
 
@@ -272,6 +278,12 @@ public class PregistraPx extends JFrame {
 						System.out.println("Error with database connection");
 						e.printStackTrace();
 					}
+				} else {
+					numeroCamaPx.setText("Cama del paciente");
+					numeroCuartoPx.setText("Cuarto del Paciente");
+					codigoPostalPx.setText("Código Postal");
+					fechaNacimientoPx.setText("Fecha de nacimiento (yyyy/mm/dd)");
+					sangrePx.setText("Tipo de sangre del paciente");
 				}
 			}
 		});
