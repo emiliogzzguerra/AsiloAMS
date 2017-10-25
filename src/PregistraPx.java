@@ -26,10 +26,7 @@ import javax.swing.JTabbedPane;
 import java.awt.Toolkit;
 import javax.swing.border.MatteBorder;
 import java.awt.EventQueue;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class PregistraPx extends JFrame {
@@ -122,36 +119,20 @@ public class PregistraPx extends JFrame {
 
 		String[] description = { "Sexo", "Masculino", "Femenino"};
 
-		JTextField t = new JTextField(15);
-
 		JComboBox c = new JComboBox();
 
-		JButton b = new JButton("Add items");
 
 		final int[] count = {0};
 
 		for (int i = 0; i < 3; i++)
 			c.addItem(description[count[0]++]);
-			t.setEditable(false);
-			b.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (count[0] < description.length)
-					c.addItem(description[count[0]++]);
-				}
-			});
-			c.addActionListener(new ActionListener() {
-			  public void actionPerformed(ActionEvent e) {
-			  	sexoPx = c.getSelectedIndex()-1;
-				t.setText("Sexo: " + sexoPx + "   "+ ((JComboBox) e.getSource()).getSelectedItem());
-			  }
-			});
-		Container cp = getContentPane();
-		cp.setLayout(new FlowLayout());
-		cp.add(t);
-		cp.add(c);
-		cp.add(b);
 
-		panelMainReg.add(new JLabel("Sexo: "));
+		c.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				sexoPx = c.getSelectedIndex()-1;
+			}
+		});
+
 		panelNCReg.add(c,d);
 		d.gridy++;
 
@@ -177,43 +158,50 @@ public class PregistraPx extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent event){
 				int proceed = 1;
+				System.out.println(nombrePx.getText());
 
-				if (nombrePx.getText() == "Nombre del paciente" || ciudadPx.getText() == "Ciudad" || callePx.getText() == "Calle" || codigoPostalPx.getText() == "Código Postal" || fechaNacimientoPx.getText() == "Fecha de nacimiento (yyyy/mm/dd)" || numeroCuartoPx.getText() == "Cuarto del Paciente" || numeroCamaPx.getText() == "Cama del paciente" || sexoPx == -1){
+				if (nombrePx.getText().equals("Nombre del paciente") || ciudadPx.getText().equals("Ciudad") || callePx.getText().equals("Calle") || codigoPostalPx.getText().equals("Código Postal") || fechaNacimientoPx.getText().equals("Fecha de nacimiento (yyyy/mm/dd)") || numeroCuartoPx.getText().equals("Cuarto del Paciente") || numeroCamaPx.getText().equals("Cama del paciente") || sexoPx.equals(-1)){
 					String warning = "Advertencia, uno o más campos no fueron modificados: (";
-					if (nombrePx.getText() == "Nombre del paciente") {
+					if (nombrePx.getText().equals("Nombre del paciente")){
 						warning += "Nombre del paciente, ";
 					}
 
-					if (ciudadPx.getText() == "Ciudad") {
+					if (ciudadPx.getText().equals("Ciudad")){
 						warning += "Ciudad, ";
 					}
 
-					if (callePx.getText() == "Calle") {
+					if (callePx.getText().equals("Calle")){
 						warning += "Calle, ";
 					}
 
-					if (codigoPostalPx.getText() == "Código Postal") {
+					if (codigoPostalPx.getText().equals("Código Postal")){
 						warning += "Código Postal, ";
 					}
 
-					if (fechaNacimientoPx.getText() == "Fecha de nacimiento (yyyy/mm/dd)") {
+					if (fechaNacimientoPx.getText().equals("Fecha de nacimiento (yyyy/mm/dd)")){
 						warning += "Fecha de nacimiento (yyyy/mm/dd), ";
 					}
 
-					if (numeroCuartoPx.getText() == "Cuarto del Paciente") {
+					if (numeroCuartoPx.getText().equals("Cuarto del Paciente")){
 						warning += "Cuarto del Paciente, ";
 					}
 
-					if (numeroCamaPx.getText() == "Cama del paciente") {
+					if (numeroCamaPx.getText().equals("Cama del paciente")){
 						warning += "Cama del paciente, ";
 					}
 
-					if (sexoPx == -1){
+					if (sexoPx.equals(-1)){
 						warning += "Sexo";
 					}
 
 					warning += ") ¿Quiere proceder?";
-					proceed = JOptionPane.showConfirmDialog(null, warning, "Información posiblemente incompleta", JOptionPane.YES_NO_OPTION);
+					if (JOptionPane.showConfirmDialog(null, warning, "Información posiblemente incompleta",
+							JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+						proceed = 1;
+					} else {
+						proceed = 0;
+					}
+					System.out.println("Proceed: " + proceed);
 				}
 
 				if(proceed == 1){
@@ -223,7 +211,7 @@ public class PregistraPx extends JFrame {
 						String mySQLTable = "paciente";
 
 						String sql = "INSERT INTO " + mySQLTable + "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
-								+ "VALUES (0,'2017-04-11 3:15',\"Pepe\",\"Gomez\",\"Aguascalientes\",\"FR #125\",64340,\"O\",1,2,0,1);";
+								+ "VALUES ("+sexoPx+",'" + fechaNacimientoPx +"',"'Pepe\",\"Gomez\",\"Aguascalientes\",\"FR #125\",64340,\"O\",1,2,0,1);";
 
 						//Get connection with MySQL database
 						Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
@@ -235,10 +223,14 @@ public class PregistraPx extends JFrame {
 
 						//Execute SQL query
 						ResultSet myRs = myStmt.executeQuery("SELECT * from " + mySQLTable);
+						ResultSetMetaData rsmd = myRs.getMetaData();
+						int columnsNumber = rsmd.getColumnCount();
 
 						while (myRs.next()) {
-							System.out.println(myRs.getString(1)); //gets the first column's rows.
+							System.out.println(myRs.getString(4)); //gets the first column's rows.
 						}
+
+						System.out.print(myRs);
 					} catch (Exception e) {
 						System.out.println("Error with database connection");
 						e.printStackTrace();
