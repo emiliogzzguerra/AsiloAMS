@@ -1,0 +1,36 @@
+guardarCambios = new JButton("Guardar Cambios");
+		guardarCambios.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent event){
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+
+					//Get connection with MySQL database
+					Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
+							"root", "1212");
+					Statement myStmt = mycon.createStatement();
+					//Adds the new score to the database
+					String mySQLTable = "paciente";
+
+					//En un archivo estaba el de arriba y en otro este. solo eso cambia en el código.
+					//Este era para un boton de Registrar el de arriba para el bton guardar cambios.
+					String mySQLTable = "asilo";
+
+
+
+					String sql = "INSERT INTO " + mySQLTable + "(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) "
+							+ "VALUES (0,'2017-04-11 3:15',\"Pepe\",\"Gomez\",\"Aguascalientes\",\"FR #125\",64340,\"O\",1,2,0,1);";
+
+					myStmt.executeUpdate(sql);
+					//Execute SQL query
+					ResultSet myRs = myStmt.executeQuery("SELECT * from " + mySQLTable);
+
+					while (myRs.next()) {
+						System.out.println(myRs.getString(1)); //gets the first column's rows.
+					}
+				} catch (Exception e) {
+					System.out.println("Error with database connection");
+					e.printStackTrace();
+				}
+			}
+		});

@@ -1,0 +1,39 @@
+AgregarFoto
+
+cambiarFoto = new JButton("Cambiar Foto");
+		cambiarFoto.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				String pathPhoto;
+				pathPhoto = aceptarPhoto();
+				imageIcon = setupImage(imageIcon, pathPhoto);
+				panelNWReg.add(new JLabel(imageIcon), d);
+			}
+		});
+
+
+private String aceptarPhoto(){
+		JPanel contentPane = new JPanel();
+		//Crear el objeto JFileChooser
+		JFileChooser fc = new JFileChooser();
+		//Abrir la ventana, guardar la opcion
+		int seleccion = fc.showOpenDialog(contentPane);
+		File archivo;
+		String path = "";
+		//Si el usuario, da click en aceptar
+		if(seleccion == JFileChooser.APPROVE_OPTION){
+			//Seleccionar el archivo
+			archivo = fc.getSelectedFile();
+			//Test de que si agarra el archivo
+			path = archivo.getAbsolutePath();
+		}
+		return path;
+	}
+
+public ImageIcon setupImage(ImageIcon imagee, String path){
+		imagee = new ImageIcon(path); // load the image to a imageIcon
+		Image image = imagee.getImage(); // transform it
+		Image newimg = image.getScaledInstance(120, 120,  Image.SCALE_SMOOTH); // scale it the smooth way
+		imagee = new ImageIcon(newimg);  // transform it back
+		return imagee;
+	}

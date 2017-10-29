@@ -1,0 +1,44 @@
+//Lo que va dentro de Tratamientos
+	//Hacerlo con Layout
+	protected JComponent Tratamientos() {
+    	JPanel listContainer = new JPanel();
+    	JPanel send = new JPanel();
+    	JScrollPane scrollPaneF = new JScrollPane(send);
+
+    	listContainer.setLayout(new BoxLayout(listContainer, BoxLayout.Y_AXIS));
+    	send.add(new JScrollPane(listContainer), BorderLayout.CENTER);
+    	JButton button = new JButton("Agregar nuevo tratamiento");
+    	button.addActionListener(new ActionListener(){
+
+    		@Override
+    		public void actionPerformed(ActionEvent evt){
+    			final JPanel newPanel = new JPanel();
+    			newPanel.add(new JTextField("Nombre del tratamiento", 16));
+    			listContainer.add(newPanel);
+    			listContainer.revalidate();
+
+    			JTextArea textArea = new JTextArea();
+				textArea.setEditable(true);
+				//Go to next line when reach horizontal limit
+				textArea.setLineWrap(true);
+				textArea.setWrapStyleWord(true);
+
+				JScrollPane scrollPane = new JScrollPane(textArea);
+				scrollPane.setPreferredSize(new Dimension(700, 56));
+				newPanel.add(scrollPane);
+				listContainer.add(newPanel);
+				listContainer.revalidate();
+
+    			//Scroll down to last added panel
+    			SwingUtilities.invokeLater(new Runnable(){
+    				@Override
+    				public void run(){
+    					newPanel.scrollRectToVisible(newPanel.getBounds());
+    				}
+    			});
+    		}
+    	});
+    	send.add(button, BorderLayout.PAGE_END);
+    	return scrollPaneF;
+
+	}

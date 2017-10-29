@@ -1,0 +1,22 @@
+altaDoc = new JButton("Dar de alta con documento");
+		altaDoc.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				aceptarArchivo();
+			}
+		});
+
+private void aceptarArchivo(){
+		JPanel contentPane = new JPanel();
+		//Crear el objeto JFileChooser
+		JFileChooser fc = new JFileChooser();
+		//Abrir la ventana, guardar la opcion
+		int seleccion = fc.showOpenDialog(contentPane);
+		//Si el usuario, da click en aceptar
+		if(seleccion == JFileChooser.APPROVE_OPTION){
+			//Seleccionar el archivo
+			File archivo = fc.getSelectedFile();
+			//Test de que si agarra el archivo
+			//direccionPx.setText(archivo.getAbsolutePath());
+		}
+	}

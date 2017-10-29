@@ -1,0 +1,108 @@
+Desplegar la Tabla de busqueda
+
+
+buttonSubmit.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent event){
+				JFrame frame = new JFrame();
+				frame.add(TableFromSql());
+				frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				frame.pack();
+				frame.setVisible(true);
+			}
+		});
+
+private JPanel TableFromSql (){
+		String nombrePx = BuscarPaciente.getText();
+
+		ArrayList columnNames = new ArrayList();
+		ArrayList data = new ArrayList();
+
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+
+			//Get connection with MySQL database
+			Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
+					"root", "1212");
+			Statement myStmt = mycon.createStatement();
+			//Adds the new score to the database
+			String mySQLTable = "paciente";
+
+			String query = "select * from paciente where nombre like '" + nombrePx + "%' or apellido like '" + nombrePx +"%'";;
+
+			//Execute SQL query
+			ResultSet myRs = myStmt.executeQuery(query);
+
+			ResultSetMetaData md = myRs.getMetaData();
+			int columns = md.getColumnCount();
+
+			//Get column names
+			for (int i = 1; i<= columns; i++){
+				columnNames.add(md.getColumnName(i));
+			}
+			//Get row data
+			while (myRs.next()){
+				ArrayList row = new ArrayList(columns);
+				for (int i = 1; i<= columns; i++){
+					row.add(myRs.getObject(i));
+				}
+				data.add(row);
+			}
+
+			/*while (myRs.next()) {
+			System.out.println(myRs.getString(4)); //gets the first column's rows.
+			}*/
+		}
+		catch (Exception e) {
+			System.out.println("Error with database connection");
+			e.printStackTrace();
+		}
+		// Create Vectors and copy over elements from ArrayLists to them
+		// Vector is deprecated but I am using them in this example to keep
+		// things simple - the best practice would be to create a custom defined
+		// class which inherits from the AbstractTableModel class
+		Vector columnNamesVector = new Vector();
+		Vector dataVector = new Vector();
+
+		for (int i = 0; i<data.size(); i++){
+			ArrayList subArray = (ArrayList)data.get(i);
+			Vector subVector = new Vector();
+			for (int j = 0; j < subArray.size(); j++){
+				subVector.add(subArray.get(j));
+			}
+			dataVector.add(subVector);
+		}
+
+		for (int i = 0; i < columnNames.size(); i++ )
+			columnNamesVector.add(columnNames.get(i));
+
+		//  Create table with database data
+		JTable table = new JTable(dataVector, columnNamesVector)
+		{
+			public Class getColumnClass(int column)
+			{
+				for (int row = 0; row < getRowCount(); row++)
+				{
+					Object o = getValueAt(row, column);
+
+					if (o != null)
+					{
+						return o.getClass();
+					}
+				}
+
+				return Object.class;
+			}
+		};
+
+		JPanel sendPanel = new JPanel(new BorderLayout());
+		JScrollPane scrollTable = new JScrollPane(table);
+		sendPanel.add(scrollTable);
+
+		JPanel buttonPanel = new JPanel();
+		sendPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+		return sendPanel;
+	}
