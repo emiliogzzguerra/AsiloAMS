@@ -10,7 +10,10 @@ public class RegistroPx extends Application {
 
     @Override
     public void start (Stage secondaryStage) throws Exception{
-        Parent root2 = FXMLLoader.load(getClass().getResource("pantallas/PregistroPx.fxml"));
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/sample/pantallas/PregistroPx.fxml"));
+        Parent root2 = loader.load();
         secondaryStage.setTitle("Registro de Paciente");
         secondaryStage.setScene(new Scene(root2, 900, 700));
         secondaryStage.show();

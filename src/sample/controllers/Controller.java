@@ -7,13 +7,14 @@ import sample.clases.RegistroPx;
 public class Controller {
 
 
-    public Button buscarButton, regPxButton;
+    public Button buscarButton;
     public TextField textBuscar;
 
     public void buscarPx () {
         String nombrePx = textBuscar.getText();
         buscarButton.setText(nombrePx);
         textBuscar.setText("");
+
     }
 
     public void abrirRegistraPx () throws Exception {
