@@ -12,9 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0"
-            xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerRegistroPx">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerRegistroPx">
    <children>
       <SplitPane dividerPositions="0.33668341708542715" layoutY="21.0" orientation="VERTICAL" prefHeight="588.0" prefWidth="807.0">
         <items>
@@ -22,8 +20,7 @@
                <children>
                   <Button layoutX="24.0" layoutY="148.0" mnemonicParsing="false" text="Agregar Foto" />
                   <ImageView fitHeight="134.0" fitWidth="126.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="606.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="185.0" text="Dar de alta con documento"
-                  fx:id="masivaButton" onAction="#altaMasiva" />
+                  <Button fx:id="masivaButton" layoutX="606.0" layoutY="14.0" mnemonicParsing="false" onAction="#altaMasiva" prefHeight="27.0" prefWidth="185.0" text="Dar de alta con documento" />
                   <Button layoutX="637.0" layoutY="157.0" mnemonicParsing="false" text="Guardar cambios" />
                   <TextField layoutX="148.0" layoutY="15.0" prefHeight="27.0" prefWidth="221.0" text="Nombre del Paciente" />
                   <TextField layoutX="377.0" layoutY="15.0" prefHeight="27.0" prefWidth="221.0" text="Fecha Nacimiento (yyyy/mm/dd)" />
