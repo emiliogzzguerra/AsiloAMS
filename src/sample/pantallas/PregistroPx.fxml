@@ -22,7 +22,8 @@
                <children>
                   <Button layoutX="24.0" layoutY="148.0" mnemonicParsing="false" text="Agregar Foto" />
                   <ImageView fitHeight="134.0" fitWidth="126.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="606.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="185.0" text="Dar de alta con documento" />
+                  <Button layoutX="606.0" layoutY="14.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="185.0" text="Dar de alta con documento"
+                  fx:id="masivaButton" onAction="#altaMasiva" />
                   <Button layoutX="637.0" layoutY="157.0" mnemonicParsing="false" text="Guardar cambios" />
                   <TextField layoutX="148.0" layoutY="15.0" prefHeight="27.0" prefWidth="221.0" text="Nombre del Paciente" />
                   <TextField layoutX="377.0" layoutY="15.0" prefHeight="27.0" prefWidth="221.0" text="Fecha Nacimiento (yyyy/mm/dd)" />
