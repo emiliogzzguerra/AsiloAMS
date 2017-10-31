@@ -1,4 +1,4 @@
-package sistema.clases;
+package sample.clases;
 
 import java.sql.*;
 import java.util.ArrayList;
