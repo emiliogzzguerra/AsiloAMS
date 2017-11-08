@@ -93,7 +93,7 @@
             </SplitPane>
             <Label layoutX="17.0" layoutY="17.0" text="Buscar Paciente:" />
             <TextField layoutX="127.0" layoutY="13.0" prefHeight="26.0" prefWidth="378.0" text="Nombre del paciente ..."
-                    fx:id="textBuscar" />
+                    fx:id="textBuscar" onKeyTyped="#advancedSearch" />
             <Button layoutX="516.0" layoutY="13.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="109.0" text="Buscar"
                     fx:id="buscarButton" onAction="#buscarPx" />
       </children>
