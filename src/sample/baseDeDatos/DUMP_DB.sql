@@ -1,0 +1,16 @@
+drop table if exists telefono_informacion_emergencia;
+drop table if exists telefono_familiar;
+drop table if exists telefono_asilo;
+drop table if exists incumbencia;
+drop table if exists paciente_padecimiento;
+drop table if exists padecimiento;
+drop table if exists paciente_medicamento;
+drop table if exists medicamento;
+drop table if exists receta;
+drop table if exists alergias;
+drop table if exists enfermedad;
+drop table if exists informacion_emergencia;
+drop table if exists familiar;
+drop table if exists evento;
+drop table if exists paciente;
+drop table if exists asilo;

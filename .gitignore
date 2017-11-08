@@ -1,6 +1,10 @@
 src/sample/.DS_Store
 out/
 .idea/workspace.xml
+.idea/misc.xml
+src/sample/.DS_Store
+**/.DS_Store
+
 
 # Created by https://www.gitignore.io/api/intellij
 
