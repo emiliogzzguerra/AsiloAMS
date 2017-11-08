@@ -7,8 +7,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import sample.clases.metodoArchivo;
-
-
 import java.io.File;
 
 public class ControllerRegistroPx {
