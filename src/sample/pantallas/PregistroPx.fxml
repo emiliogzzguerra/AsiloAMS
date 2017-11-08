@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerRegistroPx">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerRegistroPx">
    <children>
       <SplitPane dividerPositions="0.33668341708542715" layoutY="21.0" orientation="VERTICAL" prefHeight="588.0" prefWidth="807.0">
         <items>
@@ -21,7 +22,6 @@
                   <Button layoutX="24.0" layoutY="148.0" mnemonicParsing="false" text="Agregar Foto" />
                   <ImageView fitHeight="134.0" fitWidth="126.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="masivaButton" layoutX="606.0" layoutY="14.0" mnemonicParsing="false" onAction="#altaMasiva" prefHeight="27.0" prefWidth="185.0" text="Dar de alta con documento" />
-                  <Button layoutX="637.0" layoutY="157.0" mnemonicParsing="false" text="Guardar cambios" />
                   <TextField layoutX="148.0" layoutY="15.0" prefHeight="27.0" prefWidth="221.0" text="Nombre del Paciente" />
                   <TextField layoutX="377.0" layoutY="15.0" prefHeight="27.0" prefWidth="221.0" text="Fecha Nacimiento (yyyy/mm/dd)" />
                   <TextField layoutX="148.0" layoutY="47.0" prefHeight="27.0" prefWidth="221.0" text="Apellido del Paciente" />
@@ -30,8 +30,9 @@
                   <TextField layoutX="148.0" layoutY="148.0" prefHeight="27.0" prefWidth="221.0" text="Código Postal" />
                   <TextField layoutX="377.0" layoutY="47.0" prefHeight="27.0" prefWidth="221.0" text="Cuarto del Paciente" />
                   <TextField layoutX="377.0" layoutY="80.0" prefHeight="27.0" prefWidth="221.0" text="Cama del Paciente" />
-                  <TextField layoutX="377.0" layoutY="114.0" prefHeight="27.0" prefWidth="221.0" text="Tipo de sangre del Paciente" />
+                  <TextField fx:id="textFTipoSangre" layoutX="377.0" layoutY="114.0" prefHeight="27.0" prefWidth="221.0" text="Tipo de sangre del Paciente" />
                   <ChoiceBox layoutX="377.0" layoutY="148.0" prefWidth="150.0" />
+                  <CheckBox fx:id="TcheckBox" layoutX="619.0" layoutY="105.0" mnemonicParsing="false" text="CheckBox" onAction="#checking" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -45,7 +46,9 @@
                                     <Button layoutX="330.0" layoutY="14.0" mnemonicParsing="false" text="Agregar Tratamiento" />
                                     <ListView layoutX="-1.0" layoutY="41.0" opacity="0.46" prefHeight="328.0" prefWidth="807.0" />
                                     <TextField layoutX="20.0" layoutY="80.0" text="Nombre del Tratamiento" />
-                                    <TextArea layoutX="203.0" layoutY="49.0" prefHeight="88.0" prefWidth="528.0" />
+                                    <TextArea layoutX="203.0" layoutY="49.0" prefHeight="88.0" prefWidth="434.0" />
+                                    <Button fx:id="CancelarBotonTx" layoutX="665.0" layoutY="305.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Cancelar" />
+                                    <Button layoutX="666.0" layoutY="268.0" mnemonicParsing="false" text="Guardar Cambios" />
                                  </children>
                               </AnchorPane>
                         </content>
@@ -66,6 +69,8 @@
                                     <TextField layoutX="309.0" layoutY="216.0" prefHeight="27.0" prefWidth="282.0" />
                                     <Label layoutX="261.0" layoutY="255.0" prefHeight="27.0" prefWidth="37.0" text="Email" textAlignment="RIGHT" />
                                     <TextField layoutX="309.0" layoutY="254.0" prefHeight="27.0" prefWidth="282.0" />
+                                    <Button fx:id="CancelarBotonFam" layoutX="666.0" layoutY="306.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Cancelar" />
+                                    <Button layoutX="665.0" layoutY="269.0" mnemonicParsing="false" text="Guardar Cambios" />
                                  </children>
                               </AnchorPane>
                         </content>
@@ -84,6 +89,8 @@
                                     <TextField layoutX="265.0" layoutY="142.0" prefHeight="27.0" prefWidth="301.0" />
                                     <TextField layoutX="265.0" layoutY="180.0" prefHeight="27.0" prefWidth="301.0" />
                                     <TextArea layoutX="265.0" layoutY="217.0" prefHeight="91.0" prefWidth="301.0" />
+                                    <Button fx:id="CancelarBotonEme" layoutX="666.0" layoutY="308.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Cancelar" />
+                                    <Button layoutX="666.0" layoutY="271.0" mnemonicParsing="false" text="Guardar Cambios" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -102,6 +109,8 @@
                                     <TextField layoutX="247.0" layoutY="163.0" prefHeight="27.0" prefWidth="303.0" />
                                     <TextField layoutX="247.0" layoutY="199.0" prefHeight="27.0" prefWidth="303.0" />
                                     <TextField layoutX="247.0" layoutY="236.0" prefHeight="27.0" prefWidth="303.0" />
+                                    <Button layoutX="666.0" layoutY="274.0" mnemonicParsing="false" text="Guardar Cambios" />
+                                    <Button fx:id="CancelarBotonExp" layoutX="666.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Cancelar" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -118,6 +127,8 @@
                                     <TextField layoutX="229.0" layoutY="216.0" prefHeight="27.0" prefWidth="352.0" />
                                     <ChoiceBox layoutX="229.0" layoutY="130.0" prefHeight="27.0" prefWidth="156.0" />
                                     <ChoiceBox layoutX="228.0" layoutY="172.0" prefHeight="27.0" prefWidth="156.0" />
+                                    <Button layoutX="665.0" layoutY="269.0" mnemonicParsing="false" text="Guardar Cambios" />
+                                    <Button fx:id="CancelarBotonMed" layoutX="664.0" layoutY="307.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Cancelar" />
                                  </children>
                               </AnchorPane>
                           </content>

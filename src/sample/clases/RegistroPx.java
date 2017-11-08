@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.controllers.Controller;
+
 
 public class RegistroPx extends Application {
 
@@ -17,6 +19,7 @@ public class RegistroPx extends Application {
         secondaryStage.setTitle("Registro de Paciente");
         secondaryStage.setScene(new Scene(root2, 900, 700));
         secondaryStage.show();
+        secondaryStage.setOnCloseRequest(we -> System.out.println("Stage is closing"));
     }
 
     public static void main(String[] args){ launch(args);}

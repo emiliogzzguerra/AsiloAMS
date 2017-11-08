@@ -1,6 +1,5 @@
 package sample.clases;
 
-import com.sun.xml.internal.rngom.parse.host.Base;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +18,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

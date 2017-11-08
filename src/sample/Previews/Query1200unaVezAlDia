@@ -1,0 +1,12 @@
+CREATE EVENT my_event
+ON SCHEDULE
+EVERY 1 DAY
+STARTS '2014-04-30 05:00:00' ON COMPLETION PRESERVE ENABLE
+DO
+
+# My query
+
+
+
+Modificar fecha de inicio (dia que se instala el software)
+Modificar horario a la que se hara el query (default 5AM)

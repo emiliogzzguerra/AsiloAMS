@@ -1,6 +1,8 @@
 package sample.controllers;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -13,6 +15,8 @@ public class ControllerRegistroPx {
     //fx:id="masivaButton" onAction="#altaMasiva" />
     //declaración del boton para test.
     public Button masivaButton;
+    public CheckBox TcheckBox;
+    public TextField textFTipoSangre;
 
     public void altaMasiva (){
         FileChooser fileChooser = new FileChooser();
@@ -28,6 +32,15 @@ public class ControllerRegistroPx {
 
         //Mandar método con el archivo
         metodoArchivo.hazAlgo(selectedFile, masivaButton);
+    }
+
+
+    public void checking() {
+
+        if (TcheckBox.isSelected()) {
+            String TestText = textFTipoSangre.getText();
+            masivaButton.setText(TestText);
+        }
     }
 }
 
