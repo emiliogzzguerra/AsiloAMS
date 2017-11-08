@@ -13,6 +13,7 @@ public class Controller {
 
     public Button buscarButton;
     public TextField textBuscar;
+    public CheckBox TcheckBox;
 
 
     public void advancedSearch() {
@@ -51,6 +52,13 @@ public class Controller {
             pdespliega.start(stage);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void selectionCB (){
+        if(TcheckBox.isSelected()){
+            String nm = "checkbox";
+            buscarButton.setText(nm);
         }
     }
 
