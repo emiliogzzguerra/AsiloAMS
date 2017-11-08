@@ -1,8 +1,9 @@
 package sample.controllers;
 
+
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import sample.clases.BuscarId;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import sample.clases.Pdespliega;
 import sample.clases.RegistroPx;
@@ -14,9 +15,16 @@ public class Controller {
     public TextField textBuscar;
 
 
-    public void advancedSearch(){
-        String[] possWords = {"Jai","Emilio","Carlos","Javier","te la comes"};
-        TextFields.bindAutoCompletion(textBuscar, possWords);
+    public void advancedSearch() {
+        String[] possWords = {"Jai", "Emilio", "Carlos", "Javier", "te la comes"};
+        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(textBuscar, possWords);
+        bind.setOnAutoCompleted(event -> {
+            try {
+                abrirPdespliega();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void buscarPx () {
