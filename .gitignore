@@ -1,5 +1,5 @@
 src/sample/.DS_Store
-
+out/
 .idea/workspace.xml
 
 # Created by https://www.gitignore.io/api/intellij
