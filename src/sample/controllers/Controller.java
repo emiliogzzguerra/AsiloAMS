@@ -3,6 +3,7 @@ package sample.controllers;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 //import sample.clases.BuscarId;
+import sample.clases.Pdespliega;
 import sample.clases.RegistroPx;
 
 public class Controller {
@@ -37,6 +38,16 @@ public class Controller {
         Stage stage = new Stage();
         try {
             registroPx.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void abrirPdespliega () throws Exception {
+        Pdespliega pdespliega = new Pdespliega();
+        Stage stage = new Stage();
+        try {
+            pdespliega.start(stage);
         } catch (Exception e) {
             e.printStackTrace();
         }
