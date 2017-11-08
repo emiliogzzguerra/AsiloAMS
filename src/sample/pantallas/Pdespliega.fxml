@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerPdespliega">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerPdespliega">
     <children>
         <SplitPane dividerPositions="0.33668341708542715" layoutY="21.0" orientation="VERTICAL" prefHeight="588.0" prefWidth="807.0">
             <items>
@@ -31,7 +31,7 @@
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                    <children>t
+                    <children>
                         <TabPane layoutY="-5.0" prefHeight="403.0" prefWidth="805.0" tabClosingPolicy="UNAVAILABLE">
                             <tabs>
                                 <Tab text="Tratamientos">
