@@ -1,18 +1,52 @@
 package sample.clases;
 
+import sample.objetos.Paciente;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class BaseDeDatos {
-    public Number insertar(String tabla, String query) throws SQLException {
+    public Number insertar(Paciente p) throws SQLException {
         Statement myStmt = conexion();
         if (myStmt != null){
-            String runQuery = "INSERT INTO ";
-            runQuery+=tabla;
-            runQuery+= " ";
-            runQuery += query;
-            myStmt.executeUpdate(runQuery);
-
+            String query = "INSERT INTO ";
+            query+= "paciente ";
+            String sql = new StringBuilder()
+                    .append("(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,")
+                    .append("numero_cuarto,numero_cama,estatus,paciente_medicado_manana,paciente_medicado_tarde,paciente_medicado_noche,asilo_id) VALUES (")
+                    .append(p.getSexo()) // sexo
+                    .append(",'")
+                    .append(p.getFecha_nacimiento()) // fecha_nacimiento
+                    .append("','")
+                    .append(p.getNombre()) // nombre
+                    .append("','")
+                    .append(p.getApellido()) // apellido
+                    .append("','")
+                    .append(p.getCiudad()) // ciudad
+                    .append("','")
+                    .append(p.getCalle()) // calle
+                    .append("',")
+                    .append(p.getCodigo_postal()) // codigo_postal
+                    .append(",'")
+                    .append(p.getSangre()) // sangre
+                    .append("',")
+                    .append(p.getNumero_cuarto()) // numero_cuarto
+                    .append(",")
+                    .append(p.getNumero_cama()) // numero_cama
+                    .append(",")
+                    .append(p.isPaciente_medicado_manana()) // paciente_medicado_manana
+                    .append(",")
+                    .append(p.isPaciente_medicado_tarde()) // paciente_medicado_tarde
+                    .append(",")
+                    .append(p.isPaciente_medicado_noche()) // paciente_medicado_noche
+                    .append(",")
+                    .append(p.getEstatus()) // estatus
+                    .append(",")
+                    .append(p.getAsilo_id()) // asilo_id
+                    .append(")")
+                    .toString();
+            query += sql;
+            myStmt.executeUpdate(query);
             return 1;
         } else {
             System.out.println("Hubo un error con la base de datos");
@@ -20,7 +54,7 @@ public class BaseDeDatos {
         }
     }
 
-    private Statement conexion(){
+    public Statement conexion(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
@@ -62,6 +96,12 @@ public class BaseDeDatos {
                 System.out.println(myRs.getObject(i));
             }
         }
+    }
+
+    public ResultSet getQuery(String query) throws SQLException {
+        //Execute SQL query
+        Statement myStmt = conexion();
+        return myStmt.executeQuery(query);
     }
 
 }
