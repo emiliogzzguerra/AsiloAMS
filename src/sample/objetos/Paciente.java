@@ -3,6 +3,7 @@ package sample.objetos;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 
 public class Paciente {
 
@@ -13,8 +14,8 @@ public class Paciente {
     String calle;
     String codigo_postal;
     String sangre;
-    String numero_cuarto;
-    String numero_cama;
+    Optional<Integer> numero_cuarto;
+    Optional<Integer> numero_cama;
     boolean paciente_medicado_manana;
     boolean paciente_medicado_tarde;
     boolean paciente_medicado_noche;
@@ -36,8 +37,8 @@ public class Paciente {
                     String calle,
                     String codigo_postal,
                     String sangre,
-                    String numero_cuarto,
-                    String numero_cama,
+                    Optional<Integer> numero_cuarto,
+                    Optional<Integer> numero_cama,
                     int estatus,
                     int asilo_id,
                     int sexo)
@@ -51,6 +52,9 @@ public class Paciente {
         this.sangre = sangre;
         this.numero_cuarto = numero_cuarto;
         this.numero_cama = numero_cama;
+        this.paciente_medicado_manana = false;
+        this.paciente_medicado_tarde = false;
+        this.paciente_medicado_noche = false;
         this.estatus = estatus;
         this.asilo_id = asilo_id;
         this.sexo = sexo;
@@ -89,11 +93,11 @@ public class Paciente {
         return sangre;
     }
 
-    public String getNumero_cuarto() {
+    public Optional<Integer> getNumero_cuarto() {
         return numero_cuarto;
     }
 
-    public String getNumero_cama() {
+    public Optional<Integer> getNumero_cama() {
         return numero_cama;
     }
 
@@ -137,11 +141,11 @@ public class Paciente {
         this.sangre = sangre;
     }
 
-    public void setNumero_cuarto(String numero_cuarto) {
+    public void setNumero_cuarto(Optional<Integer> numero_cuarto) {
         this.numero_cuarto = numero_cuarto;
     }
 
-    public void setNumero_cama(String numero_cama) {
+    public void setNumero_cama(Optional<Integer> numero_cama) {
         this.numero_cama = numero_cama;
     }
 

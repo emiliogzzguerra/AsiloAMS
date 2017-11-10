@@ -7,8 +7,9 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import sample.clases.BaseDeDatos;
 import sample.clases.metodoArchivo;
+import sample.modelos.GeneralModel;
+import sample.modelos.ModelPaciente;
 import sample.objetos.Paciente;
 
 import java.io.File;
@@ -72,16 +73,14 @@ public class ControllerRegistroPx {
             ("- Sexo -","Masculino","Femenino");
 
 
-    //ConexionBD
-    BaseDeDatos bd = new BaseDeDatos();
-
     @FXML
     private void initialize() throws SQLException {
         dropdownSexo.setItems(sexoList);
         dropdownSexo.setValue("- Sexo -");
 
         String myQry = "select distinct tipo from medicamento";
-        ResultSet myRs = bd.getQuery(myQry);
+        GeneralModel gm = new GeneralModel();
+        ResultSet myRs = gm.getQuery(myQry);
 
         ObservableList<String> medicinasList = FXCollections.observableArrayList();
         while(myRs.next()){
@@ -90,7 +89,7 @@ public class ControllerRegistroPx {
         dropdownTipoMedicina.setItems(medicinasList);
 
         myQry = "select distinct medida from paciente_medicamento";
-        myRs = bd.getQuery(myQry);
+        myRs = gm.getQuery(myQry);
 
         ObservableList<String> medicionList = FXCollections.observableArrayList();
         while(myRs.next()){
@@ -106,8 +105,11 @@ public class ControllerRegistroPx {
         p.setCalle(campoCalle.getText());
         p.setCodigo_postal(campoCodigoPostal.getText());
         p.setSangre(campoSangrePaciente.getText());
-        p.setNumero_cuarto(campoCuartoPaciente.getText());
-        p.setNumero_cama(campoCamaPaciente.getText());
+        p.setNumero_cuarto(null);
+        p.setNumero_cama(null);
+        p.setPaciente_medicado_manana(false);
+        p.setPaciente_medicado_tarde(false);
+        p.setPaciente_medicado_noche(false);
         p.setEstatus(1);
         p.setAsilo_id(1);
         p.setSexo(2);
@@ -173,18 +175,20 @@ public class ControllerRegistroPx {
             pGuardar.setSangre(campoSangrePaciente.getText());
         }
 
-        if (campoCuartoPaciente.getText().equals(p.getNumero_cuarto())){
-            pGuardar.setNumero_cuarto("-1");
+        if (campoCuartoPaciente.getText().equals("Cuarto del Paciente")){
+            pGuardar.setNumero_cuarto(null);
             warning += "Número de cuarto, ";
         } else {
-            pGuardar.setNumero_cuarto(campoCuartoPaciente.getText());
+            Optional<Integer> op = Optional.ofNullable(Integer.valueOf(campoCuartoPaciente.getText()));
+            pGuardar.setNumero_cuarto(op);
         }
 
-        if (campoCamaPaciente.getText().equals(p.getNumero_cama())){
-            pGuardar.setNumero_cama("-1");
+        if (campoCamaPaciente.getText().equals("Cama del Paciente")){
+            pGuardar.setNumero_cama(null);
             warning += "Número de cama, ";
         } else {
-            pGuardar.setNumero_cama(campoCamaPaciente.getText());
+            Optional<Integer> op = Optional.ofNullable(Integer.valueOf(campoCamaPaciente.getText()));
+            pGuardar.setNumero_cama(op);
         }
 
         if (dropdownSexo.getValue().equals("- Sexo -")){
@@ -192,9 +196,10 @@ public class ControllerRegistroPx {
         } else {
             pGuardar.setSexo(sexo);
         }
+        ModelPaciente mp = new ModelPaciente();
 
         if(warning.equals("Los campos: ")){
-            int a = (int) bd.insertar(pGuardar);
+            int a = (int) mp.insertar(pGuardar);
             System.out.print(a);
             return 1;
         } else {
@@ -207,7 +212,7 @@ public class ControllerRegistroPx {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                int a = (int) bd.insertar(pGuardar);
+                int a = (int) mp.insertar(pGuardar);
                 System.out.print(a);
                 return 1;
             } else {
