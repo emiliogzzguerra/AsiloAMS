@@ -66,7 +66,7 @@
                         <Button layoutX="4.0" layoutY="147.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Registrar Evento" />
                         <Button layoutX="5.0" layoutY="189.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Pacientes por medicar" />
                         <Button layoutX="4.0" layoutY="232.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Re-orden de medicamentos" />
-                        <Button layoutX="3.0" layoutY="274.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Emergencias" />
+                        <Button fx:id="Emergencias" layoutX="3.0" layoutY="274.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Emergencias"/>
                         <Button layoutX="3.0" layoutY="63.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Registrar Paciente"
                                 fx:id="regPxButton" onAction="#abrirRegistraPx" />
                      </children>

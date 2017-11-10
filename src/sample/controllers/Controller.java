@@ -7,16 +7,20 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import sample.clases.Pdespliega;
 import sample.clases.RegistroPx;
+import sample.clases.listaNombres;
+
+import java.sql.*;
 
 public class Controller {
-
 
     public Button buscarButton;
     public TextField textBuscar;
 
 
-    public void advancedSearch() {
-        String[] possWords = {"Jai", "Emilio", "Carlos", "Javier", "te la comes"};
+
+    public void advancedSearch() throws Exception {
+        listaNombres d = new listaNombres();
+        String[] possWords = d.nombres();
         AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(textBuscar, possWords);
         bind.setOnAutoCompleted(event -> {
             try {
@@ -44,6 +48,7 @@ public class Controller {
         }
     }
 
+
     public void abrirPdespliega () throws Exception {
         Pdespliega pdespliega = new Pdespliega();
         Stage stage = new Stage();
@@ -51,6 +56,30 @@ public class Controller {
             pdespliega.start(stage);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void abrirEmergencias (int val) throws Exception {
+        System.out.println("\nExecuting query: " + val);
+    }
+
+
+
+
+    public Statement conexion(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            //Get connection with MySQL database
+            Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
+                    "root", "1212");
+            Statement stmt = mycon.createStatement();
+
+            return stmt;
+        } catch (Exception e) {
+            System.out.println("Error with database connection");
+            e.printStackTrace();
+            return null;
         }
     }
 
