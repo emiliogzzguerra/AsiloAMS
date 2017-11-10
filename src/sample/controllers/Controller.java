@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import sample.clases.Pdespliega;
+import sample.clases.Preceta;
 import sample.clases.RegistroPx;
 
 public class Controller {
@@ -59,6 +60,16 @@ public class Controller {
         if(TcheckBox.isSelected()){
             String nm = "checkbox";
             buscarButton.setText(nm);
+        }
+    }
+
+    public void abrirPreceta() throws Exception {
+        Preceta preceta = new Preceta();
+        Stage stage = new Stage();
+        try {
+            preceta.start(stage);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

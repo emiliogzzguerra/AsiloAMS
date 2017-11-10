@@ -62,7 +62,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="188.0">
                      <children>
                         <Button fx:id="PacientesBoton" layoutX="3.0" layoutY="21.0" mnemonicParsing="false" onAction="#abrirPdespliega" prefHeight="32.0" prefWidth="181.0" text="Pacientes" />
-                        <Button layoutX="3.0" layoutY="105.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Registrar Receta" />
+                        <Button fx:id="RecetaBoton" layoutX="3.0" layoutY="105.0" mnemonicParsing="false" onAction="#abrirPreceta" prefHeight="32.0" prefWidth="181.0" text="Registrar Receta" />
                         <Button layoutX="4.0" layoutY="147.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Registrar Evento" />
                         <Button layoutX="5.0" layoutY="189.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Pacientes por medicar" />
                         <Button layoutX="4.0" layoutY="232.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="181.0" text="Re-orden de medicamentos" />
@@ -78,7 +78,7 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <CheckBox fx:id="TcheckBox" onAction="#selectionCB" layoutX="309.0" layoutY="26.0" mnemonicParsing="false" text="CheckBox" />
+                                          <CheckBox fx:id="TcheckBox" layoutX="309.0" layoutY="26.0" mnemonicParsing="false" onAction="#selectionCB" text="CheckBox" />
                                        </children></AnchorPane>
                               </content>
                             </Tab>
@@ -94,7 +94,7 @@
               </items>
             </SplitPane>
             <Label layoutX="17.0" layoutY="17.0" text="Buscar Paciente:" />
-            <TextField fx:id="textBuscar" layoutX="127.0" layoutY="13.0" onKeyTyped="#advancedSearch" prefHeight="26.0" prefWidth="378.0" text="Nombre del paciente ..." />
+            <TextField fx:id="textBuscar" layoutX="127.0" layoutY="13.0" onKeyTyped="#advancedSearch" prefHeight="26.0" prefWidth="378.0" promptText="Nombre del paciente..." />
             <Button fx:id="buscarButton" layoutX="516.0" layoutY="13.0" mnemonicParsing="false" onAction="#buscarPx" prefHeight="32.0" prefWidth="109.0" text="Buscar" />
       </children>
     </AnchorPane>
