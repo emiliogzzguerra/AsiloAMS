@@ -94,13 +94,7 @@ public class Controller {
             e.printStackTrace();
         }
     }
-
-    public void abrirEmergencias (int val) throws Exception {
-
-    }
-
-
-
+    
 
     public Statement conexion(){
         try {
