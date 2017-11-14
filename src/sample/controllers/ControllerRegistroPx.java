@@ -199,7 +199,7 @@ public class ControllerRegistroPx {
         ModelPaciente mp = new ModelPaciente();
 
         if(warning.equals("Los campos: ")){
-            int a = (int) mp.insertar(pGuardar);
+            boolean a = mp.insertar(pGuardar);
             System.out.print(a);
             return 1;
         } else {
@@ -212,7 +212,7 @@ public class ControllerRegistroPx {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                int a = (int) mp.insertar(pGuardar);
+                boolean a = mp.insertar(pGuardar);
                 System.out.print(a);
                 return 1;
             } else {

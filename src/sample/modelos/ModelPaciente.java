@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class ModelPaciente {
-    public Number insertar(Paciente p) {
+    public boolean insertar(Paciente p) {
         Statement myStmt = GeneralModel.connect();
 
         Integer num_cuarto;
@@ -67,10 +67,10 @@ public class ModelPaciente {
         query += sql;
         try {
             myStmt.executeUpdate(query);
-            return 1;
+            return true;
         } catch (Exception e){
             System.out.println(e);
-            return 0;
+            return false;
         }
     }
 
