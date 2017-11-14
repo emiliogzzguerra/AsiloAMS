@@ -9,8 +9,13 @@ import sample.clases.Pdespliega;
 import sample.clases.Preceta;
 import sample.clases.RegistroPx;
 import sample.clases.listaNombres;
+import sample.controllers.ControllerPdespliega;
 
 import java.sql.*;
+import java.util.Arrays;
+import java.util.Map;
+
+import static sample.controllers.ControllerPdespliega.*;
 
 public class Controller {
 
@@ -20,13 +25,20 @@ public class Controller {
 
 
 
+
     public void advancedSearch() throws Exception {
         listaNombres d = new listaNombres();
-        String[] possWords = d.nombres();
-        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(textBuscar, possWords);
+        Map<String,Integer> possWords = d.nombres();
+        Object[] nombreApellidos = new Object[possWords.size()];
+        nombreApellidos = possWords.keySet().toArray();
+        String[] stringArray = Arrays.copyOf(nombreApellidos, nombreApellidos.length, String[].class);
+        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(textBuscar, stringArray);
         bind.setOnAutoCompleted(event -> {
             try {
-                abrirPdespliega();
+                textBuscar.setText(event.getCompletion());
+                Integer id = possWords.get(event.getCompletion());
+                abrirPdespliega(id);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -37,6 +49,7 @@ public class Controller {
         String nombrePx = textBuscar.getText();
         buscarButton.setText(nombrePx);
         textBuscar.setText("");
+
 
     }
 
@@ -51,15 +64,21 @@ public class Controller {
     }
 
 
-    public void abrirPdespliega () throws Exception {
-        Pdespliega pdespliega = new Pdespliega();
-        Stage stage = new Stage();
+    public void abrirPdespliega(Integer id) throws Exception {
+
         try {
-            pdespliega.start(stage);
+            Pdespliega d = new Pdespliega();
+            Stage stage = new Stage();
+            d.start(stage);
+            ControllerPdespliega e = new ControllerPdespliega();
+            //e.cambiar();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+
 
     public void selectionCB (){
         if(TcheckBox.isSelected()){

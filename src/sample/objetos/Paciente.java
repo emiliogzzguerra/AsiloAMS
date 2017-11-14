@@ -60,6 +60,7 @@ public class Paciente {
         this.sexo = sexo;
     }
 
+
     public int getEdad(){
         LocalDateTime now = LocalDateTime.now();
         return now.getYear() -  Integer.valueOf(this.fecha_nacimiento.substring(0,4)) ;
