@@ -5,11 +5,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-import sample.clases.Pdespliega;
-import sample.clases.Preceta;
-import sample.clases.RegistroPx;
-import sample.clases.listaNombres;
-import sample.controllers.ControllerPdespliega;
+import sample.clases.*;
 
 import java.sql.*;
 import java.util.Arrays;
@@ -97,11 +93,25 @@ public class Controller {
         }
     }
 
-    public void abrirEmergencias (int val) throws Exception {
-
+    public void abrirPxPorMedicar() throws Exception {
+        PxPorMedicar pxPorMedicar = new PxPorMedicar();
+        Stage stage = new Stage();
+        try{
+            pxPorMedicar.start(stage);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-
+    public void abrirReOrden() throws Exception {
+        ReOrden reOrden = new ReOrden();
+        Stage stage = new Stage();
+        try{
+            reOrden.start(stage);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
     public Statement conexion(){
