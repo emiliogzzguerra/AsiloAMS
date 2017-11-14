@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS informacion_emergencia
 CREATE TABLE IF NOT EXISTS enfermedad
 (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  nombre_enfermedad VARCHAR(30) NOT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_final DATE,
   paciente_id INT NOT NULL,
