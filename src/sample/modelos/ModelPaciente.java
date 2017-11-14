@@ -29,7 +29,7 @@ public class ModelPaciente {
         }
 
         String query = "INSERT INTO ";
-        query+= "paciente ";
+        query += "paciente ";
         String sql = new StringBuilder()
                 .append("(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,")
                 .append("numero_cuarto,numero_cama,estatus,paciente_medicado_manana,paciente_medicado_tarde,paciente_medicado_noche,asilo_id) VALUES (")
