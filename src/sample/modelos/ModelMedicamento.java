@@ -9,18 +9,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ModelMedicamento {
-    public boolean insertar(Medicamento med) {
+
+    public boolean insertar(Medicamento med, int id) {
         Statement myStmt = GeneralModel.connect();
         Statement myStmt2 = GeneralModel.connect();
         String query = "INSERT INTO ";
         query += "medicamento";
         String sql = new StringBuilder()
-                .append("(nombre, tipo) VALUES (")
+                .append("(nombre, tipo, paciente_id) VALUES (")
                 .append("'")
                 .append(med.getNombre()) // nombre
                 .append("','")
                 .append(med.getTipo())  // tipo
                 .append(",")
+                .append(id) //paciente id
                 .append(")")
                 .toString();
         String query2 = "INSERT INTO ";
@@ -72,6 +74,7 @@ public class ModelMedicamento {
             while(myRs.next()){
                 meds[i] = new Medicamento(myRs.getString("nombre"),
                         myRs.getString("tipo"),
+                        myRs.getInt("paciente_id"),
                         myRs2.getInt("cantidad"),
                         myRs2.getString("dosis"),
                         myRs2.getBoolean("manana"),

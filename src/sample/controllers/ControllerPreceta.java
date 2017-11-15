@@ -15,7 +15,6 @@ import sample.clases.setImage;
 import sample.modelos.ModelMedicamento;
 import sample.modelos.ModelPaciente;
 import sample.modelos.ModelReceta;
-import sample.objetos.Enfermedad;
 import sample.objetos.Medicamento;
 import sample.objetos.Paciente;
 import sample.objetos.Receta;
@@ -98,7 +97,7 @@ public class ControllerPreceta implements Initializable {
 
     public int guardaMedicina() throws SQLException {
         Medicamento medicamento = new Medicamento();
-        Receta receta = new Receta(identificadorReceta, fechaExpedicion.getValue().toString());
+        Receta receta = new Receta();
 
         String medida = "- Medida -";
         String tipo = "- Tipo -";
@@ -138,7 +137,7 @@ public class ControllerPreceta implements Initializable {
         if (cantidad.getAccessibleText().equals(m.getCantidad())){
             warning += "Cantidad, ";
         } else {
-            medicamento.setCantidad(cantidad.getText());
+            medicamento.setCantidad(Integer.valueOf(cantidad.getText()));
         }
         if (fechaInicio.getAccessibleText().equals(m.getFecha_inicio())){
             medicamento.setFecha_inicio("1970/01/01");
@@ -173,7 +172,7 @@ public class ControllerPreceta implements Initializable {
         ModelReceta mr = new ModelReceta();
 
         if (warning.equals("Los campos: ")){
-            boolean a = md.insertar(medicamento);
+            boolean a = md.insertar(medicamento, id);
             System.out.print(a);
             boolean c = mr.insertar(receta, id);
             System.out.print(c);
@@ -188,7 +187,7 @@ public class ControllerPreceta implements Initializable {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                boolean a = md.insertar(medicamento);
+                boolean a = md.insertar(medicamento, id);
                 System.out.print(a);
                 boolean c = mr.insertar(receta, id);
                 System.out.print(c);

@@ -8,6 +8,11 @@ public class Receta {
     TextField identificador;
     String fecha_expedicion;
 
+    public Receta(){
+        TextField dummy = null;
+        this.identificador = dummy;
+        this.fecha_expedicion = "Dummy";
+    }
 
     public Receta(TextField identificador, String fecha_expedicion){
         this.identificador = identificador;
