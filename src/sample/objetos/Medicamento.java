@@ -25,7 +25,16 @@ public class Medicamento {
         this.noche = false;
     }
 
-    public Medicamento(String nombre, String tipo, Integer cantidad, String dosis,String fecha_inicio, String fecha_final, String medida, boolean manana, boolean tarde, boolean noche){
+    public Medicamento(String nombre,
+                       String tipo,
+                       Integer cantidad,
+                       String dosis,
+                       String fecha_inicio,
+                       String fecha_final,
+                       String medida,
+                       boolean manana,
+                       boolean tarde,
+                       boolean noche){
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantidad = cantidad;

@@ -250,7 +250,7 @@ public class ControllerRegistroPx {
 
     public int guardaExpediente(){
         ModelEnfermedad me = new ModelEnfermedad();
-        Enfermedad EnfDummy = new Enfermedad("Lepra", "1/1/2017", "15/1/2017");
+        Enfermedad EnfDummy = new Enfermedad("Lepra", "01-01-2017", "15-01-2017");
         me.insertar(EnfDummy,1);
         return 0;
     }

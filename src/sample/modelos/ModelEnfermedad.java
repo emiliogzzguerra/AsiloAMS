@@ -13,18 +13,20 @@ public class ModelEnfermedad {
         String query = "INSERT INTO ";
         query += "enfermedad ";
         String sql = new StringBuilder()
-                .append("(fecha_inicio, fecha_final, paciente_id) VALUES (")
-                .append(",'")
+                .append("(nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) VALUES (")
+                .append("'")
+                .append(enfermedad.getNombre())
+                .append("','")
                 .append(enfermedad.getFecha_inicio()) // fecha_inicial
                 .append("','")
                 .append(enfermedad.getFecha_final())  // fecha_final
                 .append("','")
                 .append(id)  // paciente_id
-                .append("','")
+                .append("'")
                 .append(")")
                 .toString();
         try{
-            myStmt.executeUpdate(query);
+            myStmt.executeUpdate(query + sql);
             return true;
         } catch (Exception e){
             System.out.println(e);

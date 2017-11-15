@@ -132,7 +132,7 @@ public class ControllerPreceta implements Initializable {
         if (identificadorReceta.getAccessibleText().equals(r.getIdentificador())){
             warning += "Numero de receta, ";
         } else {
-            receta.setIdentificador(identificadorReceta);
+            receta.setIdentificador(identificadorReceta.getText());
         }
         if (cantidad.getAccessibleText().equals(m.getCantidad())){
             warning += "Cantidad, ";
