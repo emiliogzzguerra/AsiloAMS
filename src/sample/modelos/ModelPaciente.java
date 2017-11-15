@@ -32,7 +32,7 @@ public class ModelPaciente {
         query += "paciente ";
         String sql = new StringBuilder()
                 .append("(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,")
-                .append("numero_cuarto,numero_cama,estatus,paciente_medicado_manana,paciente_medicado_tarde,paciente_medicado_noche,asilo_id) VALUES (")
+                .append("numero_cuarto,numero_cama,estatus,foto,paciente_medicado_manana,paciente_medicado_tarde,paciente_medicado_noche,asilo_id) VALUES (")
                 .append(p.getSexo()) // sexo
                 .append(",'")
                 .append(p.getFecha_nacimiento()) // fecha_nacimiento
@@ -60,6 +60,8 @@ public class ModelPaciente {
                 .append(p.isPaciente_medicado_noche()) // paciente_medicado_noche
                 .append(",")
                 .append(p.getEstatus()) // estatus
+                .append(",")
+                .append(p.getPath()) // path
                 .append(",")
                 .append(p.getAsilo_id()) // asilo_id
                 .append(")")
@@ -109,6 +111,7 @@ public class ModelPaciente {
                 p.setPaciente_medicado_tarde(myRs.getBoolean("paciente_medicado_tarde"));
                 p.setPaciente_medicado_noche(myRs.getBoolean("paciente_medicado_noche"));
                 p.setEstatus(myRs.getInt("estatus"));
+                p.setPath(myRs.getString("foto"));
                 p.setAsilo_id(myRs.getInt("asilo_id"));
             }
             return p;

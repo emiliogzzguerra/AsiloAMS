@@ -14,6 +14,7 @@ public class Paciente {
     String calle;
     String codigo_postal;
     String sangre;
+    String path;
     Optional<Integer> numero_cuarto;
     Optional<Integer> numero_cama;
     boolean paciente_medicado_manana;
@@ -37,6 +38,7 @@ public class Paciente {
                     String calle,
                     String codigo_postal,
                     String sangre,
+                    String path,
                     Optional<Integer> numero_cuarto,
                     Optional<Integer> numero_cama,
                     boolean paciente_medicado_manana,
@@ -53,6 +55,7 @@ public class Paciente {
         this.calle = calle;
         this.codigo_postal = codigo_postal;
         this.sangre = sangre;
+        this.path = path;
         this.numero_cuarto = numero_cuarto;
         this.numero_cama = numero_cama;
         this.paciente_medicado_manana = false;
@@ -93,6 +96,10 @@ public class Paciente {
 
     public String getSangre() {
         return sangre;
+    }
+
+    public String getPath(){
+        return path;
     }
 
     public Optional<Integer> getNumero_cuarto() {
@@ -141,6 +148,10 @@ public class Paciente {
 
     public void setSangre(String sangre) {
         this.sangre = sangre;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public void setNumero_cuarto(Optional<Integer> numero_cuarto) {
