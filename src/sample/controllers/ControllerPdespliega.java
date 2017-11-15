@@ -15,6 +15,11 @@ public class ControllerPdespliega implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        desNombre.setText("LOLas");
+        constructor();
+    }
+
+    public void constructor(){
+
     }
 }
+

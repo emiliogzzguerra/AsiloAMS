@@ -33,7 +33,7 @@ public class Controller {
             try {
                 textBuscar.setText(event.getCompletion());
                 Integer id = possWords.get(event.getCompletion());
-                abrirPdespliega(id);
+                abrirPdespliega();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -60,14 +60,12 @@ public class Controller {
     }
 
 
-    public void abrirPdespliega(Integer id) throws Exception {
+    public void abrirPdespliega() throws Exception {
 
         try {
             Pdespliega d = new Pdespliega();
             Stage stage = new Stage();
             d.start(stage);
-            ControllerPdespliega e = new ControllerPdespliega();
-            //e.cambiar();
         } catch (Exception e) {
             e.printStackTrace();
         }

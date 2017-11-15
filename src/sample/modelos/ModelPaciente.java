@@ -78,7 +78,7 @@ public class ModelPaciente {
 
         Paciente p = new Paciente();
 
-        String query = "select * from paciente";
+        String query = "select * from paciente WHERE id=" + id;
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
