@@ -106,6 +106,16 @@ public class Controller {
         }
     }
 
+    public void abrirEvento() throws Exception {
+        Pevento pevento = new Pevento();
+        Stage stage = new Stage();
+        try {
+            pevento.start(stage);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     public Statement conexion(){
         try {
