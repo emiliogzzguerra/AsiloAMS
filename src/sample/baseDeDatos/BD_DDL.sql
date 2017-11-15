@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS asilo
   calle VARCHAR(30) NOT NULL,
   codigo_postal INT NOT NULL,
   cuartos_disponibles INT NOT NULL,
-  camas_disponibles INT NOT NULL
+  camas_disponibles INT NOT NULL,
+  telefono VARCHAR(30)
 );
 
 CREATE TABLE IF NOT EXISTS paciente
@@ -52,6 +53,8 @@ CREATE TABLE IF NOT EXISTS familiar
   apellido VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
   parentesco VARCHAR(30),
+  telefono VARCHAR(30),
+  celular VARCHAR(30),
   paciente_id  INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
@@ -62,8 +65,10 @@ CREATE TABLE IF NOT EXISTS informacion_emergencia
   poliza_seguro VARCHAR(30) NOT NULL,
   hospital_preferente VARCHAR(30) NOT NULL,
   fecha_vencimiento_poliza DATE,
-  paciente_id INT NOT NULL,
   comentarios TEXT,
+  telefono VARCHAR(30),
+  celular VARCHAR(30),
+  paciente_id INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
 
@@ -144,29 +149,4 @@ CREATE TABLE IF NOT EXISTS incumbencia
   incumbencia VARCHAR(30) NOT NULL,
   familiar_id INT NOT NULL,
   FOREIGN KEY (familiar_id) REFERENCES familiar(id)
-);
-
-CREATE TABLE IF NOT EXISTS telefono_asilo
-(
-  telefono VARCHAR(30) NOT NULL,
-  asilo_id INT NOT NULL,
-  PRIMARY KEY(asilo_id, telefono),
-  FOREIGN KEY (asilo_id) REFERENCES asilo(id)
-);
-
-CREATE TABLE IF NOT EXISTS telefono_familiar
-(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  telefono VARCHAR(30) NOT NULL,
-  familiar_id INT NOT NULL,
-  FOREIGN KEY (familiar_id) REFERENCES familiar(id)
-);
-
-
-CREATE TABLE IF NOT EXISTS telefono_informacion_emergencia
-(
-  telefono VARCHAR(30) NOT NULL,
-  informacion_emergencia_id INT NOT NULL,
-  PRIMARY KEY(informacion_emergencia_id, telefono),
-  FOREIGN KEY (informacion_emergencia_id) REFERENCES informacion_emergencia(id)
 );

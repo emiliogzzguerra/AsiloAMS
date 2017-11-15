@@ -62,11 +62,10 @@ public class ModelPadecimiento {
     public Padecimiento[] getPadecimientos(Integer id) {
         String queryPadecimiento = "SELECT * FROM paciente INNER JOIN paciente_padecimiento ON paciente.id = paciente_padecimiento.paciente_id AND paciente.id =" + id.toString();
 
-        Statement myStmt = GeneralModel.connect();x
+        Statement myStmt = GeneralModel.connect();
         try {
             ResultSet myRs = myStmt.executeQuery(queryPadecimiento);
             ResultSetMetaData md = myRs.getMetaData();
-            int columns = md.getColumnCount();
 
             Padecimiento[] pads = new Padecimiento[myRs.getFetchSize()];
 

@@ -11,6 +11,7 @@ public class GeneralModel {
             Connection mycon = DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_asilo?useSSL=false",
                     "root", "1212");
             Statement stmt = mycon.createStatement();
+
             if(stmt != null){
                 return stmt;
             } else {

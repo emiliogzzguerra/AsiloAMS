@@ -38,6 +38,5 @@ public class ControllerPdespliega implements Initializable {
         desCuarto.setText(String.valueOf(p.getNumero_cuarto()));
         desCama.setText(String.valueOf((p.getNumero_cama())));
         desEstatus.setText(String.valueOf(p.getEstatus()));
-
     }
 }
