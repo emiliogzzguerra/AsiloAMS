@@ -34,7 +34,6 @@ public class Controller {
                 textBuscar.setText(event.getCompletion());
                 Integer id = possWords.get(event.getCompletion());
                 abrirPdespliega();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

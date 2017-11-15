@@ -1,8 +1,6 @@
 package sample.modelos;
 
-import sample.objetos.Evento;
 import sample.objetos.Tratamiento;
-
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -18,9 +16,7 @@ public class ModelTratamiento {
                 .append("'")
                 .append(tratamiento.getDescripcion_tratamiento()) // descripcion_tratamiento
                 .append("',")
-                .append() // paciente_id
                 .append(",")
-                .append() // padecimiento_id
                 .append(")")
                 .toString();
         query += sql;
@@ -51,7 +47,7 @@ public class ModelTratamiento {
             //Insertar informacion a objeto deseado
             Tratamiento tratamientoAuxiliar = new Tratamiento(myRs.getString(1), myRs.getString(2));
 
-            tratamientoAuxiliar.setDescripcion_tratamiento() = myRs.getString(1);
+            tratamientoAuxiliar.setDescripcion_tratamiento(myRs.getString(1));
 
             //Retornar objeto
             return tratamientoAuxiliar;

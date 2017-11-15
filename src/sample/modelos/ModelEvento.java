@@ -51,9 +51,9 @@ public class ModelEvento {
             //Insertar informacion a objeto deseado
             Evento eventoAuxiliar = new Evento(myRs.getString(1),myRs.getString(2),myRs.getString(3));
 
-            eventoAuxiliar.setFecha() = myRs.getString(1);
-            eventoAuxiliar.setEnfermera() = myRs.getString(2);
-            eventoAuxiliar.setDescripcion() = myRs.getString(3);
+            eventoAuxiliar.setFecha(myRs.getString(1));
+            eventoAuxiliar.setEnfermera(myRs.getString(2));
+            eventoAuxiliar.setDescripcion(myRs.getString(3));
             //eventoAuxiliar.setPaciente_id() = myRs.getInt(4);
 
             //Retornar objeto

@@ -20,9 +20,7 @@ public class ModelMedicamento {
                 .append("','")
                 .append(med.getTipo())  // tipo
                 .append(",")
-                .append() // paciente_id
                 .append(",")
-                .append() // receta_id
                 .append(")")
                 .toString();
         try{

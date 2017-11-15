@@ -15,11 +15,6 @@ public class ControllerPdespliega implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        constructor();
-    }
-
-    public void constructor(){
-
     }
 }
 
