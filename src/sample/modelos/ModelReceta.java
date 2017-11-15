@@ -1,26 +1,24 @@
 package sample.modelos;
 
-import sample.objetos.Evento;
-
+import sample.objetos.Receta;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ModelEvento {
-    public boolean insertar(Evento evento) {
+public class ModelReceta {
+
+    public boolean insertar(Receta receta) {
+
         Statement myStmt = GeneralModel.connect();
+
         String query = "INSERT INTO ";
-        query += "evento ";
+        query += "receta ";
         String sql = new StringBuilder()
-                .append("(fecha, enfermera, descripcion, paciente_id) VALUES (")
+                .append("(identificador, fecha_expedicion) VALUES (")
+                .append(receta.getIdentificador()) // identificador
                 .append(",'")
-                .append(evento.getFecha()) // fecha_evento
-                .append("','")
-                .append(evento.getEnfermera())  // nombre_enfermera
-                .append("','")
-                .append(evento.getDescripcion())  // nombre_enfermera
-                .append("','")
+                .append(receta.getFecha_expedicion()) // fecha_expedicion
                 .append(")")
                 .toString();
         try{
@@ -31,10 +29,11 @@ public class ModelEvento {
             return false;
         }
     }
-    public Evento getEvento(Integer id) {
+
+    public Receta getReceta (Integer id) {
 
 
-        String query = "select * from evento where id = " + id.toString();
+        String query = "select * from receta where id = " + id.toString();
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
@@ -49,15 +48,12 @@ public class ModelEvento {
             }
 
             //Insertar informacion a objeto deseado
-            Evento eventoAuxiliar = new Evento(myRs.getString(1),myRs.getString(2),myRs.getString(3));
+            Receta recetaAuxiliar = new Receta(myRs.getString(1), myRs.getDate(2));
 
-            eventoAuxiliar.setFecha(myRs.getString(1));
-            eventoAuxiliar.setEnfermera(myRs.getString(2));
-            eventoAuxiliar.setDescripcion(myRs.getString(3));
-            //eventoAuxiliar.setPaciente_id() = myRs.getInt(4);
-
+            recetaAuxiliar.setIdentificador(myRs.getString(1));
+            recetaAuxiliar.setFecha_expedicion(myRs.getDate(2));
             //Retornar objeto
-            return eventoAuxiliar;
+            return recetaAuxiliar;
         } catch (Exception e){
             System.out.println(e);
             return null;

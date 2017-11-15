@@ -39,6 +39,9 @@ public class Paciente {
                     String sangre,
                     Optional<Integer> numero_cuarto,
                     Optional<Integer> numero_cama,
+                    boolean paciente_medicado_manana,
+                    boolean paciente_medicado_tarde,
+                    boolean paciente_medicado_noche,
                     int estatus,
                     int asilo_id,
                     int sexo)
@@ -60,6 +63,7 @@ public class Paciente {
         this.sexo = sexo;
     }
 
+
     public int getEdad(){
         LocalDateTime now = LocalDateTime.now();
         return now.getYear() -  Integer.valueOf(this.fecha_nacimiento.substring(0,4)) ;
@@ -69,9 +73,7 @@ public class Paciente {
         return fecha_nacimiento;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getNombre() { return nombre; }
 
     public String getApellido() {
         return apellido;

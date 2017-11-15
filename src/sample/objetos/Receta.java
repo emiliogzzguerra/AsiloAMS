@@ -3,10 +3,14 @@ package sample.objetos;
 import java.sql.Date;
 
 public class Receta {
+
     String identificador;
     Date fecha_expedicion;
-    public Receta(String identificador, String fecha){
+
+
+    public Receta(String identificador, Date fecha_expedicion){
         this.identificador = identificador;
+        this.fecha_expedicion = fecha_expedicion;
 
     }
 

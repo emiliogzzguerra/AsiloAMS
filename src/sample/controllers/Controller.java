@@ -5,27 +5,30 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
-import sample.clases.Pdespliega;
-import sample.clases.Preceta;
-import sample.clases.RegistroPx;
-import sample.clases.listaNombres;
+import sample.clases.*;
 
 import java.sql.*;
+import java.util.Arrays;
+import java.util.Map;
 
 public class Controller {
 
     public Button buscarButton;
     public TextField textBuscar;
     public CheckBox TcheckBox;
-
-
+    public static int id;
 
     public void advancedSearch() throws Exception {
         listaNombres d = new listaNombres();
-        String[] possWords = d.nombres();
-        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(textBuscar, possWords);
+        Map<String,Integer> possWords = d.nombres();
+        Object[] nombreApellidos = new Object[possWords.size()];
+        nombreApellidos = possWords.keySet().toArray();
+        String[] stringArray = Arrays.copyOf(nombreApellidos, nombreApellidos.length, String[].class);
+        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(textBuscar, stringArray);
         bind.setOnAutoCompleted(event -> {
             try {
+                textBuscar.setText(event.getCompletion());
+                id = possWords.get(event.getCompletion());
                 abrirPdespliega();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -37,6 +40,7 @@ public class Controller {
         String nombrePx = textBuscar.getText();
         buscarButton.setText(nombrePx);
         textBuscar.setText("");
+
 
     }
 
@@ -51,15 +55,19 @@ public class Controller {
     }
 
 
-    public void abrirPdespliega () throws Exception {
-        Pdespliega pdespliega = new Pdespliega();
-        Stage stage = new Stage();
+    public void abrirPdespliega() throws Exception {
+
         try {
-            pdespliega.start(stage);
+            Pdespliega d = new Pdespliega();
+            Stage stage = new Stage();
+            d.start(stage);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+
 
     public void selectionCB (){
         if(TcheckBox.isSelected()){
@@ -78,11 +86,25 @@ public class Controller {
         }
     }
 
-    public void abrirEmergencias (int val) throws Exception {
-
+    public void abrirPxPorMedicar() throws Exception {
+        PxPorMedicar pxPorMedicar = new PxPorMedicar();
+        Stage stage = new Stage();
+        try{
+            pxPorMedicar.start(stage);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-
+    public void abrirReOrden() throws Exception {
+        ReOrden reOrden = new ReOrden();
+        Stage stage = new Stage();
+        try{
+            reOrden.start(stage);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
 
     public Statement conexion(){

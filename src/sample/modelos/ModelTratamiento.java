@@ -1,8 +1,6 @@
 package sample.modelos;
 
-import sample.objetos.Evento;
 import sample.objetos.Tratamiento;
-
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
@@ -12,11 +10,15 @@ public class ModelTratamiento {
     public boolean insertar(Tratamiento tratamiento) {
         Statement myStmt = GeneralModel.connect();
         String query = "INSERT INTO ";
-        query += "tratamiento ";
+        query += "padecimiento ";
         String sql = new StringBuilder()
-                .append("() VALUES (")
+                .append(" (nombre) VALUES (")
+                .append("'")
+                .append(tratamiento.getNombre_tratamiento()) // nombre_tratamiento
                 .append(")")
                 .toString();
+        query += sql;
+
         try{
             myStmt.executeUpdate(query);
             return true;
@@ -25,6 +27,28 @@ public class ModelTratamiento {
             return false;
         }
     }
+
+    public boolean insertarDes(Tratamiento tratamiento){
+        Statement myStmt = GeneralModel.connect();
+        String query = "INSERT INTO ";
+        query += "paciente_padecimiento";
+        String sql = new StringBuilder()
+                .append(" (descripcion) VALUES (")
+                .append("'")
+                .append(tratamiento.getDescripcion_tratamiento()) // descripcion_tratamiento
+                .append(")")
+                .toString();
+        query += sql;
+
+        try{
+            myStmt.executeUpdate(query);
+            return true;
+        } catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
+
     public Tratamiento getTratamiento(Integer id) {
         String query = "select * from tratamiento where id = " + id.toString();
         ArrayList columnNames = new ArrayList();
@@ -41,8 +65,9 @@ public class ModelTratamiento {
             }
 
             //Insertar informacion a objeto deseado
-            Tratamiento tratamientoAuxiliar = new Tratamiento(myRs.getString(1),
-                                                              myRs.getString(2));
+            Tratamiento tratamientoAuxiliar = new Tratamiento(myRs.getString(1), myRs.getString(2));
+
+            tratamientoAuxiliar.setDescripcion_tratamiento(myRs.getString(1));
 
             //Retornar objeto
             return tratamientoAuxiliar;

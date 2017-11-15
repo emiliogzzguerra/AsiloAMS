@@ -1,11 +1,17 @@
 package sample.clases;
 
+import javafx.util.Pair;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class listaNombres {
+    //numero de rows (no en uso)
     public int numeroRows() throws Exception{
         int count = 0;
         String query = "Select * From paciente";
@@ -18,33 +24,21 @@ public class listaNombres {
     }
 
 
-    public String[] nombres() throws Exception {
-
-        int ini = 0, count = numeroRows();
+    public Map<String,Integer> nombres() throws Exception {
+        Map<String,Integer> map = new HashMap<String,Integer>();
         String query = "Select * From paciente";
         Statement stmt = conexion();
-        String[] myStringArray = new String[count];
         ResultSet p = stmt.executeQuery(query);
         while (p.next()) {
-            String firstName = p.getString("nombre");
-            myStringArray[ini] = firstName;
-            ini++;
+            Integer id = p.getInt("id");
+            String nombre = p.getString("nombre");
+            String apellido = p.getString("apellido");
+            String nombreApellido = nombre + " " + apellido;
+            map.put(nombreApellido, id);
+        }
+        return map;
+    }
 
-        }
-        return nombresApellidos(myStringArray);
-    }
-    public String[] nombresApellidos(String[] myStringArray) throws Exception {
-        int ini = 0;
-        String query = "Select * From paciente";
-        Statement stmt = conexion();
-        ResultSet m = stmt.executeQuery(query);
-        while (m.next()) {
-            String firstName = m.getString("apellido");
-            myStringArray[ini] += " " + firstName;
-            ini++;
-        }
-        return myStringArray;
-    }
 
     public Statement conexion(){
         try {

@@ -17,16 +17,16 @@
    <children>
       <AnchorPane prefHeight="586.0" prefWidth="802.0">
          <children>
-            <TextField layoutX="64.0" layoutY="57.0" prefHeight="27.0" prefWidth="664.0" promptText="Buscar Paciente" />
+            <TextField fx:id="tfBuscarPaciente" onKeyTyped="#SearchPaciente" layoutX="64.0" layoutY="57.0" prefHeight="27.0" prefWidth="664.0" promptText="Buscar Paciente" />
             <SplitPane dividerPositions="0.3028322440087146" layoutX="64.0" layoutY="93.0" orientation="VERTICAL" prefHeight="461.0" prefWidth="664.0">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="662.0">
                      <children>
-                        <Label layoutX="159.0" layoutY="24.0" prefHeight="17.0" prefWidth="132.0" text="Nombre del paciente" />
+                        <Label fx:id="labelNombrePx" layoutX="159.0" layoutY="24.0" prefHeight="17.0" prefWidth="132.0" text="Nombre del paciente" />
                         <ImageView fitHeight="135.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="159.0" layoutY="50.0" prefHeight="17.0" prefWidth="74.0" text="Edad" />
-                        <Label layoutX="523.0" layoutY="24.0" prefHeight="17.0" prefWidth="97.0" text="Habitacion" />
-                        <Label layoutX="523.0" layoutY="50.0" text="Cama" />
+                        <Label fx:id="labelEdadPx" layoutX="159.0" layoutY="50.0" prefHeight="17.0" prefWidth="74.0" text="Edad" />
+                        <Label fx:id="labelHabitacionPx" layoutX="523.0" layoutY="24.0" prefHeight="17.0" prefWidth="97.0" text="Habitacion" />
+                        <Label fx:id="labelCamaPx" layoutX="523.0" layoutY="50.0" text="Cama" />
                      </children>
                   </AnchorPane>
                   <ScrollPane>

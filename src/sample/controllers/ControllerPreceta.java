@@ -1,14 +1,27 @@
 package sample.controllers;
 
 
-import javafx.event.EventHandler;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import javafx.scene.control.TextField;
+import org.controlsfx.control.textfield.TextFields;
+import sample.clases.listaNombres;
+import sample.modelos.ModelPaciente;
+import sample.objetos.Paciente;
+import javafx.scene.control.Label;
+
+import java.util.Arrays;
+import java.util.Map;
+
 
 public class ControllerPreceta {
 
     public MenuItem menuAction1Tipo, menuAction2Tipo, menuAction1Medida, menuAction2Medida;
     public MenuButton menuButtonTipo, menuButtonMedida;
+    public TextField tfBuscarPaciente;
+    public static int id;
+    public Label labelNombrePx, labelEdadPx, labelHabitacionPx, labelCamaPx;
 
     public void onMenuSel (){
         menuAction1Tipo.setOnAction(event -> {
@@ -24,4 +37,34 @@ public class ControllerPreceta {
             menuButtonMedida.setText(menuAction2Medida.getText());
         });
     }
+
+    public void SearchPaciente() throws Exception {
+        listaNombres d = new listaNombres();
+        Map<String,Integer> possWords = d.nombres();
+        Object[] nombreApellidos = new Object[possWords.size()];
+        nombreApellidos = possWords.keySet().toArray();
+        String[] stringArray = Arrays.copyOf(nombreApellidos, nombreApellidos.length, String[].class);
+        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(tfBuscarPaciente, stringArray);
+        bind.setOnAutoCompleted(event -> {
+            try {
+                tfBuscarPaciente.setText(event.getCompletion());
+                id = possWords.get(event.getCompletion());
+                fillData(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void fillData(int id){
+        ModelPaciente d = new ModelPaciente();
+        Paciente p = d.getPaciente(id);
+
+        labelNombrePx.setText(p.getNombre() + " " + p.getApellido());
+        labelEdadPx.setText(String.valueOf(p.getEdad()));
+        labelHabitacionPx.setText(String.valueOf(p.getNumero_cuarto()));
+        labelCamaPx.setText(String.valueOf(p.getNumero_cama()));
+
+    }
+
 }
