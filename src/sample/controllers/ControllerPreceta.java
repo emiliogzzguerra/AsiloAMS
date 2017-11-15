@@ -81,7 +81,7 @@ public class ControllerPreceta implements Initializable {
         labelEdadPx.setText(String.valueOf(p.getEdad()));
         labelHabitacionPx.setText(String.valueOf(p.getNumero_cuarto()));
         labelCamaPx.setText(String.valueOf(p.getNumero_cama()));
-        String path = "/sample/fotos/emilio.png";
+        String path = p.getPath();
         setImage dd = new setImage();
         Image img = dd.setUpImage(path);
         fotoPx.setImage(img);

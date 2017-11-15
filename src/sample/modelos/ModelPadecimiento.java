@@ -21,7 +21,8 @@ public class ModelPadecimiento {
                 .append(")")
                 .toString();
 
-        String sqlPadecimiento = query + table + aux;
+        String sqlPadecimiento = table + aux;
+        System.out.println(sqlPadecimiento);
         try{
             myStmt.executeUpdate(sqlPadecimiento);
         } catch (Exception e){
@@ -30,8 +31,9 @@ public class ModelPadecimiento {
 
         Integer id_padecimiento = 0;
         try{
-            ResultSet myRs = myStmt.executeQuery("SELECT * FROM padecimiento");
-            id_padecimiento = myRs.getFetchSize();
+            ResultSet myRs = myStmt.executeQuery("SELECT COUNT(*) FROM paciente");
+            myRs.next();
+            id_padecimiento = myRs.getInt(1);
         } catch (Exception e){
             System.out.println(e);
         }
@@ -48,7 +50,7 @@ public class ModelPadecimiento {
                 .append(")")
                 .toString();
 
-        String sqlDescripcion = query + table2 + aux2;
+        String sqlDescripcion = table2 + aux2;
 
         try{
             myStmt.closeOnCompletion();
@@ -60,25 +62,18 @@ public class ModelPadecimiento {
         }
     }
     public Padecimiento[] getPadecimientos(Integer id) {
-        String queryPadecimiento = "SELECT * FROM paciente INNER JOIN paciente_padecimiento ON paciente.paciente_id = paciente_padecimiento.paciente_id AND paciente.paciente_id =1" + id.toString();
+        String queryPadecimiento = "SELECT * FROM paciente INNER JOIN paciente_padecimiento ON paciente.id = paciente_padecimiento.paciente_id AND paciente.id =" + id.toString();
 
         Statement myStmt = GeneralModel.connect();
         try {
             ResultSet myRs = myStmt.executeQuery(queryPadecimiento);
-            String queryPacientePadecimiento = "select * from paciente_padecimiento where paciente_id = " + id.toString();
-            ResultSet myRs = myStmt.executeQuery(queryPadecimiento);
             ResultSetMetaData md = myRs.getMetaData();
-            int columns = md.getColumnCount();
 
             Padecimiento[] pads = new Padecimiento[myRs.getFetchSize()];
 
-            //Get column names
-            for (int i = 1; i<= columns; i++){
-                columnNames.add(md.getColumnName(i));
-            }
             Integer i = 0;
             while(myRs.next()){
-                pads[i] = new Padecimiento(myRs.getString("nombre"));
+                //pads[i] = new Padecimiento(myRs.getString("nombre"));
             }
 
             //Retornar objeto

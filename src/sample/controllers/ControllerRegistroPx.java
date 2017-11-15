@@ -10,7 +10,9 @@ import javafx.stage.Stage;
 import sample.clases.metodoArchivo;
 import sample.modelos.GeneralModel;
 import sample.modelos.ModelPaciente;
+import sample.modelos.ModelPadecimiento;
 import sample.objetos.Paciente;
+import sample.objetos.Padecimiento;
 
 import java.io.File;
 import java.sql.ResultSet;
@@ -199,7 +201,7 @@ public class ControllerRegistroPx {
         ModelPaciente mp = new ModelPaciente();
 
         if(warning.equals("Los campos: ")){
-            boolean a = mp.insertar(pGuardar);
+            int a = mp.insertar(pGuardar);
             System.out.print(a);
             return 1;
         } else {
@@ -212,7 +214,7 @@ public class ControllerRegistroPx {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                boolean a = mp.insertar(pGuardar);
+                int a = mp.insertar(pGuardar);
                 System.out.print(a);
                 return 1;
             } else {
@@ -222,7 +224,14 @@ public class ControllerRegistroPx {
     }
 
 
-    public int guardaTratamientos() throws SQLException {
+    public int guardaTratamientos(){
+        ModelPadecimiento mpadecimiento = new ModelPadecimiento();
+        ModelPaciente mp = new ModelPaciente();
+        Integer pacienteId = mp.getRowsPacientes();
+        Padecimiento p = new Padecimiento("sifilis","Despues de su viaje a sudan");
+
+        mpadecimiento.insertar(p,pacienteId);
+
         return 0;
     }
 

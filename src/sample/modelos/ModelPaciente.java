@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class ModelPaciente {
-    public boolean insertar(Paciente p) {
+    public int insertar(Paciente p) {
         Statement myStmt = GeneralModel.connect();
 
         Integer num_cuarto;
@@ -32,7 +32,7 @@ public class ModelPaciente {
         query += "paciente ";
         String sql = new StringBuilder()
                 .append("(sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,")
-                .append("numero_cuarto,numero_cama,estatus,paciente_medicado_manana,paciente_medicado_tarde,paciente_medicado_noche,asilo_id) VALUES (")
+                .append("numero_cuarto,numero_cama,estatus,foto,paciente_medicado_manana,paciente_medicado_tarde,paciente_medicado_noche,asilo_id) VALUES (")
                 .append(p.getSexo()) // sexo
                 .append(",'")
                 .append(p.getFecha_nacimiento()) // fecha_nacimiento
@@ -61,16 +61,20 @@ public class ModelPaciente {
                 .append(",")
                 .append(p.getEstatus()) // estatus
                 .append(",")
+                .append(p.getPath()) // path
+                .append(",")
                 .append(p.getAsilo_id()) // asilo_id
                 .append(")")
                 .toString();
         query += sql;
         try {
             myStmt.executeUpdate(query);
-            return true;
+            ResultSet myRs = myStmt.executeQuery("select * from paciente");
+            System.out.println(myRs.getFetchSize());
+            return 1;
         } catch (Exception e){
             System.out.println(e);
-            return false;
+            return 0;
         }
     }
 
@@ -109,12 +113,28 @@ public class ModelPaciente {
                 p.setPaciente_medicado_tarde(myRs.getBoolean("paciente_medicado_tarde"));
                 p.setPaciente_medicado_noche(myRs.getBoolean("paciente_medicado_noche"));
                 p.setEstatus(myRs.getInt("estatus"));
+                p.setPath(myRs.getString("foto"));
                 p.setAsilo_id(myRs.getInt("asilo_id"));
             }
             return p;
         } catch (Exception e){
             System.out.println(e);
             return null;
+        }
+    }
+
+    public int getRowsPacientes(){
+        System.out.println("Holaaa");
+        String query = "SELECT COUNT(*) AS rows FROM paciente";
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            System.out.println("Rows = " + rs.getString("rows"));
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
         }
     }
 
