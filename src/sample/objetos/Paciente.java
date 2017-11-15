@@ -70,9 +70,7 @@ public class Paciente {
         return fecha_nacimiento;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public String getNombre() { return nombre; }
 
     public String getApellido() {
         return apellido;

@@ -78,7 +78,8 @@ public class ModelPaciente {
 
         Paciente p = new Paciente();
 
-        String query = "select * from paciente";
+        String query = "select * from paciente where id=" + id;
+        System.out.println(query);
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
@@ -91,26 +92,28 @@ public class ModelPaciente {
             //Get column names
             for (int i = 1; i<= columns; i++){
                 columnNames.add(md.getColumnName(i));
+                System.out.println(md.getColumnName(i));
             }
-
-            p.setSexo(myRs.getInt(1));
-            p.setFecha_nacimiento(myRs.getString(2));
-            p.setNombre(myRs.getString(3));
-            p.setApellido(myRs.getString(4));
-            p.setCiudad(myRs.getString(5));
-            p.setCalle(myRs.getString(6));
-            p.setCodigo_postal(myRs.getString(7));
-            p.setSangre(myRs.getString(8));
-            Optional<Integer> opAux = Optional.of(myRs.getInt(9));
-            p.setNumero_cuarto(opAux);
-            opAux = Optional.of(myRs.getInt(10));
-            p.setNumero_cama(opAux);
-            p.setPaciente_medicado_manana(myRs.getBoolean(11));
-            p.setPaciente_medicado_tarde(myRs.getBoolean(12));
-            p.setPaciente_medicado_noche(myRs.getBoolean(13));
-            p.setEstatus(myRs.getInt(14));
-            p.setAsilo_id(myRs.getInt(15));
-
+            while(myRs.next()){
+                System.out.println(myRs.getString("fecha_nacimiento"));
+                p.setSexo(myRs.getInt("sexo"));
+                p.setFecha_nacimiento(myRs.getString("fecha_nacimiento"));
+                p.setNombre(myRs.getString("nombre"));
+                p.setApellido(myRs.getString("apellido"));
+                p.setCiudad(myRs.getString("ciudad"));
+                p.setCalle(myRs.getString("calle"));
+                p.setCodigo_postal(myRs.getString("codigo_postal"));
+                p.setSangre(myRs.getString("sangre"));
+                Optional<Integer> opAux = Optional.of(myRs.getInt("numero_cuarto"));
+                p.setNumero_cuarto(opAux);
+                opAux = Optional.of(myRs.getInt("numero_cama"));
+                p.setNumero_cama(opAux);
+                p.setPaciente_medicado_manana(myRs.getBoolean("paciente_medicado_manana"));
+                p.setPaciente_medicado_tarde(myRs.getBoolean("paciente_medicado_tarde"));
+                p.setPaciente_medicado_noche(myRs.getBoolean("paciente_medicado_noche"));
+                p.setEstatus(myRs.getInt("estatus"));
+                p.setAsilo_id(myRs.getInt("asilo_id"));
+            }
             return p;
         } catch (Exception e){
             System.out.println(e);
