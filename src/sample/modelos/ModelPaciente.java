@@ -77,11 +77,17 @@ public class ModelPaciente {
             return 0;
         }
     }
-    public Paciente updatePaciente(int id){
-        Paciente p = new Paciente();
+    public Paciente updatePaciente(int id, Paciente pa, String nombren, String apellidon, String callen, String codigon, String ciudadn, String cuarton, String caman, String estatusn){
+        String query = "UPDATE paciente SET nombre = '" + nombren + "', apellido = '" + apellidon + "', calle = '" + callen + "', codigo_postal = '" + codigon + "', ciudad = '" + ciudadn + "', numero_cuarto = '" + cuarton + "', numero_cama = '" + caman + "', estatus = '" + estatusn + "' Where id = " + id;
+        Statement myStmt = GeneralModel.connect();
+        try {
+            myStmt.executeUpdate(query);
+            return pa;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
 
-        //String query = "UPDATE paciente SET sexo='k1', col_b='foo' WHERE key_col='1'";
-        return p;
     }
 
     public Paciente getPaciente(int id){
