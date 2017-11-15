@@ -19,11 +19,11 @@ import sample.objetos.Paciente;
 
 public class ControllerPdespliega implements Initializable {
     @FXML
-    public Label desNombre, desDireccion, desEdad, desCuarto, desCama, desEstatus, desDescEvento;
+    public Label desNombre, desCalle, desEdad, desCuarto, desCama, desEstatus, desDescEvento, desCodigo, desCiudad, desApellido;
     @FXML
     public ImageView fotoPx;
     @FXML
-    public TextField desEdNombre, desEdDireccion, desEdEdad, desEdCuarto, desEdCama, desEdEstatus;
+    public TextField desEdNombre, desEDApellido, desEdCalle,desEdCodigo, desEdCiudad, desEdEdad, desEdCuarto, desEdCama, desEdEstatus;
     @FXML
     public Button editarCampos, guardarCampos;
     @FXML
@@ -34,8 +34,6 @@ public class ControllerPdespliega implements Initializable {
         ModelEvento me = new ModelEvento();
         Paciente p = d.getPaciente(id);
         Evento[] e = me.getEventos(id);
-        String nombreCompleto = p.getNombre() + " " + p.getApellido();
-        String direccionCompleta = p.getCalle()+ ", " + p.getCiudad() + ", " + p.getCodigo_postal();
 
         if(p.getPath() != null){
             setImage dd = new setImage();
@@ -48,15 +46,17 @@ public class ControllerPdespliega implements Initializable {
         }
 
         //PacientesModel
-        desNombre.setText(nombreCompleto);
-        desDireccion.setText(direccionCompleta);
+        desNombre.setText(p.getNombre());
+        desApellido.setText(p.getApellido());
+        desCalle.setText(p.getCalle());
+        desCodigo.setText(p.getCodigo_postal());
+        desCiudad.setText(p.getCiudad());
         desEdad.setText(String.valueOf(p.getEdad()));
         desCuarto.setText(String.valueOf(p.getNumero_cuarto().get()));
         desCama.setText(String.valueOf((p.getNumero_cama()).get()));
         desEstatus.setText(String.valueOf(p.getEstatus()));
 
-
-
+/*
         //EventosModel
         String[] InfoEventos = new String[me.getCantidadEventos(id)];
         for (int i = 0; i<me.getCantidadEventos(id); i++){
@@ -64,7 +64,7 @@ public class ControllerPdespliega implements Initializable {
         }
 
         desDescEvento.setText(InfoEventos[0]);
-
+*/
 
 
 
@@ -74,7 +74,10 @@ public class ControllerPdespliega implements Initializable {
         editarCampos.setVisible(false);
 
         desNombre.setVisible(false);
-        desDireccion.setVisible(false);
+        desApellido.setVisible(false);
+        desCalle.setVisible(false);
+        desCodigo.setVisible(false);
+        desCiudad.setVisible(false);
         desCuarto.setVisible(false);
         desCama.setVisible(false);
         desEstatus.setVisible(false);
@@ -84,8 +87,17 @@ public class ControllerPdespliega implements Initializable {
         desEdNombre.setVisible(true);
         desEdNombre.setText(desNombre.getText());
 
-        desEdDireccion.setVisible(true);
-        desEdDireccion.setText(desDireccion.getText());
+        desEDApellido.setVisible(true);
+        desEDApellido.setText(desApellido.getText());
+
+        desEdCalle.setVisible(true);
+        desEdCalle.setText(desCalle.getText());
+
+        desEdCodigo.setVisible(true);
+        desEdCodigo.setText(desCodigo.getText());
+
+        desEdCiudad.setVisible(true);
+        desEdCiudad.setText(desCiudad.getText());
 
         desEdCuarto.setVisible(true);
         desEdCuarto.setText(desCuarto.getText());
@@ -103,19 +115,28 @@ public class ControllerPdespliega implements Initializable {
         editarCampos.setVisible(true);
 
         desEdNombre.setVisible(false);
-        desEdDireccion.setVisible(false);
+        desEDApellido.setVisible(false);
+        desEdCalle.setVisible(false);
+        desEdCodigo.setVisible(false);
+        desEdCiudad.setVisible(false);
         desEdCuarto.setVisible(false);
         desEdCama.setVisible(false);
         desEdEstatus.setVisible(false);
 
         desNombre.setVisible(true);
-        desDireccion.setVisible(true);
+        desApellido.setVisible(true);
+        desCalle.setVisible(true);
+        desCodigo.setVisible(true);
+        desCiudad.setVisible(true);
         desCuarto.setVisible(true);
         desCama.setVisible(true);
         desEstatus.setVisible(true);
 
         desNombre.setText(desEdNombre.getText());
-        desDireccion.setText(desEdDireccion.getText());
+        desApellido.setText(desEDApellido.getText());
+        desCalle.setText(desEdCalle.getText());
+        desCodigo.setText(desEdCodigo.getText());
+        desCiudad.setText(desEdCiudad.getText());
         desEdad.setText(desEdad.getText());
         desCuarto.setText(desEdCuarto.getText());
         desCama.setText(desEdCama.getText());

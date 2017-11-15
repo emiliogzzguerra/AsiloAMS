@@ -77,6 +77,12 @@ public class ModelPaciente {
             return 0;
         }
     }
+    public Paciente updatePaciente(int id){
+        Paciente p = new Paciente();
+
+        //String query = "UPDATE paciente SET sexo='k1', col_b='foo' WHERE key_col='1'";
+        return p;
+    }
 
     public Paciente getPaciente(int id){
 
