@@ -50,6 +50,8 @@ public class ModelReceta {
             //Insertar informacion a objeto deseado
             Receta recetaAuxiliar = new Receta(myRs.getString(1), myRs.getDate(2));
 
+            recetaAuxiliar.setIdentificador(myRs.getString(1));
+            recetaAuxiliar.setFecha_expedicion(myRs.getDate(2));
             //Retornar objeto
             return recetaAuxiliar;
         } catch (Exception e){
