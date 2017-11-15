@@ -10,13 +10,11 @@ public class ModelTratamiento {
     public boolean insertar(Tratamiento tratamiento) {
         Statement myStmt = GeneralModel.connect();
         String query = "INSERT INTO ";
-        query += "tratamiento ";
+        query += "padecimiento ";
         String sql = new StringBuilder()
-                .append(" (descripcion, paciente_id, padecimiento_id) VALUES (")
+                .append(" (nombre) VALUES (")
                 .append("'")
-                .append(tratamiento.getDescripcion_tratamiento()) // descripcion_tratamiento
-                .append("',")
-                .append(",")
+                .append(tratamiento.getNombre_tratamiento()) // nombre_tratamiento
                 .append(")")
                 .toString();
         query += sql;
@@ -29,6 +27,28 @@ public class ModelTratamiento {
             return false;
         }
     }
+
+    public boolean insertarDes(Tratamiento tratamiento){
+        Statement myStmt = GeneralModel.connect();
+        String query = "INSERT INTO ";
+        query += "paciente_padecimiento";
+        String sql = new StringBuilder()
+                .append(" (descripcion) VALUES (")
+                .append("'")
+                .append(tratamiento.getDescripcion_tratamiento()) // descripcion_tratamiento
+                .append(")")
+                .toString();
+        query += sql;
+
+        try{
+            myStmt.executeUpdate(query);
+            return true;
+        } catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
+
     public Tratamiento getTratamiento(Integer id) {
         String query = "select * from tratamiento where id = " + id.toString();
         ArrayList columnNames = new ArrayList();
