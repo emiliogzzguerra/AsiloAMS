@@ -32,33 +32,38 @@ public class ModelReceta {
         }
     }
 
-    public Receta getReceta (Integer id) {
-
-
+    public Receta[] getRecetas(Integer id) {
         String query = "select * from receta where id = " + id.toString();
-        ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
         try {
             ResultSet myRs = myStmt.executeQuery(query);
-            ResultSetMetaData md = myRs.getMetaData();
-            int columns = md.getColumnCount();
-
-            //Get column names
-            for (int i = 1; i<= columns; i++){
-                columnNames.add(md.getColumnName(i));
-            }
 
             //Insertar informacion a objeto deseado
-            Receta recetaAuxiliar = new Receta(myRs.getString(1), myRs.getDate(2));
+            Receta[] recetaAuxiliar = new Receta[this.getRowsRecetas(id)];
 
-            recetaAuxiliar.setIdentificador(myRs.getString(1));
-            recetaAuxiliar.setFecha_expedicion(myRs.getDate(2));
-            //Retornar objeto
+            Integer i = 0;
+            while(myRs.next()){
+                recetaAuxiliar[i] = new Receta(myRs.getString("identificador"),myRs.getString("fecha"));
+            }
+
             return recetaAuxiliar;
         } catch (Exception e){
             System.out.println(e);
             return null;
+        }
+    }
+
+    public int getRowsRecetas(Integer id){
+        String query = "select count(*) from receta where id = " + id.toString();
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
         }
     }
 }

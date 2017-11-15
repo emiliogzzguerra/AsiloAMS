@@ -5,21 +5,20 @@ import javafx.scene.control.TextField;
 
 public class Receta {
 
-    TextField identificador;
+    String identificador;
     String fecha_expedicion;
 
-
-    public Receta(TextField identificador, String fecha_expedicion){
+    public Receta(String identificador, String fecha_expedicion){
         this.identificador = identificador;
         this.fecha_expedicion = fecha_expedicion;
 
     }
 
-    public TextField getIdentificador() {
+    public String getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(TextField identificador) {
+    public void setIdentificador(String identificador) {
         this.identificador = identificador;
     }
 

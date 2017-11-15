@@ -37,7 +37,7 @@ public class ControllerPreceta implements Initializable {
     public Label labelNombrePx, labelEdadPx, labelHabitacionPx, labelCamaPx;
 
     public Medicamento m  = new Medicamento();
-    public Receta r = new Receta(identificadorReceta, fechaExpedicion.getValue().toString());
+    public Receta r = new Receta(identificadorReceta.getText(), fechaExpedicion.getValue().toString());
 
     ObservableList<String> tipoList = FXCollections.observableArrayList
             ("- Tipo -","Pastillas","Liquido", "Injeccion");
@@ -98,7 +98,7 @@ public class ControllerPreceta implements Initializable {
 
     public int guardaMedicina() throws SQLException {
         Medicamento medicamento = new Medicamento();
-        Receta receta = new Receta(identificadorReceta, fechaExpedicion.getValue().toString());
+        Receta receta = new Receta(identificadorReceta.getText(), fechaExpedicion.getValue().toString());
 
         String medida = "- Medida -";
         String tipo = "- Tipo -";
