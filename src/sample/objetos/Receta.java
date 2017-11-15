@@ -1,8 +1,5 @@
 package sample.objetos;
 
-
-import javafx.scene.control.TextField;
-
 public class Receta {
 
     String identificador;
