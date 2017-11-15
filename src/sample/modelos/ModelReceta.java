@@ -8,17 +8,19 @@ import java.util.ArrayList;
 
 public class ModelReceta {
 
-    public boolean insertar(Receta receta) {
+    public boolean insertar(Receta receta, int id) {
 
         Statement myStmt = GeneralModel.connect();
 
         String query = "INSERT INTO ";
         query += "receta ";
         String sql = new StringBuilder()
-                .append("(identificador, fecha_expedicion) VALUES (")
+                .append("(identificador, fecha_expedicion, paciente_id) VALUES (")
                 .append(receta.getIdentificador()) // identificador
                 .append(",'")
                 .append(receta.getFecha_expedicion()) // fecha_expedicion
+                .append(",'")
+                .append(id) // paciente id
                 .append(")")
                 .toString();
         try{
