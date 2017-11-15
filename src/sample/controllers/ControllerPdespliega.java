@@ -16,13 +16,12 @@ public class ControllerPdespliega implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Controller iD = new Controller();
         Integer id = iD.id;
+        System.out.println("Hellow");
         System.out.println(id);
 
-
-        Paciente p = new Paciente();
         ModelPaciente d = new ModelPaciente();
+        Paciente p = d.getPaciente(id);
 
-        p = d.getPaciente(id);
         System.out.println(p.getNombre());
         //System.out.println(d.getPaciente(18).getSexo());
         //p = d.getPaciente(18);

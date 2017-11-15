@@ -11,17 +11,12 @@ import java.sql.*;
 import java.util.Arrays;
 import java.util.Map;
 
-import static sample.controllers.ControllerPdespliega.*;
-
 public class Controller {
 
     public Button buscarButton;
     public TextField textBuscar;
     public CheckBox TcheckBox;
     public static int id;
-
-
-
 
     public void advancedSearch() throws Exception {
         listaNombres d = new listaNombres();
@@ -33,7 +28,7 @@ public class Controller {
         bind.setOnAutoCompleted(event -> {
             try {
                 textBuscar.setText(event.getCompletion());
-                Integer id = possWords.get(event.getCompletion());
+                id = possWords.get(event.getCompletion());
                 abrirPdespliega();
             } catch (Exception e) {
                 e.printStackTrace();

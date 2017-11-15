@@ -92,7 +92,9 @@ public class ModelPaciente {
             for (int i = 1; i<= columns; i++){
                 columnNames.add(md.getColumnName(i));
             }
+            System.out.println("Hola");
             while(myRs.next()){
+                System.out.println("Hola");
                 System.out.println(myRs.getString("fecha_nacimiento"));
                 p.setSexo(myRs.getInt("sexo"));
                 p.setFecha_nacimiento(myRs.getString("fecha_nacimiento"));
