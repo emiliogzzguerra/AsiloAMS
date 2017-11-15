@@ -170,6 +170,7 @@ public class Paciente {
         this.asilo_id = asilo_id;
     }
 
+
     public void setSexo(int sexo) {
         this.sexo = sexo;
     }

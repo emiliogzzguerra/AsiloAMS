@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import sample.clases.setImage;
 import sample.modelos.ModelEvento;
 import sample.modelos.ModelPaciente;
 import sample.objetos.Evento;
@@ -26,6 +29,10 @@ public class ControllerPdespliega implements Initializable {
     public Label desEstatus;
     @FXML
     public Label desDescEvento;
+
+    @FXML
+    public ImageView fotoPx;
+
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         Controller iD = new Controller();
@@ -37,6 +44,15 @@ public class ControllerPdespliega implements Initializable {
         String nombreCompleto = p.getNombre() + " " + p.getApellido();
         String direccionCompleta = p.getCalle()+ ", " + p.getCiudad() + ", " + p.getCodigo_postal();
 
+        if(p.getPath() != null){
+            setImage dd = new setImage();
+            String path = p.getPath();
+            Image img = dd.setUpImage(path);
+            fotoPx.setImage(img);
+        }else{
+            Image image = new Image("/sample/fotos/p1.jpg", 145,135,false,false);
+            fotoPx.setImage(image);
+        }
 
         //PacientesModel
         desNombre.setText(nombreCompleto);

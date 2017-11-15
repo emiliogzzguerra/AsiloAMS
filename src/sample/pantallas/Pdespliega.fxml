@@ -4,18 +4,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerPdespliega">
     <children>
@@ -24,7 +12,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="805.0">
                     <children>
                         <Button layoutX="24.0" layoutY="148.0" mnemonicParsing="false" text="Editar Foto" />
-                        <ImageView fitHeight="134.0" fitWidth="126.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="fotoPx" fitHeight="134.0" fitWidth="120.0" layoutX="2.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                         <Button layoutX="633.0" layoutY="148.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Guardar cambios" />
                         <Label layoutX="123.0" layoutY="15.0" prefHeight="27.0" prefWidth="126.0" text="Nombre Paciente:" />
                         <Label layoutX="123.0" layoutY="47.0" prefHeight="27.0" prefWidth="126.0" text="Direccion:" />
@@ -32,13 +20,13 @@
                         <Label layoutX="123.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Cuarto:" />
                         <Label layoutX="394.0" layoutY="80.0" prefHeight="27.0" prefWidth="79.0" text="Cama:" />
                         <Label layoutX="394.0" layoutY="114.0" prefHeight="27.0" prefWidth="79.0" text="Estatus:" />
-                        <Label fx:id="desNombre" layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="445.0" text="" />
-                        <Label fx:id="desDireccion" layoutX="249.0" layoutY="47.0" prefHeight="27.0" prefWidth="445.0" text="Direccion" />
-                        <Label fx:id="desEdad" layoutX="249.0" layoutY="80.0" prefHeight="27.0" prefWidth="126.0" text="Edad" />
-                        <Label fx:id="desCuarto" layoutX="250.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Cuarto" />
-                        <Label fx:id="desCama" layoutX="473.0" layoutY="83.0" prefHeight="27.0" prefWidth="126.0" text="Cama" />
-                        <Label fx:id="desEstatus" layoutX="472.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Estatus" />
-                        <Button layoutX="633.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Editar Campos" />
+                        <Label fx:id="desNombre" layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="445.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"/>
+                        <Label fx:id="desDireccion" layoutX="249.0" layoutY="47.0" prefHeight="27.0" prefWidth="445.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"/>
+                        <Label fx:id="desEdad" layoutX="249.0" layoutY="80.0" prefHeight="27.0" prefWidth="126.0"  style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"/>
+                        <Label fx:id="desCuarto" layoutX="250.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0"  style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
+                        <Label fx:id="desCama" layoutX="473.0" layoutY="83.0" prefHeight="27.0" prefWidth="126.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
+                        <Label fx:id="desEstatus" layoutX="472.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0"  style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"/>
+                        <Button layoutX="633.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0"  style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;"/>
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -101,7 +89,7 @@
                                                 <Label layoutX="25.0" layoutY="32.0" text="Enfermedades pasadas:" />
                                                 <Label layoutX="343.0" layoutY="177.0" text="Eventos:" />
                                                 <Label layoutX="369.0" layoutY="24.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedades:" />
-                                                <Label fx:id="desDescEvento" layoutX="119.0" layoutY="194.0" prefHeight="69.0" prefWidth="501.0" text="Descripción evento:" />
+                                                <Label fx:id="desDescEvento" layoutX="25.0" layoutY="194.0" prefHeight="69.0" prefWidth="753.0" text="Descripción evento:" />
                                                 <Label fx:id="desNombreEnfermedad1" layoutX="369.0" layoutY="59.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedad" />
                                                 <Label fx:id="desNombreEnfermedad2" layoutX="369.0" layoutY="92.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedad" />
                                             </children>
