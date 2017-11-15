@@ -39,6 +39,9 @@ public class Paciente {
                     String sangre,
                     Optional<Integer> numero_cuarto,
                     Optional<Integer> numero_cama,
+                    boolean paciente_medicado_manana,
+                    boolean paciente_medicado_tarde,
+                    boolean paciente_medicado_noche,
                     int estatus,
                     int asilo_id,
                     int sexo)

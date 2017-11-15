@@ -78,8 +78,7 @@ public class ModelPaciente {
 
         Paciente p = new Paciente();
 
-        String query = "select * from paciente where id=" + id;
-        System.out.println(query);
+        String query = "select * from paciente WHERE id=" + id;
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
@@ -92,7 +91,6 @@ public class ModelPaciente {
             //Get column names
             for (int i = 1; i<= columns; i++){
                 columnNames.add(md.getColumnName(i));
-                System.out.println(md.getColumnName(i));
             }
             while(myRs.next()){
                 System.out.println(myRs.getString("fecha_nacimiento"));

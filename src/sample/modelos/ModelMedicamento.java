@@ -9,12 +9,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ModelMedicamento {
-    public boolean insertar(Medicamento medicamento) {
+    public boolean insertar(Medicamento med) {
         Statement myStmt = GeneralModel.connect();
         String query = "INSERT INTO ";
         query += "medicamento ";
         String sql = new StringBuilder()
-                .append("() VALUES (")
+                .append("(nombre, tipo, paciente_id, receta_id) VALUES (")
+                .append("'")
+                .append(med.getNombre()) // nombre
+                .append("','")
+                .append(med.getTipo())  // tipo
+                .append(",")
+                .append(",")
                 .append(")")
                 .toString();
         try{
@@ -26,10 +32,14 @@ public class ModelMedicamento {
         }
     }
     public Medicamento[] getMedicamentos(Integer id) {
+
+        Medicamento m = new Medicamento();
+
         String query = "select * from medicamento where id = " + id.toString();
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
+
         try {
             ResultSet myRs = myStmt.executeQuery(query);
             ResultSetMetaData md = myRs.getMetaData();
@@ -48,7 +58,10 @@ public class ModelMedicamento {
             while (myRs.next()){
                 System.out.println(myRs.getString(0));
                 medicamentoAuxiliar.setNombre(myRs.getString(1));
-                medicamentoAuxiliar.setNombre(myRs.getString(2));
+                medicamentoAuxiliar.setTipo(myRs.getString(2));
+                //medicamentoAuxiliar.set(myRs.getInt(3));
+                //medicamentoAuxiliar.setReceta_id(myRs.getInt(4));
+
                 arregloMedicamentos[row] = medicamentoAuxiliar;
             }
 
@@ -60,4 +73,37 @@ public class ModelMedicamento {
             return null;
         }
     }
+
+    public void despliegaTabla(String tabla){
+        ArrayList data = new ArrayList();
+        ArrayList columnNames = new ArrayList();
+
+        String query = "select * from " + tabla;
+
+        Statement myStmt = GeneralModel.connect();
+
+        //Execute SQL query
+
+
+        try {
+            ResultSet myRs = myStmt.executeQuery(query);
+            ResultSetMetaData md = myRs.getMetaData();
+            int columns = md.getColumnCount();
+
+            //Get column names
+            for (int i = 1; i<= columns; i++){
+                columnNames.add(md.getColumnName(i));
+            }
+            //Get row data
+            while (myRs.next()){
+                ArrayList row = new ArrayList(columns);
+                for (int i = 1; i<= columns; i++){
+                    System.out.println(myRs.getObject(i));
+                }
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
 }

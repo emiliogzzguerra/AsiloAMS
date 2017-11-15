@@ -1,26 +1,26 @@
 package sample.modelos;
 
-import sample.objetos.Tratamiento;
+import sample.objetos.Receta;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ModelTratamiento {
-    public boolean insertar(Tratamiento tratamiento) {
+public class ModelReceta {
+
+    public boolean insertar(Receta receta) {
+
         Statement myStmt = GeneralModel.connect();
+
         String query = "INSERT INTO ";
-        query += "tratamiento ";
+        query += "receta ";
         String sql = new StringBuilder()
-                .append(" (descripcion, paciente_id, padecimiento_id) VALUES (")
-                .append("'")
-                .append(tratamiento.getDescripcion_tratamiento()) // descripcion_tratamiento
-                .append("',")
-                .append(",")
+                .append("(identificador, fecha_expedicion) VALUES (")
+                .append(receta.getIdentificador()) // identificador
+                .append(",'")
+                .append(receta.getFecha_expedicion()) // fecha_expedicion
                 .append(")")
                 .toString();
-        query += sql;
-
         try{
             myStmt.executeUpdate(query);
             return true;
@@ -29,8 +29,11 @@ public class ModelTratamiento {
             return false;
         }
     }
-    public Tratamiento getTratamiento(Integer id) {
-        String query = "select * from tratamiento where id = " + id.toString();
+
+    public Receta getReceta (Integer id) {
+
+
+        String query = "select * from receta where id = " + id.toString();
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
@@ -45,12 +48,12 @@ public class ModelTratamiento {
             }
 
             //Insertar informacion a objeto deseado
-            Tratamiento tratamientoAuxiliar = new Tratamiento(myRs.getString(1), myRs.getString(2));
+            Receta recetaAuxiliar = new Receta(myRs.getString(1), myRs.getDate(2));
 
-            tratamientoAuxiliar.setDescripcion_tratamiento(myRs.getString(1));
-
+            recetaAuxiliar.setIdentificador(myRs.getString(1));
+            recetaAuxiliar.setFecha_expedicion(myRs.getDate(2));
             //Retornar objeto
-            return tratamientoAuxiliar;
+            return recetaAuxiliar;
         } catch (Exception e){
             System.out.println(e);
             return null;

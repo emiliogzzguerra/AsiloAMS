@@ -33,9 +33,8 @@ public class Controller {
         bind.setOnAutoCompleted(event -> {
             try {
                 textBuscar.setText(event.getCompletion());
-                id = possWords.get(event.getCompletion());
+                Integer id = possWords.get(event.getCompletion());
                 abrirPdespliega();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -67,8 +66,6 @@ public class Controller {
             Pdespliega d = new Pdespliega();
             Stage stage = new Stage();
             d.start(stage);
-            //ControllerPdespliega e = new ControllerPdespliega();
-            //e.cambiar();
         } catch (Exception e) {
             e.printStackTrace();
         }
