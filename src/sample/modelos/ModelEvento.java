@@ -60,7 +60,7 @@ public class ModelEvento {
     }
 
     public int getCantidadEventos(Integer id){
-        String query = "select count(*) from evento where paciente_id = " + id.toString();
+        String query = "select count(*) as rows from evento where paciente_id = " + id.toString();
         Statement stmt = GeneralModel.connect();
         try{
             ResultSet rs = stmt.executeQuery(query);
