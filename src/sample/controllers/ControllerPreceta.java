@@ -36,7 +36,7 @@ public class ControllerPreceta implements Initializable {
     public Label labelNombrePx, labelEdadPx, labelHabitacionPx, labelCamaPx;
 
     public Medicamento m  = new Medicamento();
-    public Receta r = new Receta(identificadorReceta.getText(), fechaExpedicion.getValue().toString());
+    public Receta r = new Receta();
 
     ObservableList<String> tipoList = FXCollections.observableArrayList
             ("- Tipo -","Pastillas","Liquido", "Injeccion");
