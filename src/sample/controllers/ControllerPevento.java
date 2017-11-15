@@ -17,6 +17,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -59,10 +60,10 @@ public class ControllerPevento implements Initializable {
         ModelPaciente d = new ModelPaciente();
         Paciente p = d.getPaciente(id);
 
-        labelNombrePx.setText(p.getNombre() + " " + p.getApellido());
-        labelEdadPx.setText(String.valueOf(p.getEdad()));
-        labelHabitacionPx.setText(String.valueOf(p.getNumero_cuarto()));
-        labelCamaPx.setText(String.valueOf(p.getNumero_cama()));
+        labelNombrePx.setText("Nombre:  " + p.getNombre() + " " + p.getApellido());
+        labelEdadPx.setText("Edad:  " + String.valueOf(p.getEdad()) + " años");
+        labelHabitacionPx.setText("Habitacion:  " + String.valueOf(p.getNumero_cuarto()));
+        labelCamaPx.setText("Cama:  " + String.valueOf(p.getNumero_cama()));
         if(p.getPath() != null){
             setImage dd = new setImage();
             String path = p.getPath();
@@ -80,8 +81,30 @@ public class ControllerPevento implements Initializable {
         LocalDate date = fechaEvento.getValue();
         String desc = descEvento.getText();
         String enfe = enfermeraEvento.getText();
-        Evento ev = new Evento(date.toString(), enfe, desc);
-        e.insertar(ev, id);
+        String Warning = "Campos Faltantes:\n";
+        if(date == null){
+            Warning += "Fecha\n";
+        }
+        if(enfe.length() == 0){
+            Warning += "Enfermera\n";
+        }
+        if(desc.length() == 0){
+            Warning += "Descripcion\n";
+        }
+
+        if(date == null || desc.length() == 0 || enfe.length() == 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Uno o más campos faltantes");
+            alert.setContentText(Warning);
+            Optional<ButtonType> result = alert.showAndWait();
+        }else {
+            Evento ev = new Evento(date.toString(), enfe, desc);
+            e.insertar(ev, id);
+        }
+
+
+
     }
 
 }
