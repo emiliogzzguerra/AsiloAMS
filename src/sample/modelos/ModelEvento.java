@@ -13,7 +13,14 @@ public class ModelEvento {
         String query = "INSERT INTO ";
         query += "evento ";
         String sql = new StringBuilder()
-                .append("() VALUES (")
+                .append("(fecha, enfermera, descripcion, paciente_id) VALUES (")
+                .append(",'")
+                .append(evento.getFecha()) // fecha_evento
+                .append("','")
+                .append(evento.getEnfermera())  // nombre_enfermera
+                .append("','")
+                .append(evento.getDescripcion())  // nombre_enfermera
+                .append("','")
                 .append(")")
                 .toString();
         try{
@@ -25,6 +32,8 @@ public class ModelEvento {
         }
     }
     public Evento getEvento(Integer id) {
+
+
         String query = "select * from evento where id = " + id.toString();
         ArrayList columnNames = new ArrayList();
 
@@ -41,6 +50,11 @@ public class ModelEvento {
 
             //Insertar informacion a objeto deseado
             Evento eventoAuxiliar = new Evento(myRs.getString(1),myRs.getString(2),myRs.getString(3));
+
+            eventoAuxiliar.setFecha() = myRs.getString(1);
+            eventoAuxiliar.setEnfermera() = myRs.getString(2);
+            eventoAuxiliar.setDescripcion() = myRs.getString(3);
+            //eventoAuxiliar.setPaciente_id() = myRs.getInt(4);
 
             //Retornar objeto
             return eventoAuxiliar;
