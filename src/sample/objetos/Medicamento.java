@@ -11,6 +11,7 @@ public class Medicamento {
     boolean manana;
     boolean tarde;
     boolean noche;
+    Integer dias_restantes;
 
     public Medicamento(){
         this.nombre = "Dummy";
@@ -23,6 +24,7 @@ public class Medicamento {
         this.manana = false;
         this.tarde = false;
         this.noche = false;
+        this.dias_restantes = null;
     }
 
     public Medicamento(String nombre,
@@ -45,6 +47,30 @@ public class Medicamento {
         this.manana = manana;
         this.tarde = tarde;
         this.noche = noche;
+    }
+
+    public Medicamento(String nombre,
+                       String tipo,
+                       Integer cantidad,
+                       String dosis,
+                       String fecha_inicio,
+                       String fecha_final,
+                       String medida,
+                       boolean manana,
+                       boolean tarde,
+                       boolean noche,
+                       Integer dias_restantes){
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.cantidad = cantidad;
+        this.dosis = dosis;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_final = fecha_final;
+        this.medida = medida;
+        this.manana = manana;
+        this.tarde = tarde;
+        this.noche = noche;
+        this.dias_restantes = dias_restantes;
     }
 
 

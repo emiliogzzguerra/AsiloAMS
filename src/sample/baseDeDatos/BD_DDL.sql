@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS familiar
   parentesco VARCHAR(30),
   telefono VARCHAR(30),
   celular VARCHAR(30),
+  incumbencia VARCHAR(30) NOT NULL,
   paciente_id  INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
@@ -132,12 +133,4 @@ CREATE TABLE IF NOT EXISTS padecimiento
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(30),
   descripcion TEXT
-);
-
-CREATE TABLE IF NOT EXISTS incumbencia
-(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  incumbencia VARCHAR(30) NOT NULL,
-  familiar_id INT NOT NULL,
-  FOREIGN KEY (familiar_id) REFERENCES familiar(id)
 );
