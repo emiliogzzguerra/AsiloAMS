@@ -8,9 +8,8 @@ public class Medicamento {
     boolean manana;
     boolean tarde;
     boolean noche;
-    String despcripcion;
 
-    public Medicamento(String nombre, String tipo, Integer cantidad, String dosis, boolean manana, boolean tarde, boolean noche, String despcripcion){
+    public Medicamento(String nombre, String tipo, Integer cantidad, String dosis, boolean manana, boolean tarde, boolean noche){
         this.nombre = nombre;
         this.tipo = tipo;
         this.cantidad = cantidad;
@@ -18,7 +17,6 @@ public class Medicamento {
         this.manana = manana;
         this.tarde = tarde;
         this.noche = noche;
-        this.despcripcion = despcripcion;
     }
 
     public String getNombre() {
@@ -57,7 +55,4 @@ public class Medicamento {
 
     public void setNoche(boolean noche) { this.noche = noche; }
 
-    public String getDespcripcion() { return despcripcion; }
-
-    public void setDespcripcion(String despcripcion) { this.despcripcion = despcripcion; }
 }

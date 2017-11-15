@@ -24,12 +24,13 @@ CREATE TABLE IF NOT EXISTS paciente
   calle VARCHAR(30),
   codigo_postal INT,
   sangre VARCHAR(2) NOT NULL,
-  numero_cuarto INT UNIQUE,
-  numero_cama INT UNIQUE,
-  paciente_medicado_manana BOOLEAN NOT NULL,
-  paciente_medicado_tarde BOOLEAN NOT NULL,
-  paciente_medicado_noche BOOLEAN NOT NULL,
+  numero_cuarto INT,
+  numero_cama INT,
+  paciente_medicado_manana BOOLEAN NOT NULL DEFAULT 0,
+  paciente_medicado_tarde BOOLEAN NOT NULL DEFAULT 0,
+  paciente_medicado_noche BOOLEAN NOT NULL DEFAULT 0,
   estatus INT NOT NULL,
+  foto VARCHAR(100),
   asilo_id INT NOT NULL,
   FOREIGN KEY (asilo_id) REFERENCES asilo(id)
 );
@@ -50,6 +51,7 @@ CREATE TABLE IF NOT EXISTS familiar
   nombre VARCHAR(30) NOT NULL,
   apellido VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
+  parentesco VARCHAR(30),
   paciente_id  INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
@@ -111,6 +113,9 @@ CREATE TABLE IF NOT EXISTS paciente_medicamento
   fecha_inicio DATE NOT NULL,
   fecha_final DATE,
   dosis VARCHAR(100),
+  manana BOOLEAN NOT NULL DEFAULT 0,
+  tarde BOOLEAN NOT NULL DEFAULT 0,
+  noche BOOLEAN NOT NULL DEFAULT 0,
   paciente_id INT NOT NULL,
   medicamento_id INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id),

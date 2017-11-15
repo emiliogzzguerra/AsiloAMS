@@ -1,25 +1,27 @@
 package sample.modelos;
 
-import sample.objetos.Tratamiento;
+import sample.objetos.InfoEmergencia;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ModelTratamiento {
-    public boolean insertar(Tratamiento tratamiento) {
+public class ModelEmergencia {
+    public boolean insertar (InfoEmergencia emer) {
         Statement myStmt = GeneralModel.connect();
         String query = "INSERT INTO ";
-        query += "tratamiento ";
+        query +=  "informacion_emergencia";
         String sql = new StringBuilder()
-                .append(" (descripcion, paciente_id, padecimiento_id) VALUES (")
+                .append("(poliza_seguro, hospital_preferente, comentarios, telefono) VALUES (")
                 .append("'")
-                .append(tratamiento.getDescripcion_tratamiento()) // descripcion_tratamiento
-                .append("',")
-                .append(",")
-                .append(")")
+                .append(emer.getPoliza_seguro())
+                .append("','")
+                .append(emer.getHospital_preferente())
+                .append("','")
+                .append(emer.getComentarios())
+                .append("')")
                 .toString();
-        query += sql;
 
         try{
             myStmt.executeUpdate(query);
@@ -29,8 +31,8 @@ public class ModelTratamiento {
             return false;
         }
     }
-    public Tratamiento getTratamiento(Integer id) {
-        String query = "select * from tratamiento where id = " + id.toString();
+    public InfoEmergencia getInfoEmergencia (Integer id) {
+        String query = "select * from Emergencia where id = " + id.toString();
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
@@ -43,14 +45,12 @@ public class ModelTratamiento {
             for (int i = 1; i<= columns; i++){
                 columnNames.add(md.getColumnName(i));
             }
+            myRs.next();
+            InfoEmergencia emer = new InfoEmergencia(myRs.getString("poliza_seguro"), myRs.getString("hospital_preferente"), myRs.getString("comentarios"), myRs.getString("telefono"));
 
-            //Insertar informacion a objeto deseado
-            Tratamiento tratamientoAuxiliar = new Tratamiento(myRs.getString(1), myRs.getString(2));
-
-            tratamientoAuxiliar.setDescripcion_tratamiento(myRs.getString(1));
 
             //Retornar objeto
-            return tratamientoAuxiliar;
+            return emer;
         } catch (Exception e){
             System.out.println(e);
             return null;

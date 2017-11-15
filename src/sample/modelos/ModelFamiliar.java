@@ -57,9 +57,10 @@ public class ModelFamiliar {
                 ResultSetMetaData md2 = myRs2.getMetaData();
 
                 int columns = md.getColumnCount();
+                int columns2 = md2.getColumnCount();
+
                 Familiar[] fams = new Familiar[columns];
 
-                //Get column names
 
                 Integer i=0;
                 while(myRs.next()){

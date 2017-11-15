@@ -11,23 +11,33 @@ import sample.objetos.Paciente;
 public class ControllerPdespliega implements Initializable {
     @FXML
     public Label desNombre;
+    @FXML
+    public Label desDireccion;
+    @FXML
+    public Label desEdad;
+    @FXML
+    public Label desCuarto;
+    @FXML
+    public Label desCama;
+    @FXML
+    public Label desEstatus;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         Controller iD = new Controller();
         Integer id = iD.id;
-        System.out.println("Hellow");
-        System.out.println(id);
-
         ModelPaciente d = new ModelPaciente();
         Paciente p = d.getPaciente(id);
 
-        System.out.println(p.getNombre());
-        //System.out.println(d.getPaciente(18).getSexo());
-        //p = d.getPaciente(18);
-        //System.out.print(p.getNombre());
-        desNombre.setText(p.getNombre());
-        //System.out.println(p.getSexo());
+        String nombreCompleto = p.getNombre() + " " + p.getApellido();
+        String direccionCompleta = p.getCalle()+ ", " + p.getCiudad() + ", " + p.getCodigo_postal();
+
+        desNombre.setText(nombreCompleto);
+        desDireccion.setText(direccionCompleta);
+        desEdad.setText(String.valueOf(p.getEdad()));
+        desCuarto.setText(String.valueOf(p.getNumero_cuarto()));
+        desCama.setText(String.valueOf((p.getNumero_cama())));
+        desEstatus.setText(String.valueOf(p.getEstatus()));
 
     }
 }
