@@ -38,7 +38,7 @@ public class ModelPadecimiento {
             System.out.println(e);
         }
 
-        String table2 = query + "paciente_padecimiento ";
+        String table2 = "paciente_padecimiento ";
         String aux2 = new StringBuilder()
                 .append("(descripcion,paciente_id,padecimiento_id) VALUES (")
                 .append("'")

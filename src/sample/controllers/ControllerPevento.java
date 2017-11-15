@@ -1,58 +1,39 @@
 package sample.controllers;
-
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
-import javafx.scene.control.TextField;
 import org.controlsfx.control.textfield.TextFields;
 import sample.clases.listaNombres;
 import sample.clases.setImage;
+import sample.modelos.ModelEvento;
 import sample.modelos.ModelPaciente;
+import sample.objetos.Evento;
 import sample.objetos.Paciente;
-import javafx.scene.control.Label;
+
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 
-public class ControllerPreceta implements Initializable {
+public class ControllerPevento implements Initializable {
 
-    public MenuItem menuAction1Tipo, menuAction2Tipo, menuAction1Medida, menuAction2Medida;
-    public MenuButton menuButtonTipo, menuButtonMedida;
-    public TextField tfBuscarPaciente;
+    public TextField PeBuscarPaciente, enfermeraEvento, descEvento;
     public static int id;
     public Label labelNombrePx, labelEdadPx, labelHabitacionPx, labelCamaPx;
+    public DatePicker fechaEvento;
 
     @FXML
     public ImageView fotoPx;
 
     @FXML
-    public void initialize (URL location, ResourceBundle resources) {
-        //File file = new File("/sample/fotos/p1.jpg");
+    public void initialize(URL location, ResourceBundle resources) {
         Image image = new Image("/sample/fotos/p1.jpg", 145,135,false,false);
         fotoPx.setImage(image);
-    }
-
-
-    public void onMenuSel (){
-        menuAction1Tipo.setOnAction(event -> {
-            menuButtonTipo.setText(menuAction1Tipo.getText());
-        });
-        menuAction2Tipo.setOnAction(event -> {
-            menuButtonTipo.setText(menuAction2Tipo.getText());
-        });
-        menuAction1Medida.setOnAction(event -> {
-            menuButtonMedida.setText(menuAction1Medida.getText());
-        });
-        menuAction2Medida.setOnAction(event -> {
-            menuButtonMedida.setText(menuAction2Medida.getText());
-        });
     }
 
     public void SearchPaciente() throws Exception {
@@ -61,10 +42,10 @@ public class ControllerPreceta implements Initializable {
         Object[] nombreApellidos = new Object[possWords.size()];
         nombreApellidos = possWords.keySet().toArray();
         String[] stringArray = Arrays.copyOf(nombreApellidos, nombreApellidos.length, String[].class);
-        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(tfBuscarPaciente, stringArray);
+        AutoCompletionBinding<String> bind = TextFields.bindAutoCompletion(PeBuscarPaciente, stringArray);
         bind.setOnAutoCompleted(event -> {
             try {
-                tfBuscarPaciente.setText(event.getCompletion());
+                PeBuscarPaciente.setText(event.getCompletion());
                 id = possWords.get(event.getCompletion());
                 fillData(id);
             } catch (Exception e) {
@@ -72,6 +53,7 @@ public class ControllerPreceta implements Initializable {
             }
         });
     }
+
 
     public void fillData(int id){
         ModelPaciente d = new ModelPaciente();
@@ -91,7 +73,15 @@ public class ControllerPreceta implements Initializable {
             fotoPx.setImage(image);
         }
 
+    }
 
+    public void agregarEvento(){
+        ModelEvento e = new ModelEvento();
+        LocalDate date = fechaEvento.getValue();
+        String desc = descEvento.getText();
+        String enfe = enfermeraEvento.getText();
+        Evento ev = new Evento(date.toString(), enfe, desc);
+        e.insertar(ev, id);
     }
 
 }

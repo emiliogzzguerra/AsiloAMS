@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ModelEvento {
-    public boolean insertar(Evento evento) {
+    public boolean insertar(Evento evento, int id) {
         Statement myStmt = GeneralModel.connect();
 
 
@@ -16,17 +16,18 @@ public class ModelEvento {
         query += "evento ";
         String sql = new StringBuilder()
                 .append("(fecha, enfermera, descripcion, paciente_id) VALUES (")
-                .append(",'")
+                .append("'")
                 .append(evento.getFecha()) // fecha_evento
                 .append("','")
                 .append(evento.getEnfermera())  // nombre_enfermera
                 .append("','")
                 .append(evento.getDescripcion())  // nombre_enfermera
-                .append("','")
+                .append("',")
+                .append(id)
                 .append(")")
                 .toString();
         try{
-            myStmt.executeUpdate(query);
+            myStmt.executeUpdate(query + sql);
             return true;
         } catch (Exception e){
             System.out.println(e);
