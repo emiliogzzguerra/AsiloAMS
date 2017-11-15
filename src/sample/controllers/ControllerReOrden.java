@@ -36,13 +36,15 @@ public class ControllerReOrden implements Initializable {
         meds = obtenerMedicamentos(7);
         for (int i=0; i <= meds.length - 1; i++) {
             nombrePaciente.setText("Nombre: " + meds[i].getNombre());
-            String sDiasRestantes = String.valueOf(meds[i].getDias_restantes());
+            String sDiasRestantes = "Dias restantes: " + String.valueOf(meds[i].getDias_restantes());
             System.out.println(sDiasRestantes);
             System.out.println(familiares.length);
             System.out.println(familiares[0].getNombre());
-            String familiar = familiares[i].getNombre();
-            String celular = familiares[i].getTelefono();
-            ObservableList<String> list = FXCollections.observableArrayList(sDiasRestantes);
+            String familiar = "Nombre del familiar a contactar: " + familiares[i].getNombre();
+            String celular = "Número celular: " + familiares[i].getTelefono();
+            String nombreMed = "Nombre del medicamento: Advil";
+            ObservableList<String> list = FXCollections.observableArrayList(nombreMed);
+            list.add(sDiasRestantes);
             list.add(familiar);
             list.add(celular);
             listView.getItems().addAll(list);
