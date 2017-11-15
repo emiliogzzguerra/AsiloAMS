@@ -11,20 +11,35 @@ import java.util.Iterator;
 public class ModelMedicamento {
     public boolean insertar(Medicamento med) {
         Statement myStmt = GeneralModel.connect();
+        Statement myStmt2 = GeneralModel.connect();
         String query = "INSERT INTO ";
-        query += "medicamento ";
+        query += "medicamento";
         String sql = new StringBuilder()
-                .append("(nombre, tipo, paciente_id, receta_id) VALUES (")
+                .append("(nombre, tipo) VALUES (")
                 .append("'")
                 .append(med.getNombre()) // nombre
                 .append("','")
                 .append(med.getTipo())  // tipo
                 .append(",")
-                .append(",")
                 .append(")")
                 .toString();
+        String query2 = "INSERT INTO ";
+        query2 += "paciente_medicamento";
+        StringBuilder sql2 = new StringBuilder()
+                .append("(cantidad, dosis, manana, tarde, noche) VALUES (")
+                .append(med.getCantidad())
+                .append(",'")
+                .append(med.getDosis())
+                .append("',")
+                .append(med.isManana())
+                .append(",")
+                .append(med.isTarde())
+                .append(",")
+                .append(med.isNoche())
+                .append(")");
         try{
             myStmt.executeUpdate(query);
+            myStmt2.executeQuery(query2);
             return true;
         } catch (Exception e){
             System.out.println(e);
