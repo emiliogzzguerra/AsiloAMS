@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class ModelPaciente {
-    public boolean insertar(Paciente p) {
+    public int insertar(Paciente p) {
         Statement myStmt = GeneralModel.connect();
 
         Integer num_cuarto;
@@ -69,10 +69,12 @@ public class ModelPaciente {
         query += sql;
         try {
             myStmt.executeUpdate(query);
-            return true;
+            ResultSet myRs = myStmt.executeQuery("select * from paciente");
+            System.out.println(myRs.getFetchSize());
+            return 1;
         } catch (Exception e){
             System.out.println(e);
-            return false;
+            return 0;
         }
     }
 
@@ -118,6 +120,21 @@ public class ModelPaciente {
         } catch (Exception e){
             System.out.println(e);
             return null;
+        }
+    }
+
+    public int getRowsPacientes(){
+        System.out.println("Holaaa");
+        String query = "SELECT COUNT(*) AS rows FROM paciente";
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            System.out.println("Rows = " + rs.getString("rows"));
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
         }
     }
 

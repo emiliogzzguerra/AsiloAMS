@@ -4,8 +4,9 @@ public class Padecimiento {
     String nombre;
     String descripcion;
 
-    public Padecimiento(String nombre){
+    public Padecimiento(String nombre, String descripcion){
         this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public String getNombre() {

@@ -21,7 +21,8 @@ public class ModelPadecimiento {
                 .append(")")
                 .toString();
 
-        String sqlPadecimiento = query + table + aux;
+        String sqlPadecimiento = table + aux;
+        System.out.println(sqlPadecimiento);
         try{
             myStmt.executeUpdate(sqlPadecimiento);
         } catch (Exception e){
@@ -30,8 +31,9 @@ public class ModelPadecimiento {
 
         Integer id_padecimiento = 0;
         try{
-            ResultSet myRs = myStmt.executeQuery("SELECT * FROM padecimiento");
-            id_padecimiento = myRs.getFetchSize();
+            ResultSet myRs = myStmt.executeQuery("SELECT COUNT(*) FROM paciente");
+            myRs.next();
+            id_padecimiento = myRs.getInt(1);
         } catch (Exception e){
             System.out.println(e);
         }
@@ -48,7 +50,7 @@ public class ModelPadecimiento {
                 .append(")")
                 .toString();
 
-        String sqlDescripcion = query + table2 + aux2;
+        String sqlDescripcion = table2 + aux2;
 
         try{
             myStmt.closeOnCompletion();
@@ -71,7 +73,7 @@ public class ModelPadecimiento {
 
             Integer i = 0;
             while(myRs.next()){
-                pads[i] = new Padecimiento(myRs.getString("nombre"));
+                //pads[i] = new Padecimiento(myRs.getString("nombre"));
             }
 
             //Retornar objeto
