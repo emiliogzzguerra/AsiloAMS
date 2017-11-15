@@ -1,29 +1,28 @@
 package sample.modelos;
 
-import sample.objetos.Evento;
+import sample.objetos.Enfermedad;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ModelEvento {
-    public boolean insertar(Evento evento, int id) {
+public class ModelEnfermedad {
+    public boolean insertar(Enfermedad enfermedad,Integer id) {
         Statement myStmt = GeneralModel.connect();
-
-
         String query = "INSERT INTO ";
-        query += "evento ";
+        query += "enfermedad ";
         String sql = new StringBuilder()
-                .append("(fecha, enfermera, descripcion, paciente_id) VALUES (")
+                .append("(nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) VALUES (")
                 .append("'")
-                .append(evento.getFecha()) // fecha_evento
+                .append(enfermedad.getNombre())
                 .append("','")
-                .append(evento.getEnfermera())  // nombre_enfermera
+                .append(enfermedad.getFecha_inicio()) // fecha_inicial
                 .append("','")
-                .append(evento.getDescripcion())  // nombre_enfermera
-                .append("',")
-                .append(id)
+                .append(enfermedad.getFecha_final())  // fecha_final
+                .append("','")
+                .append(id)  // paciente_id
+                .append("'")
                 .append(")")
                 .toString();
         try{
@@ -34,33 +33,32 @@ public class ModelEvento {
             return false;
         }
     }
-    public Evento[] getEventos(Integer id) {
-        Evento eventoAuxiliar = new Evento();
-        String query = "select * from evento where paciente_id = " + id.toString();
-        ArrayList columnNames = new ArrayList();
-
+    public Enfermedad[] getEnfermedades(Integer id) {
+        String query = "select * from enfermedad where paciente_id = " + id.toString();
         Statement myStmt = GeneralModel.connect();
         try {
             ResultSet myRs = myStmt.executeQuery(query);
 
-            Evento[] eventos = new Evento[this.getCantidadEventos(id)];
+            //Insertar informacion a objeto deseado
+            Enfermedad[] enfs = new Enfermedad[this.getCantidadEnfermedades(id)];
 
             Integer i = 0;
-            //Insertar informacion a objeto deseado
             while (myRs.next()){
-                eventos[i] = new Evento(myRs.getString("fecha"),myRs.getString("enfermera"),myRs.getString("descripcion"));
+                enfs[i] = new Enfermedad(myRs.getString("nombre_enfermedad"),
+                                         myRs.getString("fecha_inicial"),
+                                         myRs.getString("fecha_final"));
             }
 
             //Retornar objeto
-            return eventos;
+            return enfs;
         } catch (Exception e){
             System.out.println(e);
             return null;
         }
     }
 
-    public int getCantidadEventos(Integer id){
-        String query = "select count(*) from evento where paciente_id = " + id.toString();
+    public int getCantidadEnfermedades(Integer id){
+        String query = "select count(*) as rows from enfermedad where paciente_id = " + id.toString();
         Statement stmt = GeneralModel.connect();
         try{
             ResultSet rs = stmt.executeQuery(query);
@@ -71,4 +69,5 @@ public class ModelEvento {
             return -1;
         }
     }
+
 }

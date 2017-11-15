@@ -9,8 +9,10 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import sample.clases.metodoArchivo;
 import sample.modelos.GeneralModel;
+import sample.modelos.ModelEnfermedad;
 import sample.modelos.ModelPaciente;
 import sample.modelos.ModelPadecimiento;
+import sample.objetos.Enfermedad;
 import sample.objetos.Paciente;
 import sample.objetos.Padecimiento;
 
@@ -236,14 +238,20 @@ public class ControllerRegistroPx {
     }
 
     public int guardaFamiliares(){
+
         return 0;
     }
 
     public int guardaEmergencia(){
+
+
         return 0;
     }
 
     public int guardaExpediente(){
+        ModelEnfermedad me = new ModelEnfermedad();
+        Enfermedad EnfDummy = new Enfermedad("Lepra", "01-01-2017", "15-01-2017");
+        me.insertar(EnfDummy,1);
         return 0;
     }
 

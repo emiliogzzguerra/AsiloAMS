@@ -33,7 +33,7 @@ public class ControllerPdespliega implements Initializable {
         ModelPaciente d = new ModelPaciente();
         ModelEvento me = new ModelEvento();
         Paciente p = d.getPaciente(id);
-        Evento e = me.getEvento(id);
+        Evento[] e = me.getEventos(id);
         String nombreCompleto = p.getNombre() + " " + p.getApellido();
         String direccionCompleta = p.getCalle()+ ", " + p.getCiudad() + ", " + p.getCodigo_postal();
 
@@ -58,8 +58,12 @@ public class ControllerPdespliega implements Initializable {
 
 
         //EventosModel
-        String InfoEventos = "Fecha:     " + e.getFecha() + "\n" + "Descripcion:     " + e.getDescripcion() + "\n" + "Enfermera:     " + e.getEnfermera();
-        desDescEvento.setText(InfoEventos);
+        String[] InfoEventos = new String[me.getCantidadEventos(id)];
+        for (int i = 0; i<me.getCantidadEventos(id); i++){
+            InfoEventos[i] = new String("Fecha:     " + e[i].getFecha() + "\n" + "Descripcion:     " + e[i].getDescripcion() + "\n" + "Enfermera:     " + e[i].getEnfermera());
+        }
+
+        desDescEvento.setText(InfoEventos[0]);
 
 
 

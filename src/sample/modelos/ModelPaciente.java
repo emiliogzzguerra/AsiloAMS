@@ -124,13 +124,11 @@ public class ModelPaciente {
     }
 
     public int getRowsPacientes(){
-        System.out.println("Holaaa");
         String query = "SELECT COUNT(*) AS rows FROM paciente";
         Statement stmt = GeneralModel.connect();
         try{
             ResultSet rs = stmt.executeQuery(query);
             rs.next();
-            System.out.println("Rows = " + rs.getString("rows"));
             return rs.getInt("rows");
         } catch (Exception e){
             System.out.println(e);

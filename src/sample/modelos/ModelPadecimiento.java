@@ -69,11 +69,11 @@ public class ModelPadecimiento {
             ResultSet myRs = myStmt.executeQuery(queryPadecimiento);
             ResultSetMetaData md = myRs.getMetaData();
 
-            Padecimiento[] pads = new Padecimiento[myRs.getFetchSize()];
+            Padecimiento[] pads = new Padecimiento[this.getCantidadPadecimientos(id)];
 
             Integer i = 0;
             while(myRs.next()){
-                //pads[i] = new Padecimiento(myRs.getString("nombre"));
+                pads[i] = new Padecimiento(myRs.getString("nombre"),myRs.getString("descripcion"));
             }
 
             //Retornar objeto
@@ -83,4 +83,17 @@ public class ModelPadecimiento {
             return null;
         }
     }
+    public int getCantidadPadecimientos(Integer id){
+        String query = "SELECT COUNT(*) FROM paciente INNER JOIN paciente_padecimiento ON paciente.id = paciente_padecimiento.paciente_id AND paciente.id =" + id.toString();
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
+    }
+
 }

@@ -35,4 +35,5 @@ public class Enfermedad {
     public void setFecha_final(String fecha_final) {
         this.fecha_final = fecha_final;
     }
+
 }

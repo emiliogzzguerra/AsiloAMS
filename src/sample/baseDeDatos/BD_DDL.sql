@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS informacion_emergencia
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   poliza_seguro VARCHAR(30) NOT NULL,
   hospital_preferente VARCHAR(30) NOT NULL,
-  fecha_vencimiento_poliza DATE,
+  fecha_vencimiento_poliza VARCHAR(30),
   comentarios TEXT,
   telefono VARCHAR(30),
   celular VARCHAR(30),
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS enfermedad
 (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nombre_enfermedad VARCHAR(30) NOT NULL,
-  fecha_inicio DATE NOT NULL,
-  fecha_final DATE,
+  fecha_inicio VARCHAR(30) NOT NULL,
+  fecha_final VARCHAR(30),
   paciente_id INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
@@ -115,8 +115,8 @@ CREATE TABLE IF NOT EXISTS paciente_medicamento
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   cantidad INT NOT NULL, -- 28, 30
   medida VARCHAR(30) NOT NULL, -- Gramos
-  fecha_inicio DATE NOT NULL,
-  fecha_final DATE,
+  fecha_inicio VARCHAR(30) NOT NULL,
+  fecha_final VARCHAR(30),
   dosis VARCHAR(100),
   manana BOOLEAN NOT NULL DEFAULT 0,
   tarde BOOLEAN NOT NULL DEFAULT 0,
@@ -130,17 +130,8 @@ CREATE TABLE IF NOT EXISTS paciente_medicamento
 CREATE TABLE IF NOT EXISTS padecimiento
 (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  nombre VARCHAR(30)
-);
-
-CREATE TABLE IF NOT EXISTS paciente_padecimiento
-(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  descripcion TEXT,
-  paciente_id INT NOT NULL,
-  padecimiento_id INT NOT NULL,
-  FOREIGN KEY (paciente_id) REFERENCES paciente(id),
-  FOREIGN KEY (padecimiento_id) REFERENCES padecimiento(id)
+  nombre VARCHAR(30),
+  descripcion TEXT
 );
 
 CREATE TABLE IF NOT EXISTS incumbencia

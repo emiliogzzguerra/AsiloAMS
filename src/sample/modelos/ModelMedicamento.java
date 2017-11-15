@@ -9,18 +9,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ModelMedicamento {
-    public boolean insertar(Medicamento med) {
+
+    public boolean insertar(Medicamento med, int id) {
         Statement myStmt = GeneralModel.connect();
         Statement myStmt2 = GeneralModel.connect();
         String query = "INSERT INTO ";
         query += "medicamento";
         String sql = new StringBuilder()
-                .append("(nombre, tipo) VALUES (")
+                .append("(nombre, tipo, paciente_id) VALUES (")
                 .append("'")
                 .append(med.getNombre()) // nombre
                 .append("','")
                 .append(med.getTipo())  // tipo
                 .append(",")
+                .append(id) //paciente id
                 .append(")")
                 .toString();
         String query2 = "INSERT INTO ";
@@ -49,36 +51,28 @@ public class ModelMedicamento {
     public Medicamento[] getMedicamentos(Integer id) {
 
 
-        String query = "select * from medicamento where id = " + id.toString();
-        String query2 = "select * from paciente_medicamento where id = " + id.toString();
+        String query = "SELECT * FROM medicamento INNER JOIN paciente_medicamento ON medicamento.paciente_id = paciente_medicamento.paciente_id AND paciente_medicamento.id =" + id.toString();
 
         Statement myStmt = GeneralModel.connect();
-        Statement myStmt2 = GeneralModel.connect();
-
 
         try {
             ResultSet myRs = myStmt.executeQuery(query);
-            ResultSet myRs2 = myStmt2.executeQuery(query2);
-            ResultSetMetaData md = myRs.getMetaData();
-            ResultSetMetaData md2 = myRs2.getMetaData();
-
-            int columns = md.getColumnCount();
-            int columns2 = md2.getColumnCount();
-
 
             Medicamento[] meds = new Medicamento[myRs.getFetchSize()];
 
             Integer i=0;
             while(myRs.next()){
                 meds[i] = new Medicamento(myRs.getString("nombre"),
-                        myRs.getString("tipo"),
-                        myRs2.getInt("cantidad"),
-                        myRs2.getString("dosis"),
-                        myRs2.getBoolean("manana"),
-                        myRs2.getBoolean("tarde"),
-                        myRs2.getBoolean("noche"));
+                                          myRs.getString("tipo"),
+                                          myRs.getInt("cantidad"),
+                                          myRs.getString("dosis"),
+                                          myRs.getString("fecha_inicio"),
+                                          myRs.getString("fecha_final"),
+                                          myRs.getString("medida"),
+                                          myRs.getBoolean("manana"),
+                                          myRs.getBoolean("tarde"),
+                                          myRs.getBoolean("noche"));
             }
-
 
             //Retornar objeto
             return meds;
