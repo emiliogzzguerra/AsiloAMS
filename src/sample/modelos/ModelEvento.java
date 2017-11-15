@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class ModelEvento {
     public boolean insertar(Evento evento) {
         Statement myStmt = GeneralModel.connect();
+
+
         String query = "INSERT INTO ";
         query += "evento ";
         String sql = new StringBuilder()
@@ -33,8 +35,8 @@ public class ModelEvento {
     }
     public Evento getEvento(Integer id) {
 
-
-        String query = "select * from evento where id = " + id.toString();
+        Evento eventoAuxiliar = new Evento();
+        String query = "select * from evento where paciente_id = " + id.toString();
         ArrayList columnNames = new ArrayList();
 
         Statement myStmt = GeneralModel.connect();
@@ -49,11 +51,13 @@ public class ModelEvento {
             }
 
             //Insertar informacion a objeto deseado
-            Evento eventoAuxiliar = new Evento(myRs.getString(1),myRs.getString(2),myRs.getString(3));
+            //Evento eventoAuxiliar = new Evento(myRs.getString(1),myRs.getString(2),myRs.getString(3));
 
-            eventoAuxiliar.setFecha(myRs.getString(1));
-            eventoAuxiliar.setEnfermera(myRs.getString(2));
-            eventoAuxiliar.setDescripcion(myRs.getString(3));
+            while (myRs.next()){
+                eventoAuxiliar.setFecha(myRs.getString("fecha"));
+                eventoAuxiliar.setEnfermera(myRs.getString("enfermera"));
+                eventoAuxiliar.setDescripcion(myRs.getString("descripcion"));
+            }
             //eventoAuxiliar.setPaciente_id() = myRs.getInt(4);
 
             //Retornar objeto
