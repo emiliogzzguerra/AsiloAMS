@@ -4,16 +4,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerPdespliega" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerPdespliega">
     <children>
         <SplitPane dividerPositions="0.33668341708542715" layoutY="21.0" orientation="VERTICAL" prefHeight="588.0" prefWidth="807.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="805.0">
                     <children>
-                        <Button layoutX="24.0" layoutY="148.0" mnemonicParsing="false" text="Editar Foto"/>
+                        <Button layoutX="24.0" layoutY="148.0" mnemonicParsing="false" text="Editar Foto" />
                         <ImageView fitHeight="134.0" fitWidth="126.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                         <Button layoutX="633.0" layoutY="148.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Guardar cambios" />
                         <Label layoutX="123.0" layoutY="15.0" prefHeight="27.0" prefWidth="126.0" text="Nombre Paciente:" />
@@ -22,13 +32,13 @@
                         <Label layoutX="123.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Cuarto:" />
                         <Label layoutX="394.0" layoutY="80.0" prefHeight="27.0" prefWidth="79.0" text="Cama:" />
                         <Label layoutX="394.0" layoutY="114.0" prefHeight="27.0" prefWidth="79.0" text="Estatus:" />
-                        <Label layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="445.0" text="" fx:id="desNombre"/>
-                        <Label layoutX="249.0" layoutY="47.0" prefHeight="27.0" prefWidth="445.0" text="Direccion" fx:id="desDireccion"/>
-                        <Label layoutX="249.0" layoutY="80.0" prefHeight="27.0" prefWidth="126.0" text="Edad" fx:id="desEdad"/>
-                        <Label layoutX="250.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Cuarto" fx:id="desCuarto"/>
-                        <Label layoutX="473.0" layoutY="83.0" prefHeight="27.0" prefWidth="126.0" text="Cama" fx:id="desCama"/>
-                        <Label layoutX="472.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Estatus" fx:id="desEstatus"/>
-                        <Button layoutX="633.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Editar Campos"/>
+                        <Label fx:id="desNombre" layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="445.0" text="" />
+                        <Label fx:id="desDireccion" layoutX="249.0" layoutY="47.0" prefHeight="27.0" prefWidth="445.0" text="Direccion" />
+                        <Label fx:id="desEdad" layoutX="249.0" layoutY="80.0" prefHeight="27.0" prefWidth="126.0" text="Edad" />
+                        <Label fx:id="desCuarto" layoutX="250.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Cuarto" />
+                        <Label fx:id="desCama" layoutX="473.0" layoutY="83.0" prefHeight="27.0" prefWidth="126.0" text="Cama" />
+                        <Label fx:id="desEstatus" layoutX="472.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text="Estatus" />
+                        <Button layoutX="633.0" layoutY="83.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="126.0" text="Editar Campos" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -41,7 +51,7 @@
                                             <children>
                                                 <ListView layoutX="-1.0" layoutY="41.0" opacity="0.46" prefHeight="328.0" prefWidth="807.0" />
                                                 <Label layoutX="10.0" layoutY="103.0" prefHeight="27.0" prefWidth="180.0" text="Nombre del Tratamiento:" />
-                                                <Label layoutX="190.0" layoutY="60.0" prefHeight="113.0" prefWidth="461.0" text="Nombre del Tratamiento:" fx:id="desNombreTratamiento"/>
+                                                <Label fx:id="desNombreTratamiento" layoutX="190.0" layoutY="60.0" prefHeight="113.0" prefWidth="461.0" text="Nombre del Tratamiento:" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -56,12 +66,12 @@
                                                 <Label layoutX="187.0" layoutY="179.0" prefHeight="27.0" prefWidth="112.0" text="Teléfono de casa:" textAlignment="RIGHT" />
                                                 <Label layoutX="176.0" layoutY="216.0" prefHeight="27.0" prefWidth="123.0" text="Teléfono de celular:" textAlignment="RIGHT" />
                                                 <Label layoutX="261.0" layoutY="255.0" prefHeight="27.0" prefWidth="37.0" text="Email:" textAlignment="RIGHT" />
-                                                <Label layoutX="309.0" layoutY="72.0" prefHeight="27.0" prefWidth="283.0" text="Nombre del familiar" fx:id="desNombreFamiliar"/>
-                                                <Label layoutX="309.0" layoutY="107.0" prefHeight="27.0" prefWidth="283.0" text="Parentesco" fx:id="desParentesco"/>
-                                                <Label layoutX="309.0" layoutY="141.0" prefHeight="27.0" prefWidth="283.0" text="Incumbencia" fx:id="desIncumbencia"/>
-                                                <Label layoutX="309.0" layoutY="179.0" prefHeight="27.0" prefWidth="283.0" text="Telefono de casa" fx:id="desTelefonoCasa"/>
-                                                <Label layoutX="309.0" layoutY="216.0" prefHeight="27.0" prefWidth="283.0" text="Telefono de celular" fx:id="desTelefonoCelular"/>
-                                                <Label layoutX="309.0" layoutY="255.0" prefHeight="27.0" prefWidth="283.0" text="Email" fx:id="desEmail"/>
+                                                <Label fx:id="desNombreFamiliar" layoutX="309.0" layoutY="72.0" prefHeight="27.0" prefWidth="283.0" text="Nombre del familiar" />
+                                                <Label fx:id="desParentesco" layoutX="309.0" layoutY="107.0" prefHeight="27.0" prefWidth="283.0" text="Parentesco" />
+                                                <Label fx:id="desIncumbencia" layoutX="309.0" layoutY="141.0" prefHeight="27.0" prefWidth="283.0" text="Incumbencia" />
+                                                <Label fx:id="desTelefonoCasa" layoutX="309.0" layoutY="179.0" prefHeight="27.0" prefWidth="283.0" text="Telefono de casa" />
+                                                <Label fx:id="desTelefonoCelular" layoutX="309.0" layoutY="216.0" prefHeight="27.0" prefWidth="283.0" text="Telefono de celular" />
+                                                <Label fx:id="desEmail" layoutX="309.0" layoutY="255.0" prefHeight="27.0" prefWidth="283.0" text="Email" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -75,11 +85,11 @@
                                                 <Label layoutX="98.0" layoutY="147.0" text="Teléfonos de ambulancia:" />
                                                 <Label layoutX="108.0" layoutY="185.0" text="Hospital de preferencia:" />
                                                 <Label layoutX="29.0" layoutY="254.0" text=" Información en caso de emergencia:" />
-                                                <Label layoutX="265.0" layoutY="72.0" prefHeight="17.0" prefWidth="330.0" text="Poliza de seguro" fx:id="desPoliza"/>
-                                                <Label layoutX="265.0" layoutY="108.0" prefHeight="17.0" prefWidth="330.0" text="Fecha de vencimiento de poliza" fx:id="dsFechaNacimiento"/>
-                                                <Label layoutX="265.0" layoutY="147.0" prefHeight="17.0" prefWidth="330.0" text="Teléfonos de ambulancia" fx:id="desTelefono"/>
-                                                <Label layoutX="265.0" layoutY="185.0" prefHeight="17.0" prefWidth="330.0" text="Hospital de preferencia" fx:id="desHospital"/>
-                                                <Label layoutX="265.0" layoutY="225.0" prefHeight="75.0" prefWidth="330.0" text=" Información en caso de emergencia" fx:id="desInfoEmergencia"/>
+                                                <Label fx:id="desPoliza" layoutX="265.0" layoutY="72.0" prefHeight="17.0" prefWidth="330.0" text="Poliza de seguro" />
+                                                <Label fx:id="dsFechaNacimiento" layoutX="265.0" layoutY="108.0" prefHeight="17.0" prefWidth="330.0" text="Fecha de vencimiento de poliza" />
+                                                <Label fx:id="desTelefono" layoutX="265.0" layoutY="147.0" prefHeight="17.0" prefWidth="330.0" text="Teléfonos de ambulancia" />
+                                                <Label fx:id="desHospital" layoutX="265.0" layoutY="185.0" prefHeight="17.0" prefWidth="330.0" text="Hospital de preferencia" />
+                                                <Label fx:id="desInfoEmergencia" layoutX="265.0" layoutY="225.0" prefHeight="75.0" prefWidth="330.0" text=" Información en caso de emergencia" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -91,9 +101,9 @@
                                                 <Label layoutX="25.0" layoutY="32.0" text="Enfermedades pasadas:" />
                                                 <Label layoutX="343.0" layoutY="177.0" text="Eventos:" />
                                                 <Label layoutX="369.0" layoutY="24.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedades:" />
-                                                <Label layoutX="205.0" layoutY="200.0" prefHeight="69.0" prefWidth="330.0" text="Descripción evento" fx:id="desDescEvento"/>
-                                                <Label layoutX="369.0" layoutY="59.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedad" fx:id="desNombreEnfermedad1"/>
-                                                <Label layoutX="369.0" layoutY="92.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedad" fx:id="desNombreEnfermedad2" />
+                                                <Label fx:id="desDescEvento" layoutX="119.0" layoutY="194.0" prefHeight="69.0" prefWidth="501.0" text="Descripción evento:" />
+                                                <Label fx:id="desNombreEnfermedad1" layoutX="369.0" layoutY="59.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedad" />
+                                                <Label fx:id="desNombreEnfermedad2" layoutX="369.0" layoutY="92.0" prefHeight="17.0" prefWidth="167.0" text="Nombre de enfermedad" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -106,10 +116,10 @@
                                                 <Label layoutX="16.0" layoutY="177.0" text="Cantidad de medicina:" />
                                                 <Label layoutX="16.0" layoutY="147.0" text="Medición de medicina:" />
                                                 <Label layoutX="44.0" layoutY="119.0" text="Tipo de medicina:" />
-                                                <Label layoutX="179.0" layoutY="94.0" prefHeight="17.0" prefWidth="330.0" text="Nombre de medicina" fx:id="desNombreMed"/>
-                                                <Label layoutX="179.0" layoutY="177.0" prefHeight="17.0" prefWidth="330.0" text="Cantidad de medicina" fx:id="desCantidadMed"/>
-                                                <Label layoutX="179.0" layoutY="119.0" prefHeight="17.0" prefWidth="330.0" text="Tipo de medicina" fx:id="desTipoMed"/>
-                                                <Label layoutX="179.0" layoutY="147.0" prefHeight="17.0" prefWidth="330.0" text="Medicion de medicina" fx:id="desMedicion"/>
+                                                <Label fx:id="desNombreMed" layoutX="179.0" layoutY="94.0" prefHeight="17.0" prefWidth="330.0" text="Nombre de medicina" />
+                                                <Label fx:id="desCantidadMed" layoutX="179.0" layoutY="177.0" prefHeight="17.0" prefWidth="330.0" text="Cantidad de medicina" />
+                                                <Label fx:id="desTipoMed" layoutX="179.0" layoutY="119.0" prefHeight="17.0" prefWidth="330.0" text="Tipo de medicina" />
+                                                <Label fx:id="desMedicion" layoutX="179.0" layoutY="147.0" prefHeight="17.0" prefWidth="330.0" text="Medicion de medicina" />
                                             </children>
                                         </AnchorPane>
                                     </content>

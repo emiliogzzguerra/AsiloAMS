@@ -5,6 +5,13 @@ public class Evento {
     String enfermera;
     String descripcion;
 
+
+    public Evento(){
+        this.fecha = "";
+        this.enfermera = "";
+        this.descripcion = "";
+    }
+
     public Evento(String fecha, String enfermera, String descripcion){
         this.fecha = fecha;
         this.enfermera = enfermera;
