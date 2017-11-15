@@ -39,6 +39,9 @@
 ALTER TABLE paciente ADD paciente_medicado_manana bool AFTER numero_cama;
 ALTER TABLE paciente ADD paciente_medicado_tarde bool AFTER paciente_medicado_manana;
 ALTER TABLE paciente ADD paciente_medicado_noche bool AFTER paciente_medicado_tarde;
+ALTER TABLE paciente ADD foto varchar(100) AFTER estatus;
+
+UPDATE paciente SET foto = "/sample/fotos/emilio.png" WHERE paciente_id = "2";
 
 
 insert into asilo (nombre,ciudad,calle,codigo_postal,cuartos_disponibles,camas_disponibles) 
