@@ -14,7 +14,15 @@ public class ModelMedicamento {
         String query = "INSERT INTO ";
         query += "medicamento ";
         String sql = new StringBuilder()
-                .append("() VALUES (")
+                .append("(nombre, tipo, paciente_id, receta_id) VALUES (")
+                .append("'")
+                .append(med.getNombre()) // nombre
+                .append("','")
+                .append(med.getTipo())  // tipo
+                .append(",")
+                .append() // paciente_id
+                .append(",")
+                .append() // receta_id
                 .append(")")
                 .toString();
         try{
@@ -53,7 +61,7 @@ public class ModelMedicamento {
                 System.out.println(myRs.getString(0));
                 medicamentoAuxiliar.setNombre(myRs.getString(1));
                 medicamentoAuxiliar.setTipo(myRs.getString(2));
-                //medicamentoAuxiliar.setPaciente_id(myRs.getInt(3));
+                //medicamentoAuxiliar.set(myRs.getInt(3));
                 //medicamentoAuxiliar.setReceta_id(myRs.getInt(4));
 
                 arregloMedicamentos[row] = medicamentoAuxiliar;
