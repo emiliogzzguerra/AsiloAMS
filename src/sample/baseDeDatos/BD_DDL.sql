@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS paciente
   paciente_medicado_tarde BOOLEAN NOT NULL DEFAULT 0,
   paciente_medicado_noche BOOLEAN NOT NULL DEFAULT 0,
   estatus INT NOT NULL,
+  foto VARCHAR(100),
   asilo_id INT NOT NULL,
   FOREIGN KEY (asilo_id) REFERENCES asilo(id)
 );
