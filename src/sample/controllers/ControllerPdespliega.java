@@ -142,8 +142,14 @@ public class ControllerPdespliega implements Initializable {
         desCama.setText(desEdCama.getText());
         desEstatus.setText(desEdEstatus.getText());
 
-
-
         guardarCampos.setVisible(false);
+        Controller iD = new Controller();
+        Integer id = iD.id;
+        Paciente p = new Paciente();
+        ModelPaciente mp = new ModelPaciente();
+        p = mp.getPaciente(id);
+        mp.updatePaciente(id, p, desNombre.getText(), desApellido.getText(), desCalle.getText(), desCodigo.getText(), desCiudad.getText(), desCuarto.getText(), desCama.getText(), desEstatus.getText());
+
+
     }
 }
