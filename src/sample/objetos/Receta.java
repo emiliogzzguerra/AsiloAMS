@@ -8,6 +8,11 @@ public class Receta {
     String identificador;
     String fecha_expedicion;
 
+    public Receta(){
+        this.identificador = "";
+        this.fecha_expedicion = "Dummy";
+    }
+
     public Receta(String identificador, String fecha_expedicion){
         this.identificador = identificador;
         this.fecha_expedicion = fecha_expedicion;
