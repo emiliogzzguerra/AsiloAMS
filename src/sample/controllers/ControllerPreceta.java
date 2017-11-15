@@ -1,59 +1,62 @@
 package sample.controllers;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
-import javafx.scene.control.TextField;
 import org.controlsfx.control.textfield.TextFields;
 import sample.clases.listaNombres;
 import sample.clases.setImage;
+import sample.modelos.ModelMedicamento;
 import sample.modelos.ModelPaciente;
+import sample.modelos.ModelReceta;
+import sample.objetos.Enfermedad;
+import sample.objetos.Medicamento;
 import sample.objetos.Paciente;
-import javafx.scene.control.Label;
+import sample.objetos.Receta;
+
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
 public class ControllerPreceta implements Initializable {
 
-    public MenuItem menuAction1Tipo, menuAction2Tipo, menuAction1Medida, menuAction2Medida;
-    public MenuButton menuButtonTipo, menuButtonMedida;
-    public TextField tfBuscarPaciente;
+    public ChoiceBox dropdownTipo, dropdownMedida;
+    public TextField tfBuscarPaciente, nombreMedicina, dosis, cantidad, identificadorReceta;
+    public DatePicker fechaInicio, fechaFinal, fechaExpedicion;
     public static int id;
     public Label labelNombrePx, labelEdadPx, labelHabitacionPx, labelCamaPx;
+
+    public Medicamento m  = new Medicamento();
+    public Receta r = new Receta(identificadorReceta, fechaExpedicion.getValue().toString());
+
+    ObservableList<String> tipoList = FXCollections.observableArrayList
+            ("- Tipo -","Pastillas","Liquido", "Injeccion");
+    ObservableList<String> medidaList = FXCollections.observableArrayList
+            ("- Medida -","Mililitros","Gramos");
 
     @FXML
     public ImageView fotoPx;
 
     @FXML
     public void initialize (URL location, ResourceBundle resources) {
-        //File file = new File("/sample/fotos/p1.jpg");
         Image image = new Image("/sample/fotos/p1.jpg", 145,135,false,false);
         fotoPx.setImage(image);
+        dropdownMedida.setItems(medidaList);
+        dropdownTipo.setItems(tipoList);
+        dropdownTipo.setValue("- Tipo -");
+        dropdownMedida.setValue("- Medida -");
     }
 
-
-    public void onMenuSel (){
-        menuAction1Tipo.setOnAction(event -> {
-            menuButtonTipo.setText(menuAction1Tipo.getText());
-        });
-        menuAction2Tipo.setOnAction(event -> {
-            menuButtonTipo.setText(menuAction2Tipo.getText());
-        });
-        menuAction1Medida.setOnAction(event -> {
-            menuButtonMedida.setText(menuAction1Medida.getText());
-        });
-        menuAction2Medida.setOnAction(event -> {
-            menuButtonMedida.setText(menuAction2Medida.getText());
-        });
-    }
 
     public void SearchPaciente() throws Exception {
         listaNombres d = new listaNombres();
@@ -77,10 +80,10 @@ public class ControllerPreceta implements Initializable {
         ModelPaciente d = new ModelPaciente();
         Paciente p = d.getPaciente(id);
 
-        labelNombrePx.setText(p.getNombre() + " " + p.getApellido());
-        labelEdadPx.setText(String.valueOf(p.getEdad()));
-        labelHabitacionPx.setText(String.valueOf(p.getNumero_cuarto()));
-        labelCamaPx.setText(String.valueOf(p.getNumero_cama()));
+        labelNombrePx.setText("Nombre: " + p.getNombre() + " " + p.getApellido());
+        labelEdadPx.setText("Edad: " + String.valueOf(p.getEdad()) + " años");
+        labelHabitacionPx.setText("Cuarto: " + String.valueOf(p.getNumero_cuarto()));
+        labelCamaPx.setText("Cama: " + String.valueOf(p.getNumero_cama()));
         if(p.getPath() != null){
             setImage dd = new setImage();
             String path = p.getPath();
@@ -89,6 +92,110 @@ public class ControllerPreceta implements Initializable {
         }else{
             Image image = new Image("/sample/fotos/p1.jpg", 145,135,false,false);
             fotoPx.setImage(image);
+        }
+
+    }
+
+    public int guardaMedicina() throws SQLException {
+        Medicamento medicamento = new Medicamento();
+        Receta receta = new Receta(identificadorReceta, fechaExpedicion.getValue().toString());
+
+        String medida = "- Medida -";
+        String tipo = "- Tipo -";
+
+        if (dropdownTipo.getValue() == "Pastillas")
+            tipo = "Pastillas";
+        if (dropdownTipo.getValue() == "Liquido")
+            tipo = "Liquido";
+        if (dropdownTipo.getValue() == "Injeccion")
+            tipo = "Injeccion";
+        if (dropdownTipo.getValue() == "- Tipo -")
+            tipo = "- Tipo -";
+
+        if (dropdownMedida.getValue() == "Mililitros")
+            medida = "Mililitros";
+        if (dropdownMedida.getValue() == "Gramos")
+            medida = "Gramos";
+        if (dropdownMedida.getValue() == "- Medida -")
+            medida = "- Medida -";
+
+        String warning = "Los campos: ";
+        if (nombreMedicina.getAccessibleText().equals(m.getNombre())){
+            warning += "Nombre medicina, ";
+        } else {
+            medicamento.setNombre(nombreMedicina.getText());
+        }
+        if (dosis.getAccessibleText().equals(m.getDosis())){
+            warning += "Dosis, ";
+        } else {
+            medicamento.setDosis(dosis.getText());
+        }
+        if (identificadorReceta.getAccessibleText().equals(r.getIdentificador())){
+            warning += "Numero de receta, ";
+        } else {
+            receta.setIdentificador(identificadorReceta);
+        }
+        if (cantidad.getAccessibleText().equals(m.getCantidad())){
+            warning += "Cantidad, ";
+        } else {
+            medicamento.setCantidad(cantidad.getText());
+        }
+        if (fechaInicio.getAccessibleText().equals(m.getFecha_inicio())){
+            medicamento.setFecha_inicio("1970/01/01");
+            warning += "fecha inicio, ";
+        } else {
+            medicamento.setFecha_inicio(fechaInicio.getValue().toString());
+        }
+        if (fechaFinal.getAccessibleText().equals(m.getFecha_final())){
+            medicamento.setFecha_final("1970/01/01");
+            warning += "fecha final, ";
+        } else {
+            medicamento.setFecha_final(fechaFinal.getValue().toString());
+        }
+        if (fechaExpedicion.getAccessibleText().equals(r.getFecha_expedicion())){
+            receta.setFecha_expedicion("1970/01/01");
+            warning += "fecha final, ";
+        } else {
+            receta.setFecha_expedicion(fechaExpedicion.getValue().toString());
+        }
+        if (dropdownTipo.getValue().equals("- Tipo -")){
+            warning += "Tipo";
+        } else {
+            medicamento.setTipo(tipo);
+        }
+        if (dropdownMedida.getValue().equals("- Medida -")){
+            warning += "Medida";
+        } else {
+            medicamento.setMedida(medida);
+        }
+
+        ModelMedicamento md = new ModelMedicamento();
+        ModelReceta mr = new ModelReceta();
+
+        if (warning.equals("Los campos: ")){
+            boolean a = md.insertar(medicamento);
+            System.out.print(a);
+            boolean c = mr.insertar(receta, id);
+            System.out.print(c);
+            return 1;
+        }else {
+            warning += ". No fueron llenados, ¿Quiere proceder?";
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Uno o más campos faltantes");
+            alert.setContentText(warning);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                boolean a = md.insertar(medicamento);
+                System.out.print(a);
+                boolean c = mr.insertar(receta, id);
+                System.out.print(c);
+                return 1;
+            } else {
+                return 0;
+            }
         }
 
 
