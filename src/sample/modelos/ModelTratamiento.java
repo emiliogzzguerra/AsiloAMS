@@ -14,9 +14,17 @@ public class ModelTratamiento {
         String query = "INSERT INTO ";
         query += "tratamiento ";
         String sql = new StringBuilder()
-                .append("() VALUES (")
+                .append(" (descripcion, paciente_id, padecimiento_id) VALUES (")
+                .append("'")
+                .append(tratamiento.getDescripcion_tratamiento()) // descripcion_tratamiento
+                .append("',")
+                .append() // paciente_id
+                .append(",")
+                .append() // padecimiento_id
                 .append(")")
                 .toString();
+        query += sql;
+
         try{
             myStmt.executeUpdate(query);
             return true;
@@ -41,8 +49,9 @@ public class ModelTratamiento {
             }
 
             //Insertar informacion a objeto deseado
-            Tratamiento tratamientoAuxiliar = new Tratamiento(myRs.getString(1),
-                                                              myRs.getString(2));
+            Tratamiento tratamientoAuxiliar = new Tratamiento(myRs.getString(1), myRs.getString(2));
+
+            tratamientoAuxiliar.setDescripcion_tratamiento() = myRs.getString(1);
 
             //Retornar objeto
             return tratamientoAuxiliar;
