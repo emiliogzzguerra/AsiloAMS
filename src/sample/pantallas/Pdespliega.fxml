@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerPdespliega">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.ControllerPdespliega">
     <children>
         <SplitPane dividerPositions="0.33668341708542715" layoutY="21.0" orientation="VERTICAL" prefHeight="588.0" prefWidth="807.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="805.0">
                     <children>
                         <ImageView fx:id="fotoPx" fitHeight="134.0" fitWidth="120.0" layoutX="2.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button fx:id="editarCampos" layoutX="633.0" layoutY="148.0" mnemonicParsing="true" prefHeight="27.0" prefWidth="126.0" text=" Editar Campos" onAction="#crearEditar"/>
+                        <Button fx:id="editarCampos" layoutX="633.0" layoutY="148.0" mnemonicParsing="true" onAction="#crearEditar" prefHeight="27.0" prefWidth="126.0" text=" Editar Campos" />
                         <Label layoutX="123.0" layoutY="15.0" prefHeight="27.0" prefWidth="126.0" text=" Nombre Paciente:" />
-                        <Label layoutX="123.0" layoutY="47.0" prefHeight="27.0" prefWidth="126.0" text=" Direccion:" />
+                        <Label layoutX="123.0" layoutY="47.0" prefHeight="27.0" prefWidth="126.0" text=" Calle:" />
                         <Label layoutX="123.0" layoutY="80.0" prefHeight="27.0" prefWidth="126.0" text=" Edad:" />
                         <Label layoutX="123.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" text=" Cuarto:" />
                         <Label layoutX="394.0" layoutY="80.0" prefHeight="27.0" prefWidth="79.0" text="Cama:" />
                         <Label layoutX="394.0" layoutY="114.0" prefHeight="27.0" prefWidth="79.0" text="Estatus:" />
-                  <TextField fx:id="desEdNombre" disable="false" editable="true" layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="445.0" />
-                  <TextField fx:id="desEdDireccion" disable="false" editable="true" layoutX="249.0" layoutY="47.0" prefHeight="27.0" prefWidth="445.0" />
+                  <TextField fx:id="desEdNombre" disable="false" editable="true" layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="177.0" />
+                  <TextField fx:id="desEdCalle" disable="false" editable="true" layoutX="249.0" layoutY="47.0" prefHeight="27.0" prefWidth="177.0" />
                   <TextField fx:id="desEdEdad" disable="false" editable="true" layoutX="249.0" layoutY="80.0" prefHeight="27.0" prefWidth="126.0" />
                   <TextField fx:id="desEdCuarto" disable="false" editable="true" layoutX="250.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" />
                   <TextField fx:id="desEdCama" disable="false" editable="true" layoutX="473.0" layoutY="83.0" prefHeight="27.0" prefWidth="126.0" />
                   <TextField fx:id="desEdEstatus" disable="false" editable="true" layoutX="473.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" />
+                  <TextField fx:id="desEdCodigo" disable="false" editable="true" layoutX="249.0" layoutY="148.0" prefHeight="27.0" prefWidth="126.0" />
+                  <TextField fx:id="desEdCiudad" disable="false" editable="true" layoutX="472.0" layoutY="148.0" prefHeight="27.0" prefWidth="126.0" />
+                  <TextField fx:id="desEDApellido" disable="false" editable="true" layoutX="598.0" layoutY="15.0" prefHeight="27.0" prefWidth="177.0" />
                         <Button layoutX="24.0" layoutY="148.0" mnemonicParsing="false" text="Editar Foto" />
-                  <Button fx:id="guardarCampos" disable="false" layoutX="633.0" layoutY="148.0" mnemonicParsing="true" prefHeight="27.0" prefWidth="126.0" text="Guardar Cambios" visible="false" onAction="#guardarCampos"/>
-                        <Label fx:id="desNombre" layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="445.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
-                        <Label fx:id="desDireccion" layoutX="249.0" layoutY="47.0" prefHeight="27.0" prefWidth="445.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
+                  <Button fx:id="guardarCampos" disable="false" layoutX="633.0" layoutY="148.0" mnemonicParsing="true" onAction="#guardarCampos" prefHeight="27.0" prefWidth="126.0" text="Guardar Cambios" visible="false" />
+                        <Label fx:id="desNombre" layoutX="249.0" layoutY="15.0" prefHeight="27.0" prefWidth="177.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
+                        <Label fx:id="desCalle" layoutX="249.0" layoutY="48.0" prefHeight="27.0" prefWidth="177.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
                         <Label fx:id="desEdad" layoutX="249.0" layoutY="80.0" prefHeight="27.0" prefWidth="126.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
                         <Label fx:id="desCuarto" layoutX="250.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
                         <Label fx:id="desCama" layoutX="473.0" layoutY="83.0" prefHeight="27.0" prefWidth="126.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
                         <Label fx:id="desEstatus" layoutX="472.0" layoutY="114.0" prefHeight="27.0" prefWidth="126.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
+                  <Label layoutX="123.0" layoutY="148.0" prefHeight="27.0" prefWidth="126.0" text="Codigo Postal:" />
+                  <Label fx:id="desCodigo" layoutX="249.0" layoutY="148.0" prefHeight="27.0" prefWidth="126.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
+                  <Label fx:id="desCiudad" layoutX="473.0" layoutY="148.0" prefHeight="27.0" prefWidth="126.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
+                  <Label layoutX="394.0" layoutY="148.0" prefHeight="27.0" prefWidth="79.0" text="Ciudad:" />
+                  <Label layoutX="472.0" layoutY="15.0" prefHeight="27.0" prefWidth="126.0" text=" Apellido Paciente:" />
+                  <Label fx:id="desApellido" layoutX="598.0" layoutY="16.0" prefHeight="27.0" prefWidth="177.0" style=" -fx-border-color:black; -fx-border-width: 1; -fx-border-style: solid;" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
