@@ -130,17 +130,8 @@ CREATE TABLE IF NOT EXISTS paciente_medicamento
 CREATE TABLE IF NOT EXISTS padecimiento
 (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  nombre VARCHAR(30)
-);
-
-CREATE TABLE IF NOT EXISTS paciente_padecimiento
-(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  descripcion TEXT,
-  paciente_id INT NOT NULL,
-  padecimiento_id INT NOT NULL,
-  FOREIGN KEY (paciente_id) REFERENCES paciente(id),
-  FOREIGN KEY (padecimiento_id) REFERENCES padecimiento(id)
+  nombre VARCHAR(30),
+  descripcion TEXT
 );
 
 CREATE TABLE IF NOT EXISTS incumbencia

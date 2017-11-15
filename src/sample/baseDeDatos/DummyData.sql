@@ -129,19 +129,19 @@ insert into informacion_emergencia (poliza_seguro, hospital_preferente, fecha_ve
 insert into informacion_emergencia (poliza_seguro, hospital_preferente, fecha_vencimiento_poliza, paciente_id, comentarios) values ('52959-579', 'Beier, Okuneva and Jacobs', '2017-04-17 12:56:47', 18, 'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia.');
 
 
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2015-06-22 09:00:58', '2014-09-09 03:16:18', 1);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2015-11-16 17:48:49', '2016-03-03 23:30:53', 2);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2014-07-01 09:51:20', '2014-10-19 10:31:46', 3);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2014-09-29 11:07:01', '2015-11-27 00:57:28', 4);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2015-08-26 06:12:39', '2013-10-25 14:55:27', 5);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2015-02-06 04:21:25', '2013-11-16 11:06:35', 6);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2015-04-10 22:02:52', '2016-07-09 10:40:03', 7);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2014-01-07 06:05:58', '2015-08-10 21:25:50', 8);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2017-01-17 20:17:55', '2014-03-25 07:05:19', 9);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2016-03-29 17:03:47', '2017-02-03 03:00:46', 10);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2017-02-09 04:16:28', '2016-09-16 07:55:52', 11);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2015-05-23 00:59:19', '2015-12-13 09:35:01', 12);
-insert into enfermedad (fecha_inicio, fecha_final, paciente_id) values ('2014-01-11 15:03:47', '2014-08-05 19:04:16', 13);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2015-06-22 09:00:58', '2014-09-09 03:16:18', 1);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2015-11-16 17:48:49', '2016-03-03 23:30:53', 2);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2014-07-01 09:51:20', '2014-10-19 10:31:46', 3);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2014-09-29 11:07:01', '2015-11-27 00:57:28', 4);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2015-08-26 06:12:39', '2013-10-25 14:55:27', 5);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2015-02-06 04:21:25', '2013-11-16 11:06:35', 6);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2015-04-10 22:02:52', '2016-07-09 10:40:03', 7);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2014-01-07 06:05:58', '2015-08-10 21:25:50', 8);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2017-01-17 20:17:55', '2014-03-25 07:05:19', 9);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2016-03-29 17:03:47', '2017-02-03 03:00:46', 10);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2017-02-09 04:16:28', '2016-09-16 07:55:52', 11);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2015-05-23 00:59:19', '2015-12-13 09:35:01', 12);
+insert into enfermedad (nombre_enfermedad, fecha_inicio, fecha_final, paciente_id) values ('hellow','2014-01-11 15:03:47', '2014-08-05 19:04:16', 13);
 
 insert into alergias (paciente_id, nombre) values (1, 'Ash White');
 insert into alergias (paciente_id, nombre) values (2, 'Lentil');

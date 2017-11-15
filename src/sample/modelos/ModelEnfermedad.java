@@ -8,19 +8,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ModelEnfermedad {
-    public boolean insertar(Enfermedad enfermedad) {
+    public boolean insertar(Enfermedad enfermedad,Integer id) {
         Statement myStmt = GeneralModel.connect();
-
         String query = "INSERT INTO ";
         query += "enfermedad ";
         String sql = new StringBuilder()
-                .append("(f, enfermera, descripcion, paciente_id) VALUES (")
+                .append("(fecha_inicio, fecha_final, paciente_id) VALUES (")
                 .append(",'")
-                .append(enfermedad.getFecha()) // fecha_enfermedad
+                .append(enfermedad.getFecha_inicio()) // fecha_inicial
                 .append("','")
-                .append(enfermedad.getEnfermera())  // nombre_enfermera
+                .append(enfermedad.getFecha_final())  // fecha_final
                 .append("','")
-                .append(enfermedad.getDescripcion())  // nombre_enfermera
+                .append(id)  // paciente_id
                 .append("','")
                 .append(")")
                 .toString();
@@ -32,37 +31,41 @@ public class ModelEnfermedad {
             return false;
         }
     }
-    public Enfermedad getEnfermedad(Integer id) {
-        Enfermedad enfermedadAuxiliar = new Enfermedad();
+    public Enfermedad[] getEnfermedades(Integer id) {
         String query = "select * from enfermedad where paciente_id = " + id.toString();
-        ArrayList columnNames = new ArrayList();
-
         Statement myStmt = GeneralModel.connect();
         try {
             ResultSet myRs = myStmt.executeQuery(query);
-            ResultSetMetaData md = myRs.getMetaData();
-            int columns = md.getColumnCount();
-
-            //Get column names
-            for (int i = 1; i<= columns; i++){
-                columnNames.add(md.getColumnName(i));
-            }
 
             //Insertar informacion a objeto deseado
-            //Enfermedad enfermedadAuxiliar = new Enfermedad(myRs.getString(1),myRs.getString(2),myRs.getString(3));
+            Enfermedad[] enfs = new Enfermedad[this.getCantidadEnfermedades(id)];
 
+            Integer i = 0;
             while (myRs.next()){
-                enfermedadAuxiliar.setFecha(myRs.getString("fecha"));
-                enfermedadAuxiliar.setEnfermera(myRs.getString("enfermera"));
-                enfermedadAuxiliar.setDescripcion(myRs.getString("descripcion"));
+                enfs[i] = new Enfermedad(myRs.getString("nombre_enfermedad"),
+                                         myRs.getString("fecha_inicial"),
+                                         myRs.getString("fecha_final"));
             }
-            //enfermedadAuxiliar.setPaciente_id() = myRs.getInt(4);
 
             //Retornar objeto
-            return enfermedadAuxiliar;
+            return enfs;
         } catch (Exception e){
             System.out.println(e);
             return null;
         }
     }
+
+    public int getCantidadEnfermedades(Integer id){
+        String query = "select count(*) as rows from enfermedad where paciente_id = " + id.toString();
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
+    }
+
 }

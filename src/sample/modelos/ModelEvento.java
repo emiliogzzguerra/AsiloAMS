@@ -34,8 +34,7 @@ public class ModelEvento {
             return false;
         }
     }
-    public Evento getEvento(Integer id) {
-
+    public Evento[] getEventos(Integer id) {
         Evento eventoAuxiliar = new Evento();
         String query = "select * from evento where paciente_id = " + id.toString();
         ArrayList columnNames = new ArrayList();
@@ -43,29 +42,33 @@ public class ModelEvento {
         Statement myStmt = GeneralModel.connect();
         try {
             ResultSet myRs = myStmt.executeQuery(query);
-            ResultSetMetaData md = myRs.getMetaData();
-            int columns = md.getColumnCount();
 
-            //Get column names
-            for (int i = 1; i<= columns; i++){
-                columnNames.add(md.getColumnName(i));
-            }
+            Evento[] eventos = new Evento[this.getCantidadEventos(id)];
 
+            Integer i = 0;
             //Insertar informacion a objeto deseado
-            //Evento eventoAuxiliar = new Evento(myRs.getString(1),myRs.getString(2),myRs.getString(3));
-
             while (myRs.next()){
-                eventoAuxiliar.setFecha(myRs.getString("fecha"));
-                eventoAuxiliar.setEnfermera(myRs.getString("enfermera"));
-                eventoAuxiliar.setDescripcion(myRs.getString("descripcion"));
+                eventos[i] = new Evento(myRs.getString("fecha"),myRs.getString("enfermera"),myRs.getString("descripcion"));
             }
-            //eventoAuxiliar.setPaciente_id() = myRs.getInt(4);
 
             //Retornar objeto
-            return eventoAuxiliar;
+            return eventos;
         } catch (Exception e){
             System.out.println(e);
             return null;
+        }
+    }
+
+    public int getCantidadEventos(Integer id){
+        String query = "select count(*) from evento where paciente_id = " + id.toString();
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
         }
     }
 }
