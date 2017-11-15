@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS familiar
   nombre VARCHAR(30) NOT NULL,
   apellido VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
+  parentesco VARCHAR(30),
   paciente_id  INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
