@@ -35,16 +35,11 @@
 --   (11,'O+'),
 --   (12,'O+'),
 --   (13,'O+');
-/*
-ALTER TABLE paciente ADD paciente_medicado_manana bool AFTER numero_cama;
-ALTER TABLE paciente ADD paciente_medicado_tarde bool AFTER paciente_medicado_manana;
-ALTER TABLE paciente ADD paciente_medicado_noche bool AFTER paciente_medicado_tarde;
-ALTER TABLE paciente ADD foto varchar(100) AFTER estatus;
 
-UPDATE paciente SET foto = "/sample/fotos/emilio.png" WHERE paciente_id = "2";
+UPDATE paciente SET foto = "/sample/fotos/emilio.png" WHERE id = "2";
 
 
-insert into asilo (nombre,ciudad,calle,codigo_postal,cuartos_disponibles,camas_disponibles) 
+insert into asilo (nombre,ciudad,calle,codigo_postal,cuartos_disponibles,camas_disponibles)
   values
   ("asilo1","Monterrey","Eugenio Gza Sada",64860,20,10),
   ("asilo2","San Pedro","Santa Barbara",24553,30,30),
@@ -320,15 +315,3 @@ insert into telefono_informacion_emergencia (telefono, informacion_emergencia_id
 insert into telefono_informacion_emergencia (telefono, informacion_emergencia_id) values ('145-815-2169', 16);
 insert into telefono_informacion_emergencia (telefono, informacion_emergencia_id) values ('937-420-7629', 17);
 insert into telefono_informacion_emergencia (telefono, informacion_emergencia_id) values ('728-250-4693', 18);
-
-*/
-
-insert into paciente (sexo,fecha_nacimiento,nombre,apellido,ciudad,calle,codigo_postal,sangre,numero_cuarto,numero_cama,estatus,asilo_id) 
-  values 
-  (0,'2017-04-11 3:15',"Pepe","Gomez","Aguascalientes","FR #125",64340,"O",1,2,0,1),
-  (0,'2018-04-21 3:15',"Alejandro","Gonzalez","Monterrey","AE #125",64840,"O",1,2,0,1),
-    (0,'2005-02-12 3:15',"David","Gomez","DF","HO #125",64840,"O",1,2,0,1),
-      (0,'2015-12-01 3:15',"Marcelo","Ramirez","Cancun","Van #125",64840,"O",1,2,0,1),
-        (1,'2014-05-06 3:15',"Maria","Gomez","Tampico","LAE #125",64840,"O",1,2,1,1),
-          (1,'2007-02-08 3:15',"Graciela","Garcia","Monterrey","Monte #125",64840,"O",1,2,0,2),
-            (1,'2009-02-09 3:15',"Lucia","Gomez","Monterrey","Kili #125",64840,"O",1,1,0,1);

@@ -43,7 +43,7 @@
                                                 <ListView layoutX="-1.0" layoutY="41.0" opacity="0.46" prefHeight="328.0" prefWidth="807.0" />
                                                 <TextField fx:id="campoNombreTratamiento" layoutX="20.0" layoutY="80.0" text="Nombre de enfermedad" />
                                                 <TextArea fx:id="campoDescripcionTratamiento" layoutX="203.0" layoutY="49.0" prefHeight="88.0" prefWidth="419.0" text="Descripcion del tratamiento" />
-                                                <Button fx:id="botonGuardaTratamientos" layoutX="662.0" layoutY="313.0" mnemonicParsing="false" onAction="#guardaInfoGeneral" text="Guardar cambios" />
+                                                <Button fx:id="botonGuardaTratamientos" layoutX="662.0" layoutY="313.0" mnemonicParsing="false" onAction="#guardaTratamientos" text="Guardar cambios" />
                                             </children>
                                         </AnchorPane>
                                     </content>

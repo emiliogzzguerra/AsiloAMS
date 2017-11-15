@@ -21,7 +21,8 @@ public class ModelPadecimiento {
                 .append(")")
                 .toString();
 
-        String sqlPadecimiento = query + table + aux;
+        String sqlPadecimiento = table + aux;
+        System.out.println(sqlPadecimiento);
         try{
             myStmt.executeUpdate(sqlPadecimiento);
         } catch (Exception e){
@@ -30,13 +31,14 @@ public class ModelPadecimiento {
 
         Integer id_padecimiento = 0;
         try{
-            ResultSet myRs = myStmt.executeQuery("SELECT * FROM padecimiento");
-            id_padecimiento = myRs.getFetchSize();
+            ResultSet myRs = myStmt.executeQuery("SELECT COUNT(*) FROM paciente");
+            myRs.next();
+            id_padecimiento = myRs.getInt(1);
         } catch (Exception e){
             System.out.println(e);
         }
 
-        String table2 = query + "paciente_padecimiento ";
+        String table2 = "paciente_padecimiento ";
         String aux2 = new StringBuilder()
                 .append("(descripcion,paciente_id,padecimiento_id) VALUES (")
                 .append("'")
@@ -48,7 +50,7 @@ public class ModelPadecimiento {
                 .append(")")
                 .toString();
 
-        String sqlDescripcion = query + table2 + aux2;
+        String sqlDescripcion = table2 + aux2;
 
         try{
             myStmt.closeOnCompletion();
@@ -62,17 +64,16 @@ public class ModelPadecimiento {
     public Padecimiento[] getPadecimientos(Integer id) {
         String queryPadecimiento = "SELECT * FROM paciente INNER JOIN paciente_padecimiento ON paciente.id = paciente_padecimiento.paciente_id AND paciente.id =" + id.toString();
 
-        Statement myStmt = GeneralModel.connect();x
+        Statement myStmt = GeneralModel.connect();
         try {
             ResultSet myRs = myStmt.executeQuery(queryPadecimiento);
             ResultSetMetaData md = myRs.getMetaData();
-            int columns = md.getColumnCount();
 
             Padecimiento[] pads = new Padecimiento[myRs.getFetchSize()];
 
             Integer i = 0;
             while(myRs.next()){
-                pads[i] = new Padecimiento(myRs.getString("nombre"));
+                //pads[i] = new Padecimiento(myRs.getString("nombre"));
             }
 
             //Retornar objeto
