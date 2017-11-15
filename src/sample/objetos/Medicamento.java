@@ -133,4 +133,12 @@ public class Medicamento {
     public void setMedida(String medida) {
         this.medida = medida;
     }
+
+    public Integer getDias_restantes() {
+        return dias_restantes;
+    }
+
+    public void setDias_restantes(Integer dias_restantes) {
+        this.dias_restantes = dias_restantes;
+    }
 }

@@ -51,14 +51,15 @@ public class ModelMedicamento {
     }
 
     public Medicamento[] getMedicamentosReorden(Integer id,Integer dias){
-        String query = "select * from paciente inner join paciente_medicamento where paciente.id = paciente_medicamento.paciente_id and paciente.id =" + id.toString();
-
+        //String query = "select * from paciente inner join paciente_medicamento where paciente.id = paciente_medicamento.paciente_id and paciente.id =" + id.toString();
+        String query = "select * from paciente inner join paciente_medicamento inner join medicamento WHERE paciente.id = paciente_medicamento.paciente_id and paciente_medicamento.medicamento_id = medicamento.id and paciente.id =" + id.toString();
         Statement myStmt = GeneralModel.connect();
 
         try {
+            System.out.println("Entre a try");
             ResultSet myRs = myStmt.executeQuery(query);
 
-            Medicamento[] meds = new Medicamento[myRs.getFetchSize()];
+            Medicamento[] meds = new Medicamento[this.getRowsMedicamentosReorden(id)];
 
 
             Integer pastillas_actuales;
@@ -67,6 +68,7 @@ public class ModelMedicamento {
 
             Integer i=0;
             while(myRs.next()){
+                System.out.println("Entre a while");
                 Integer sumaDias = 0;
 
                 if(myRs.getBoolean("manana"))
@@ -92,6 +94,8 @@ public class ModelMedicamento {
                             myRs.getBoolean("tarde"),
                             myRs.getBoolean("noche"),
                             dias_restantes);
+                } else {
+                    System.out.println(dias_restantes);
                 }
             }
 
@@ -113,7 +117,7 @@ public class ModelMedicamento {
         try {
             ResultSet myRs = myStmt.executeQuery(query);
 
-            Medicamento[] meds = new Medicamento[myRs.getFetchSize()];
+            Medicamento[] meds = new Medicamento[this.getRowsMedicamentos(id)];
 
             Integer i=0;
             while(myRs.next()){
@@ -136,5 +140,32 @@ public class ModelMedicamento {
             return null;
         }
     }
+
+    public int getRowsMedicamentosReorden(Integer id){
+        String query = "select count(*) as rows from paciente inner join paciente_medicamento inner join medicamento WHERE paciente.id = paciente_medicamento.paciente_id and paciente_medicamento.medicamento_id = medicamento.id and paciente.id =" + id.toString();
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
+    }
+
+    public int getRowsMedicamentos(Integer id){
+        String query = "SELECT count(*) as rows FROM medicamento INNER JOIN paciente_medicamento ON medicamento.paciente_id = paciente_medicamento.paciente_id AND paciente_medicamento.id =" + id.toString();
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
+    }
+
 
 }

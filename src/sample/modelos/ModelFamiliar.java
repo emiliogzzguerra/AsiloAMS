@@ -75,17 +75,17 @@ public class ModelFamiliar {
         }
 
         public Familiar[] getFamiliaresReorden(Integer id){
-            String query = "select * from familiar where id = " + id.toString() + " and incumbencia = reorden";
+             System.out.println("Entre a getFamiliaresReorden");
+            String query = "select * from familiar where id = " + id.toString() + " and incumbencia = 'reorden'";
+            System.out.println(query);
             Statement myStmt = GeneralModel.connect();
             try {
+                System.out.println("Entre a try");
                 ResultSet myRs = myStmt.executeQuery(query);
-                ResultSetMetaData md = myRs.getMetaData();
 
-                int columns = md.getColumnCount();
+                Familiar[] fams = new Familiar[this.getRowsFamiliaresReorden(id)];
 
-                Familiar[] fams = new Familiar[columns];
-
-
+                System.out.println(fams.length);
                 Integer i=0;
                 while(myRs.next()){
                     fams[i] = new Familiar(myRs.getString("nombre"),
@@ -95,6 +95,7 @@ public class ModelFamiliar {
                             myRs.getString("telefono"));
                 }
 
+
                 //Retornar objeto
                 return fams;
             } catch (Exception e){
@@ -102,4 +103,17 @@ public class ModelFamiliar {
                 return null;
             }
         }
+
+    public int getRowsFamiliaresReorden(Integer id){
+        String query = "select count(*) as rows from familiar where id = " + id.toString() + " and incumbencia = 'reorden'";
+        Statement stmt = GeneralModel.connect();
+        try{
+            ResultSet rs = stmt.executeQuery(query);
+            rs.next();
+            return rs.getInt("rows");
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
+    }
 }
