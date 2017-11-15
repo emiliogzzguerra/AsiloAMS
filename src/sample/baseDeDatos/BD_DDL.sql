@@ -26,9 +26,9 @@ CREATE TABLE IF NOT EXISTS paciente
   sangre VARCHAR(2) NOT NULL,
   numero_cuarto INT,
   numero_cama INT,
-  paciente_medicado_manana BOOLEAN NOT NULL,
-  paciente_medicado_tarde BOOLEAN NOT NULL,
-  paciente_medicado_noche BOOLEAN NOT NULL,
+  paciente_medicado_manana BOOLEAN NOT NULL DEFAULT 0,
+  paciente_medicado_tarde BOOLEAN NOT NULL DEFAULT 0,
+  paciente_medicado_noche BOOLEAN NOT NULL DEFAULT 0,
   estatus INT NOT NULL,
   asilo_id INT NOT NULL,
   FOREIGN KEY (asilo_id) REFERENCES asilo(id)
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS familiar
   nombre VARCHAR(30) NOT NULL,
   apellido VARCHAR(30) NOT NULL,
   email VARCHAR(30) NOT NULL,
-  parentesco VARCHAR(30),wq
+  parentesco VARCHAR(30),
   paciente_id  INT NOT NULL,
   FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
