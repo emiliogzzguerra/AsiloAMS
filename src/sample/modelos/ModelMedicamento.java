@@ -1,5 +1,6 @@
 package sample.modelos;
 
+import sample.objetos.Familiar;
 import sample.objetos.Medicamento;
 
 import java.sql.ResultSet;
@@ -48,6 +49,60 @@ public class ModelMedicamento {
             return false;
         }
     }
+
+    public Medicamento[] getMedicamentosReorden(Integer id,Integer dias){
+        String query = "select * from paciente inner join paciente_medicamento where paciente.id = paciente_medicamento.paciente_id and paciente.id =" + id.toString();
+
+        Statement myStmt = GeneralModel.connect();
+
+        try {
+            ResultSet myRs = myStmt.executeQuery(query);
+
+            Medicamento[] meds = new Medicamento[myRs.getFetchSize()];
+
+
+            Integer pastillas_actuales;
+            Integer pastillas_dia;
+            Integer dias_restantes;
+
+            Integer i=0;
+            while(myRs.next()){
+                Integer sumaDias = 0;
+
+                if(myRs.getBoolean("manana"))
+                    sumaDias++;
+                if(myRs.getBoolean("tarde"))
+                    sumaDias++;
+                if(myRs.getBoolean("noche"))
+                    sumaDias++;
+
+                pastillas_dia = sumaDias * myRs.getInt("dosis");
+                pastillas_actuales = myRs.getInt("cantidad") - pastillas_dia;
+                dias_restantes = pastillas_actuales/pastillas_dia;
+
+                if(dias_restantes <= dias){
+                    meds[i] = new Medicamento(myRs.getString("nombre"),
+                            myRs.getString("tipo"),
+                            myRs.getInt("cantidad"),
+                            myRs.getString("dosis"),
+                            myRs.getString("fecha_inicio"),
+                            myRs.getString("fecha_final"),
+                            myRs.getString("medida"),
+                            myRs.getBoolean("manana"),
+                            myRs.getBoolean("tarde"),
+                            myRs.getBoolean("noche"),
+                            dias_restantes);
+                }
+            }
+
+            //Retornar objeto
+            return meds;
+        } catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
     public Medicamento[] getMedicamentos(Integer id) {
 
 

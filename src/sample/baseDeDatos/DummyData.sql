@@ -90,24 +90,24 @@ insert into evento (fecha,enfermera,descripcion,paciente_id)
   ('2011-12-05 7:25',"Marcela","Hellowwwwwoeijowiejf",6),
   ('2013-2-07 8:05',"Daniel","HellowwwwwoeijowiejDJM",10);
 
-insert into familiar (nombre, apellido, email, paciente_id) values ('Elnar', 'Pretley', 'epretley0@soundcloud.com', 1);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Briny', 'Deakes', 'bdeakes1@lulu.com', 2);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Perry', 'Gai', 'pgai2@yellowbook.com', 3);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Freemon', 'Blaver', 'fblaver3@w3.org', 4);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Kristian', 'Allbones', 'kallbones4@techcrunch.com', 5);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Roch', 'Lineen', 'rlineen5@symantec.com', 6);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Gerianne', 'Measham', 'gmeasham6@ucla.edu', 7);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Vally', 'Ruit', 'vruit7@squarespace.com', 8);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Abby', 'Youens', 'ayouens8@google.pl', 9);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Dita', 'Dory', 'ddory9@php.net', 10);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Cobbie', 'Frowen', 'cfrowena@4shared.com', 11);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Glenine', 'Luesley', 'gluesleyb@mayoclinic.com', 12);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Jandy', 'Schultheiss', 'jschultheissc@blogspot.com', 13);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Katherine', 'Bohler', 'kbohlerd@last.fm', 14);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Candie', 'Flynn', 'cflynne@deliciousdays.com', 15);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Arnuad', 'Clacson', 'aclacsonf@house.gov', 16);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Glenda', 'McLice', 'gmcliceg@blog.com', 17);
-insert into familiar (nombre, apellido, email, paciente_id) values ('Frannie', 'Goose', 'fgooseh@is.gd', 18);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Elnar', 'Pretley', 'epretley0@soundcloud.com','8112886677','81232555','reorden', 1);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Briny', 'Deakes', 'bdeakes1@lulu.com','8112886677','81232555','reorden', 2);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Perry', 'Gai', 'pgai2@yellowbook.com','8112886677','81232555','reorden', 2);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Freemon', 'Blaver', 'fblaver3@w3.org','8112886677','81232555','reorden', 4);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Kristian', 'Allbones', 'kallbones4@techcrunch.com','8112886677','81232555','reorden', 5);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Roch', 'Lineen', 'rlineen5@symantec.com','8112886677','81232555','reorden', 6);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Gerianne', 'Measham', 'gmeasham6@ucla.edu','8112886677','81232555','reorden', 7);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Vally', 'Ruit', 'vruit7@squarespace.com','8112886677','81232555','reorden', 8);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Abby', 'Youens', 'ayouens8@google.pl','8112886677','81232555','reorden', 9);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Dita', 'Dory', 'ddory9@php.net','8112886677','81232555','reorden', 10);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Cobbie', 'Frowen', 'cfrowena@4shared.com','8112886677','81232555','reorden', 11);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Glenine', 'Luesley', 'gluesleyb@mayoclinic.com','8112886677','81232555','reorden', 12);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Jandy', 'Schultheiss', 'jschultheissc@blogspot.com','8112886677','81232555','reorden', 13);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Katherine', 'Bohler', 'kbohlerd@last.fm','8112886677','81232555','reorden', 14);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Candie', 'Flynn', 'cflynne@deliciousdays.com','8112886677','81232555','reorden', 15);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Arnuad', 'Clacson', 'aclacsonf@house.gov','8112886677','81232555','reorden', 16);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Glenda', 'McLice', 'gmcliceg@blog.com','8112886677','81232555','reorden', 17);
+insert into familiar (nombre, apellido, email, telefono, celular, incumbencia, paciente_id) values ('Frannie', 'Goose', 'fgooseh@is.gd','8112886677','81232555','reorden', 18);
 
 insert into informacion_emergencia (poliza_seguro, hospital_preferente, fecha_vencimiento_poliza, paciente_id, comentarios) values ('16252-573', 'Dooley-Morissette', '2016-11-19 00:20:19', 1, 'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.');
 insert into informacion_emergencia (poliza_seguro, hospital_preferente, fecha_vencimiento_poliza, paciente_id, comentarios) values ('0245-0420', 'Dach-McKenzie', '2016-12-13 16:58:53', 2, 'Nulla ac enim.');

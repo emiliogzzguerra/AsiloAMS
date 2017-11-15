@@ -43,21 +43,15 @@ public class ModelFamiliar {
                 return false;
             }
         }
-        public Familiar[] getFamiliar(Integer id) {
+        public Familiar[] getFamiliares(Integer id) {
             String query = "select * from familiar where id = " + id.toString();
-            String queryTel = "select telefono from telefono_familiar where familiar_id =" + id.toString();
-
-
 
             Statement myStmt = GeneralModel.connect();
             try {
                 ResultSet myRs = myStmt.executeQuery(query);
-                ResultSet myRs2 = myStmt.executeQuery(queryTel);
                 ResultSetMetaData md = myRs.getMetaData();
-                ResultSetMetaData md2 = myRs2.getMetaData();
 
                 int columns = md.getColumnCount();
-                int columns2 = md2.getColumnCount();
 
                 Familiar[] fams = new Familiar[columns];
 
@@ -68,9 +62,38 @@ public class ModelFamiliar {
                                             myRs.getString("apellido"),
                                             myRs.getString("email"),
                                             myRs.getString("parentesco"),
-                                            myRs2.getString("telefono"));
+                                            myRs.getString("telefono"));
                 }
 
+
+                //Retornar objeto
+                return fams;
+            } catch (Exception e){
+                System.out.println(e);
+                return null;
+            }
+        }
+
+        public Familiar[] getFamiliaresReorden(Integer id){
+            String query = "select * from familiar where id = " + id.toString() + " and incumbencia = reorden";
+            Statement myStmt = GeneralModel.connect();
+            try {
+                ResultSet myRs = myStmt.executeQuery(query);
+                ResultSetMetaData md = myRs.getMetaData();
+
+                int columns = md.getColumnCount();
+
+                Familiar[] fams = new Familiar[columns];
+
+
+                Integer i=0;
+                while(myRs.next()){
+                    fams[i] = new Familiar(myRs.getString("nombre"),
+                            myRs.getString("apellido"),
+                            myRs.getString("email"),
+                            myRs.getString("parentesco"),
+                            myRs.getString("telefono"));
+                }
 
                 //Retornar objeto
                 return fams;
