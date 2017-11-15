@@ -60,22 +60,16 @@ public class ModelPadecimiento {
         }
     }
     public Padecimiento[] getPadecimientos(Integer id) {
-        String queryPadecimiento = "SELECT * FROM paciente INNER JOIN paciente_padecimiento ON paciente.paciente_id = paciente_padecimiento.paciente_id AND paciente.paciente_id =1" + id.toString();
+        String queryPadecimiento = "SELECT * FROM paciente INNER JOIN paciente_padecimiento ON paciente.id = paciente_padecimiento.paciente_id AND paciente.id =" + id.toString();
 
-        Statement myStmt = GeneralModel.connect();
+        Statement myStmt = GeneralModel.connect();x
         try {
-            ResultSet myRs = myStmt.executeQuery(queryPadecimiento);
-            String queryPacientePadecimiento = "select * from paciente_padecimiento where paciente_id = " + id.toString();
             ResultSet myRs = myStmt.executeQuery(queryPadecimiento);
             ResultSetMetaData md = myRs.getMetaData();
             int columns = md.getColumnCount();
 
             Padecimiento[] pads = new Padecimiento[myRs.getFetchSize()];
 
-            //Get column names
-            for (int i = 1; i<= columns; i++){
-                columnNames.add(md.getColumnName(i));
-            }
             Integer i = 0;
             while(myRs.next()){
                 pads[i] = new Padecimiento(myRs.getString("nombre"));
